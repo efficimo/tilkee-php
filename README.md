@@ -73,33 +73,6 @@ Then, use the shortcut [tilkee](bin/tilkee)
 ./bin/tilkee your_command_here 
 ```
 
-Unit Tests
-----------
-
-Setup the test suite using [Composer](http://getcomposer.org/) if not already done:
-
-```
-$ composer install --dev
-```
-
-Run it using [PHPUnit](http://phpunit.de/):
-
-```
-$ composer test
-```
-
-### Running Tests with `docker-compose`
-
-```
-$ docker-compose run php54
-$ docker-compose run php55
-$ docker-compose run php56
-$ docker-compose run php70
-```
-
-It is recommended to run only one service during testing, since `composer` requirements may depend on the PHP version and
-we are using a host-volume during local testing.
-
 Contributing
 ------------
 
@@ -119,16 +92,3 @@ License
 -------
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
-
-
-# Other
-## Running composer in docker
-
-As of [Composer Docker image documentation](https://hub.docker.com/_/composer/)
-
-```bash
-docker run --rm --interactive --tty \
-     --volume $PWD:/app \
-     --user $(id -u):$(id -g) \
-     composer install 
-```
