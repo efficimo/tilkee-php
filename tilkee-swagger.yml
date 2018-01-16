@@ -1,0 +1,449 @@
+swagger: "2.0"
+info:
+  description: "The Tilkee APIs allow you to integrate complex services with Tilkee to go
+                beyond the integrations we provide out of the box."
+  version: "1.0.0"
+  title: "Tilkee"
+  termsOfService: "https://www.tilkee.fr/mentions-legales/"
+  contact:
+    email: "rdavaillaud@hbs-research.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "api-staging.tilkee.com"
+schemes:
+- "https"
+tags:
+  - name: Main function
+    description: Everything about your Pets
+    externalDocs:
+      description: Documentation
+      url: 'https://tilkee.readme.io/docs/wrapper'
+  - name: Project
+    description: Access to Petstore orders
+    externalDocs:
+      description: Documentation
+      url: 'https://tilkee.readme.io/docs/what-is-it-1'
+  - name: Tilk
+    description: >-
+      A Tilk is a link generated for your lead or contact in a project. The link is tracked
+      and gives you back statistics about your lead's behavior.
+    externalDocs:
+      description: Documentation
+      url: 'https://tilkee.readme.io/docs/what-is-it-2'
+  - name: Items
+    description: >-
+      Items are the different docs you add to a project. An item can be a picture, a video, a text, a doc, an external website.
+    externalDocs:
+      description: Documentation
+      url: 'https://tilkee.readme.io/docs/what-is-it-3'
+paths:
+  /projects:
+    parameters:
+      - $ref: '#/parameters/tilkeeAuthParam'
+    post:
+      tags:
+        - Project
+      summary: Create
+      description: >-
+        Creating a project in this way you need to add everything; name, items,
+        properties, etc.
+        This section is used for creating projects with documents directly added
+        in. To use this section you need to have a project already created or a
+        template, and your documents have to be on the S3.
+      operationId: addProject
+      responses:
+        200:
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/Project'
+              - $ref: '#/definitions/ProjectDetail'
+        400:
+          description: Bad Request
+      parameters:
+        - in: body
+          name: project
+          description: The project
+          schema:
+            $ref: '#/definitions/InputProject'
+    get:
+      tags:
+        - Project
+      summary: List
+      description: Used to get a list of all your projects
+      operationId: listProject
+      parameters:
+        - name: search
+          in: query
+          description: Name
+          type: string
+        - name: limit
+          in: query
+          type: integer
+          format: int32
+        - name: offset
+          in: query
+          type: integer
+          format: int32
+        - name: status
+          in: query
+          type: string
+        - name: user_id
+          in: query
+          description: >-
+            To see projects to specific user. Management need to be active in
+            company.
+          type: integer
+          format: int32
+        - name: is_template
+          in: query
+          type: boolean
+        - name: name
+          in: query
+          type: string
+        - name: won
+          in: query
+          type: boolean
+        - name: can_be_downloaded
+          in: query
+          type: boolean
+        - name: is_or_was_signed
+          in: query
+          type: boolean
+        - name: signed
+          in: query
+          type: boolean
+        - name: starred
+          in: query
+          type: boolean
+        - name: nb_connections
+          in: query
+          type: integer
+          format: int32
+        - name: leader_id
+          in: query
+          type: integer
+          format: int32
+        - name: external_id
+          in: query
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseProjectList'
+        '400':
+          description: Bad Request
+parameters:
+  tilkeeAuthParam:
+    in: header
+    name: x-tilk-ref
+    type: string
+    required: true
+    description: Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+
+definitions:
+  Project:
+    type: object
+    required:
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 37980
+      name:
+        type: string
+        example: My first project
+      created_at:
+        type: [ string, "null"]
+        format: date-time
+        example: '2015-11-19T10:02:05.322+01:00'
+      updated_at:
+        type: [ string, "null"]
+        format: date-time
+        example: '2015-11-19T10:02:05.322+01:00'
+      archived_at:
+        type: string
+        format: date
+        example: '2017-12-29'
+        description: >-
+          Date to choose when a project is archived (only if company has right
+          « end_date_option »)
+      status:
+        type: string
+        example: activated
+      won:
+        type: string
+        enum: [won, lost, ac, na]
+        example: na
+      is_template:
+        type: boolean
+        example: false
+      can_be_downladed:
+        type: boolean
+        example: true
+        description: >-
+          To choose if visitor can download all of the project (only if
+          company have right « download_option »)
+      preview:
+        type: string
+        example: >-
+          https://api.tilkee.com/projects/37980/preview?signature=Vgr7G1fDo0WaquJOAL69rQuFSO6Aw6QmyxLOmqfvenY%3D%0A
+      preview_new:
+        type: string
+        example: >-
+          https://api.tilkee.com/projects/37980/preview?signature=Vgr7G1fDo0WaquJOAL69rQuFSO6Aw6QmyxLOmqfvenY%3D%0A
+      duration:
+        type: integer
+        format: int32
+        example: 30
+        description: >-
+          Used only for templates, you can create projects from this template
+          that will expire  days later.
+      is_or_was_signable:
+        type: boolean
+        example: false
+      last_sign_in_at:
+        type: [ string, null]
+        format: date-time
+        example: null
+      signed:
+        type: boolean
+        example: false
+      starred:
+        type: boolean
+        example: false
+      external_id:
+        type: string
+        example: 'PIPEDRIVE_DEAL:21654'
+        description: ID of the project in your system
+      token_url:
+        type: string
+      url:
+        type: string
+      collaborators_count:
+        type: integer
+        format: int32
+      first_access_at:
+        type: string
+        format: date
+      nb_connections:
+        type: integer
+        format: int32
+      total_time:
+        type: integer
+        format: int64
+  ProjectDetail:
+    type: object
+    properties:
+      leader:
+        $ref: '#/definitions/Leader'
+      collaborators:
+        type: array
+        items:
+          $ref: '#/definitions/Collaborator'
+      theme:
+        $ref: '#/definitions/Theme'
+  ProjectListDetail:
+    type: object
+    properties:
+      leader_first_name:
+        type: string
+      leader_last_name:
+        type: string
+      leader_id:
+        type: integer
+        format: int64
+        example: 4658
+      leader_avatar:
+        type: string
+      tokens_count:
+        type: integer
+        format: int32
+      project_items_count:
+        type: integer
+        format: int32
+
+  ResponseProjectList:
+    type: object
+    properties:
+      search:
+        type: string
+        description: Name
+      limit:
+        type: integer
+        format: int32
+        example: 50
+      offset:
+        type: integer
+        format: int32
+        example: 0
+      total:
+        type: integer
+        format: int32
+        example: 2
+      order:
+        type: string
+        example: '-projects.created_at'
+      contents:
+        type: array
+        items:
+          allOf:
+            - $ref: '#/definitions/Project'
+            - $ref: '#/definitions/ProjectListDetail'
+
+  InputProject:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: My first project
+      archived_at:
+        type: string
+        format: date
+        example: '2017-12-29'
+        description: >-
+          Date to choose when a project is archived (only if company
+          has right « end_date_option »)
+      can_be_downladed:
+        type: boolean
+        description: >-
+          To choose if visitor can download all of the project (only
+          if company have right « download_option »)
+      external_id:
+        type: string
+        example: 'PIPEDRIVE_DEAL:21654'
+        description: ID of the project in your system
+      duration:
+        type: integer
+        format: int32
+        example: 30
+        description: >-
+          Used only for templates, you can create projects from this
+          template that will expire  days later.
+
+  Theme:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        example: 4402
+      name:
+        type: string
+        example: 'Theme #1'
+      logo:
+        type: string
+      main_color:
+        type: string
+        example: '#4fada3'
+      secondary_color:
+        type: string
+        example: '#479c93'
+      text_color:
+        type: string
+        example: '#FFFFFF'
+      default:
+        type: boolean
+        example: true
+  Leader:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        example: 4658
+      first_name:
+        type: string
+      last_name:
+        type: string
+      full_name:
+        type: string
+        example: paul+test@tilkee.com
+      email:
+        type: string
+        example: paul+test@tilkee.com
+      cell_phone_number:
+        type: string
+      phone_number:
+        type: string
+      contact_email:
+        type: string
+        example: paul+test@tilkee.com
+      should_receive_emails:
+        type: boolean
+        example: true
+      level_id:
+        type: integer
+        example: 1
+      devices:
+        type: array
+        items:
+          $ref: '#/definitions/Device'
+      is_owner:
+        type: boolean
+        example: true
+      is_orange_user:
+        type: boolean
+        example: false
+      locale:
+        type: string
+        example: en
+      should_receive_connexion_email:
+        type: boolean
+        example: true
+      frequency_proposal_sumup_email:
+        type: integer
+        format: int32
+        example: 7
+      position:
+        type: string
+      avatar:
+        type: string
+      linkedin_account_url:
+        type: string
+        default: ''
+      twitter_account_url:
+        type: string
+        default: ''
+      facebook_account_url:
+        type: string
+        default: ''
+      last_sign_in_at:
+        type: [integer,null]
+        format: int64
+        example: 1447923437
+        description: Timestamp
+
+  # Definition not correct
+  Device:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        example: 4402
+
+  Collaborator:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+        example: 4402
+security:
+  - Bearer: []
+externalDocs:
+  description: Tilkee API doc v1.0
+  url: 'https://tilkee.readme.io/v1.0/docs'
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
+

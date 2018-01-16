@@ -1,0 +1,33 @@
+{
+    "name": "hbs-research/tilkee-php",
+    "version": "1.0.0",
+    "description": "PHP implementation of Tilkee API https://tilkee.readme.io/",
+    "type": "library",
+    "require": {
+        "php": "7.1.* || 7.2.*",
+        "php-http/guzzle6-adapter": "^1.1",
+        "guzzlehttp/psr7": "^1.4",
+        "php-http/message": "^1.6"
+    },
+    "authors": [
+        {
+            "name": "Raphaël Davaillaud",
+            "email": "raphael.davaillaud.hbs+git@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tilkee\\": "src/",
+            "Tilkee\\API\\": "generated/"
+        }
+    },
+    "minimum-stability": "stable",
+    "config": {
+        "platform": {
+            "php": "7.1"
+        }
+    },
+    "require-dev": {
+        "jane/open-api": "^3.1"
+    }
+}
