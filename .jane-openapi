@@ -1,0 +1,9 @@
+<?php
+
+return [
+    'openapi-file' => __DIR__ . '/tilkee-swagger.yml',
+    'namespace' => 'Tilkee\API',
+    'directory' => __DIR__ . '/generated',
+    //'date-format' => \DateTime::RFC3339_EXTENDED
+    'date-format' => 'Y-m-d\TH:i:s.uP'
+];
