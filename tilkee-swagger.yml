@@ -14,11 +14,6 @@ host: "api-staging.tilkee.com"
 schemes:
 - "https"
 tags:
-  - name: Main function
-    description: Everything about your Pets
-    externalDocs:
-      description: Documentation
-      url: 'https://tilkee.readme.io/docs/wrapper'
   - name: Project
     description: Access to Petstore orders
     externalDocs:
@@ -31,7 +26,7 @@ tags:
     externalDocs:
       description: Documentation
       url: 'https://tilkee.readme.io/docs/what-is-it-2'
-  - name: Items
+  - name: Item
     description: >-
       Items are the different docs you add to a project. An item can be a picture, a video, a text, a doc, an external website.
     externalDocs:
@@ -295,6 +290,55 @@ paths:
           in: query
           type: integer
           format: int32
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProjectItem'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+  '/projects/{projectId}/add_items':
+    parameters:
+      - $ref: '#/parameters/tilkeeAuthParam'
+    post:
+      tags:
+        - Project
+      summary: Add item in project
+      description: Use this section to add an existing item to a project
+      operationId: addItemToProject
+      parameters:
+        - name: projectId
+          in: path
+          description: ID of project
+          required: true
+          type: integer
+          format: int64
+        - name: item
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - id
+                    - title
+                    - signable
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    title:
+                      type: string
+                    signable:
+                      type: boolean
       responses:
         '200':
           description: OK
@@ -681,12 +725,13 @@ paths:
           description: Bad Request
         401:
           description: Unauthorized
+
   '/items/':
     parameters:
       - $ref: '#/parameters/tilkeeAuthParam'
     post:
       tags:
-        - Items
+        - Item
       summary: Create Items
       description: >-
         This section allows you to create items. You have 3 possibilities:
@@ -714,7 +759,7 @@ paths:
           description: Unauthorized
     get:
       tags:
-        - Items
+        - Item
       summary: List of Items
       description: Use this to get the list of items you added to your Tilkee account
       operationId: listItems
@@ -749,7 +794,7 @@ paths:
       - $ref: '#/parameters/tilkeeAuthParam'
     delete:
       tags:
-        - Items
+        - Item
       summary: Delete
       description: Permanently deletes a specific item
       operationId: deleteItem
@@ -768,55 +813,6 @@ paths:
         401:
           description: Unauthorized
 
-  '/projects/{projectId}/add_items':
-    parameters:
-      - $ref: '#/parameters/tilkeeAuthParam'
-    post:
-      tags:
-        - Items
-      summary: Add item in project
-      description: Use this section to add an existing item to a project
-      operationId: addItemToProject
-      parameters:
-        - name: projectId
-          in: path
-          description: ID of project
-          required: true
-          type: integer
-          format: int64
-        - name: item
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              items:
-                type: array
-                items:
-                  type: object
-                  required:
-                    - id
-                    - title
-                    - signable
-                  properties:
-                    id:
-                      type: integer
-                      format: int64
-                    title:
-                      type: string
-                    signable:
-                      type: boolean
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/ProjectItem'
-        400:
-          description: Bad Request
-        401:
-          description: Unauthorized
 
 parameters:
   tilkeeAuthParam:
@@ -1453,7 +1449,7 @@ definitions:
         example: true
       frequency_proposal_sumup_email:
         type: integer
-        format: int32
+        format: int32²²
         example: 7
       position:
         type: string
