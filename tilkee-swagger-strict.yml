@@ -894,7 +894,7 @@ definitions:
         type: boolean
         example: false
       last_sign_in_at:
-        type: [ string, null]
+        type: string
         format: date-time
         example: null
       signed:
@@ -1262,7 +1262,7 @@ definitions:
         type: string
         default: ''
       last_sign_in_at:
-        type: [ integer, null]
+        type: integer
         format: int64
         example: 1447923437
         description: Timestamp
@@ -1330,7 +1330,7 @@ definitions:
         type: integer
         format: int64
       last_sign_in_at:
-        type: [ string, null]
+        type: string
         format: date-time
         example: null
       nb_connections:
@@ -1498,11 +1498,11 @@ definitions:
         type: integer
         format: int64
       deleted_at:
-        type: [ string, null]
+        type: string
         format: date-time
         example: '2015-11-19T10:02:05.322+01:00'
       proposal_sumup_sent_at:
-        type: [ string, null]
+        type: string
         format: date-time
         example: '2015-11-19T10:02:05.322+01:00'
       sf_id:
@@ -1633,7 +1633,12 @@ definitions:
               fr:
                 type: string 
       location: 
-        type: string      
+        type: string
+  Device:
+    type: object
+    properties:
+      name:
+        type: string
 security:
   - Bearer: []
 externalDocs:
