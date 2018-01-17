@@ -296,6 +296,43 @@ class ProjectResource extends Resource
         return $response;
     }
     /**
+     * Use this section to add an existing item to a project
+     *
+     * @param int $projectId ID of project
+     * @param \Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody $item 
+     * @param array  $parameters List of parameters
+     * @param string $fetch      Fetch mode (object or response)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ProjectItem[]|null
+     */
+    public function addItemToProject($projectId, \Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody $item, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $queryParam = new QueryParam();
+        $url = '/projects/{projectId}/add_items';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
+        $url = $url . ('?' . $queryParam->buildQueryString($parameters));
+        $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
+        $body = $this->serializer->serialize($item, 'json');
+        $request = $this->messageFactory->createRequest('POST', $url, $headers, $body);
+        $promise = $this->httpClient->sendAsyncRequest($request);
+        if (self::FETCH_PROMISE === $fetch) {
+            return $promise;
+        }
+        $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ProjectItem[]', 'json');
+            }
+            if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
+        }
+        return $response;
+    }
+    /**
      * Use this command to remove items from a project by ids
      *
      * @param int $projectId ID of project

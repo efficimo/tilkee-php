@@ -41,11 +41,11 @@ class NormalizerFactory
         $normalizers[] = new CompanyCustomBrandingNormalizer();
         $normalizers[] = new CompanyCustomBrandingOnboardingVideosUrlNormalizer();
         $normalizers[] = new ProjectsProjectIdDuplicatePostBodyNormalizer();
+        $normalizers[] = new ProjectsProjectIdAddItemsPostBodyNormalizer();
+        $normalizers[] = new ProjectsProjectIdAddItemsPostBodyItemsItemNormalizer();
         $normalizers[] = new ProjectsProjectIdRemoveItemsPostBodyNormalizer();
         $normalizers[] = new ProjectsProjectIdArchivePostBodyNormalizer();
         $normalizers[] = new ProjectsProjectIdTokensIdPutBodyNormalizer();
-        $normalizers[] = new ProjectsProjectIdAddItemsPostBodyNormalizer();
-        $normalizers[] = new ProjectsProjectIdAddItemsPostBodyItemsItemNormalizer();
         return $normalizers;
     }
 }
