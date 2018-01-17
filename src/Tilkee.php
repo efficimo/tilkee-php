@@ -3,7 +3,9 @@
 namespace Tilkee;
 
 use Tilkee\API\Normalizer\NormalizerFactory;
+use Tilkee\Manager\ItemManager;
 use Tilkee\Manager\ProjectManager;
+use Tilkee\Manager\TilkManager;
 use Http\Client\HttpClient;
 use Http\Message\MessageFactory;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
@@ -37,6 +39,16 @@ class Tilkee
     private $projectManager;
 
     /**
+     * @var TilkManager
+     */
+    private $tilkManager;
+
+    /**
+     * @var ItemManager
+     */
+    private $itemManager;
+
+    /**
      * @param HttpClient|null     $httpClient     Http client to use with Tilkee
      * @param Serializer|null     $serializer     Deserialize Tilkee response into php objects
      * @param MessageFactory|null $messageFactory How to create Tilkee request (in PSR7)
@@ -66,6 +78,18 @@ class Tilkee
     }
 
     /**
+     * @return ItemManager
+     */
+    public function getItemManager()
+    {
+        if (null === $this->itemManager) {
+            $this->itemManager = new ItemManager($this->httpClient, $this->messageFactory, $this->serializer);
+        }
+
+        return $this->itemManager;
+    }
+
+    /**
      * @return ProjectManager
      */
     public function getProjectManager()
@@ -75,5 +99,17 @@ class Tilkee
         }
 
         return $this->projectManager;
+    }
+
+    /**
+     * @return TilkManager
+     */
+    public function getTilkManager()
+    {
+        if (null === $this->tilkManager) {
+            $this->tilkManager = new TilkManager($this->httpClient, $this->messageFactory, $this->serializer);
+        }
+
+        return $this->tilkManager;
     }
 }
