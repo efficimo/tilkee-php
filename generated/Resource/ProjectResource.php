@@ -65,6 +65,9 @@ class ProjectResource extends Resource
             if ('400' == $response->getStatusCode()) {
                 return null;
             }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
         }
         return $response;
     }
@@ -75,7 +78,7 @@ class ProjectResource extends Resource
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ProjectsPostResponse200|null
+     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\Project|null
      */
     public function addProject(\Tilkee\API\Model\InputProject $project, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -92,9 +95,311 @@ class ProjectResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ProjectsPostResponse200', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\Project', 'json');
             }
             if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
+        }
+        return $response;
+    }
+    /**
+     * Permanently deletes a specific project
+     *
+     * @param int $projectId ID of project
+     * @param array  $parameters List of parameters
+     * @param string $fetch      Fetch mode (object or response)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|null
+     */
+    public function deleteProject($projectId, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $queryParam = new QueryParam();
+        $url = '/projects/{projectId}';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
+        $url = $url . ('?' . $queryParam->buildQueryString($parameters));
+        $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
+        $body = $queryParam->buildFormDataString($parameters);
+        $request = $this->messageFactory->createRequest('DELETE', $url, $headers, $body);
+        $promise = $this->httpClient->sendAsyncRequest($request);
+        if (self::FETCH_PROMISE === $fetch) {
+            return $promise;
+        }
+        $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
+        }
+        return $response;
+    }
+    /**
+     * Used to get all details of a specific project
+     *
+     * @param int $projectId ID of project
+     * @param array  $parameters List of parameters
+     * @param string $fetch      Fetch mode (object or response)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\Project|null
+     */
+    public function getProject($projectId, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $queryParam = new QueryParam();
+        $url = '/projects/{projectId}';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
+        $url = $url . ('?' . $queryParam->buildQueryString($parameters));
+        $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
+        $body = $queryParam->buildFormDataString($parameters);
+        $request = $this->messageFactory->createRequest('GET', $url, $headers, $body);
+        $promise = $this->httpClient->sendAsyncRequest($request);
+        if (self::FETCH_PROMISE === $fetch) {
+            return $promise;
+        }
+        $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\Project', 'json');
+            }
+            if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
+        }
+        return $response;
+    }
+    /**
+     * This method can change a Tilkee project, in the following cases: - Say that a project is won - Archive a project - Change its name - Modify options like downloadable
+     *
+     * @param int $projectId ID of project
+     * @param \Tilkee\API\Model\InputProject $project The project
+     * @param array  $parameters List of parameters
+     * @param string $fetch      Fetch mode (object or response)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\Project|null
+     */
+    public function putProject($projectId, \Tilkee\API\Model\InputProject $project, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $queryParam = new QueryParam();
+        $url = '/projects/{projectId}';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
+        $url = $url . ('?' . $queryParam->buildQueryString($parameters));
+        $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
+        $body = $this->serializer->serialize($project, 'json');
+        $request = $this->messageFactory->createRequest('PUT', $url, $headers, $body);
+        $promise = $this->httpClient->sendAsyncRequest($request);
+        if (self::FETCH_PROMISE === $fetch) {
+            return $promise;
+        }
+        $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\Project', 'json');
+            }
+            if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
+        }
+        return $response;
+    }
+    /**
+     * In this section you can create a project using an existing one (copying it). Every part of the new project will be the same except the tilks.
+     *
+     * @param int $projectId ID of project
+     * @param \Tilkee\API\Model\ProjectsProjectIdDuplicatePostBody $project The project
+     * @param array  $parameters List of parameters
+     * @param string $fetch      Fetch mode (object or response)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ResponseProjectDuplicate|null
+     */
+    public function duplicateProject($projectId, \Tilkee\API\Model\ProjectsProjectIdDuplicatePostBody $project, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $queryParam = new QueryParam();
+        $url = '/projects/{projectId}/duplicate';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
+        $url = $url . ('?' . $queryParam->buildQueryString($parameters));
+        $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
+        $body = $this->serializer->serialize($project, 'json');
+        $request = $this->messageFactory->createRequest('POST', $url, $headers, $body);
+        $promise = $this->httpClient->sendAsyncRequest($request);
+        if (self::FETCH_PROMISE === $fetch) {
+            return $promise;
+        }
+        $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ResponseProjectDuplicate', 'json');
+            }
+            if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
+        }
+        return $response;
+    }
+    /**
+     * Use that section to consult all items in a project
+     *
+     * @param int $projectId ID of project
+     * @param array  $parameters {
+     *     @var string $status 
+     *     @var bool $is_template 
+     *     @var int $owner_id 
+     * }
+     * @param string $fetch      Fetch mode (object or response)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ProjectItem[]|null
+     */
+    public function listProjectItem($projectId, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $queryParam = new QueryParam();
+        $queryParam->setDefault('status', NULL);
+        $queryParam->setDefault('is_template', NULL);
+        $queryParam->setDefault('owner_id', NULL);
+        $url = '/projects/{projectId}/items';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
+        $url = $url . ('?' . $queryParam->buildQueryString($parameters));
+        $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
+        $body = $queryParam->buildFormDataString($parameters);
+        $request = $this->messageFactory->createRequest('GET', $url, $headers, $body);
+        $promise = $this->httpClient->sendAsyncRequest($request);
+        if (self::FETCH_PROMISE === $fetch) {
+            return $promise;
+        }
+        $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ProjectItem[]', 'json');
+            }
+            if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
+        }
+        return $response;
+    }
+    /**
+     * Use this command to remove items from a project by ids
+     *
+     * @param int $projectId ID of project
+     * @param \Tilkee\API\Model\ProjectsProjectIdRemoveItemsPostBody $items 
+     * @param array  $parameters List of parameters
+     * @param string $fetch      Fetch mode (object or response)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ProjectItem[]|null
+     */
+    public function removeProjectItems($projectId, \Tilkee\API\Model\ProjectsProjectIdRemoveItemsPostBody $items, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $queryParam = new QueryParam();
+        $url = '/projects/{projectId}/remove_items';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
+        $url = $url . ('?' . $queryParam->buildQueryString($parameters));
+        $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
+        $body = $this->serializer->serialize($items, 'json');
+        $request = $this->messageFactory->createRequest('POST', $url, $headers, $body);
+        $promise = $this->httpClient->sendAsyncRequest($request);
+        if (self::FETCH_PROMISE === $fetch) {
+            return $promise;
+        }
+        $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ProjectItem[]', 'json');
+            }
+            if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
+        }
+        return $response;
+    }
+    /**
+     * Usse this method to archive a project, you can use the won parameter to archive won, lost or undefined
+     *
+     * @param int $projectId ID of project
+     * @param \Tilkee\API\Model\ProjectsProjectIdArchivePostBody $won 
+     * @param array  $parameters List of parameters
+     * @param string $fetch      Fetch mode (object or response)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ResponseProjectArchive|null
+     */
+    public function archiveProject($projectId, \Tilkee\API\Model\ProjectsProjectIdArchivePostBody $won, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $queryParam = new QueryParam();
+        $url = '/projects/{projectId}/archive';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
+        $url = $url . ('?' . $queryParam->buildQueryString($parameters));
+        $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
+        $body = $this->serializer->serialize($won, 'json');
+        $request = $this->messageFactory->createRequest('POST', $url, $headers, $body);
+        $promise = $this->httpClient->sendAsyncRequest($request);
+        if (self::FETCH_PROMISE === $fetch) {
+            return $promise;
+        }
+        $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ResponseProjectArchive', 'json');
+            }
+            if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
+        }
+        return $response;
+    }
+    /**
+     * Use this command to restore an archived project. Id is needed
+     *
+     * @param int $projectId ID of project
+     * @param array  $parameters List of parameters
+     * @param string $fetch      Fetch mode (object or response)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ResponseProjectArchive|null
+     */
+    public function restoreProject($projectId, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $queryParam = new QueryParam();
+        $url = '/projects/{projectId}/restore';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
+        $url = $url . ('?' . $queryParam->buildQueryString($parameters));
+        $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
+        $body = $queryParam->buildFormDataString($parameters);
+        $request = $this->messageFactory->createRequest('POST', $url, $headers, $body);
+        $promise = $this->httpClient->sendAsyncRequest($request);
+        if (self::FETCH_PROMISE === $fetch) {
+            return $promise;
+        }
+        $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ResponseProjectArchive', 'json');
+            }
+            if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
                 return null;
             }
         }

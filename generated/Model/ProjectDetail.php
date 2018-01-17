@@ -5,6 +5,14 @@ namespace Tilkee\API\Model;
 class ProjectDetail
 {
     /**
+     * @var int
+     */
+    protected $nbConnections;
+    /**
+     * @var int
+     */
+    protected $totalTime;
+    /**
      * @var Leader
      */
     protected $leader;
@@ -16,6 +24,40 @@ class ProjectDetail
      * @var Theme
      */
     protected $theme;
+    /**
+     * @return int
+     */
+    public function getNbConnections()
+    {
+        return $this->nbConnections;
+    }
+    /**
+     * @param int $nbConnections
+     *
+     * @return self
+     */
+    public function setNbConnections($nbConnections = null)
+    {
+        $this->nbConnections = $nbConnections;
+        return $this;
+    }
+    /**
+     * @return int
+     */
+    public function getTotalTime()
+    {
+        return $this->totalTime;
+    }
+    /**
+     * @param int $totalTime
+     *
+     * @return self
+     */
+    public function setTotalTime($totalTime = null)
+    {
+        $this->totalTime = $totalTime;
+        return $this;
+    }
     /**
      * @return Leader
      */

@@ -10,20 +10,20 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class ProjectCommonNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\Project') {
+        if ($type !== 'Tilkee\\API\\Model\\ProjectCommon') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\Project) {
+        if ($data instanceof \Tilkee\API\Model\ProjectCommon) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\Project();
+        $object = new \Tilkee\API\Model\ProjectCommon();
         if (property_exists($data, 'id')) {
             $object->setId($data->{'id'});
         }
@@ -103,25 +103,6 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         }
         if (property_exists($data, 'first_access_at')) {
             $object->setFirstAccessAt($data->{'first_access_at'});
-        }
-        if (property_exists($data, 'nb_connections')) {
-            $object->setNbConnections($data->{'nb_connections'});
-        }
-        if (property_exists($data, 'total_time')) {
-            $object->setTotalTime($data->{'total_time'});
-        }
-        if (property_exists($data, 'leader')) {
-            $object->setLeader($this->denormalizer->denormalize($data->{'leader'}, 'Tilkee\\API\\Model\\Leader', 'json', $context));
-        }
-        if (property_exists($data, 'collaborators')) {
-            $values = array();
-            foreach ($data->{'collaborators'} as $value_1) {
-                $values[] = $this->denormalizer->denormalize($value_1, 'Tilkee\\API\\Model\\Collaborator', 'json', $context);
-            }
-            $object->setCollaborators($values);
-        }
-        if (property_exists($data, 'theme')) {
-            $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'Tilkee\\API\\Model\\Theme', 'json', $context));
         }
         return $object;
     }
@@ -197,25 +178,6 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         }
         if (null !== $object->getFirstAccessAt()) {
             $data->{'first_access_at'} = $object->getFirstAccessAt();
-        }
-        if (null !== $object->getNbConnections()) {
-            $data->{'nb_connections'} = $object->getNbConnections();
-        }
-        if (null !== $object->getTotalTime()) {
-            $data->{'total_time'} = $object->getTotalTime();
-        }
-        if (null !== $object->getLeader()) {
-            $data->{'leader'} = $this->normalizer->normalize($object->getLeader(), 'json', $context);
-        }
-        if (null !== $object->getCollaborators()) {
-            $values = array();
-            foreach ($object->getCollaborators() as $value_1) {
-                $values[] = $this->normalizer->normalize($value_1, 'json', $context);
-            }
-            $data->{'collaborators'} = $values;
-        }
-        if (null !== $object->getTheme()) {
-            $data->{'theme'} = $this->normalizer->normalize($object->getTheme(), 'json', $context);
         }
         return $data;
     }
