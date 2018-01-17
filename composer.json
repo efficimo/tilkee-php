@@ -2,6 +2,7 @@
     "name": "hbs-research/tilkee-php",
     "description": "PHP implementation of Tilkee API https://tilkee.readme.io/",
     "type": "library",
+    "license": "MIT",
     "require": {
         "php": "7.1.* || 7.2.*",
         "php-http/guzzle6-adapter": "^1.1",
