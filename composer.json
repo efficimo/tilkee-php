@@ -1,6 +1,5 @@
 {
     "name": "hbs-research/tilkee-php",
-    "version": "1.0.0",
     "description": "PHP implementation of Tilkee API https://tilkee.readme.io/",
     "type": "library",
     "require": {
