@@ -13,11 +13,11 @@ class Project
      */
     protected $name;
     /**
-     * @var \DateTime|null
+     * @var \DateTime
      */
     protected $createdAt;
     /**
-     * @var \DateTime|null
+     * @var \DateTime
      */
     protected $updatedAt;
     /**
@@ -97,6 +97,18 @@ class Project
      */
     protected $totalTime;
     /**
+     * @var Leader
+     */
+    protected $leader;
+    /**
+     * @var Collaborator[]
+     */
+    protected $collaborators;
+    /**
+     * @var Theme
+     */
+    protected $theme;
+    /**
      * @return int
      */
     public function getId()
@@ -131,14 +143,14 @@ class Project
         return $this;
     }
     /**
-     * @return \DateTime|null
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
         return $this->createdAt;
     }
     /**
-     * @param \DateTime|null $createdAt
+     * @param \DateTime $createdAt
      *
      * @return self
      */
@@ -148,14 +160,14 @@ class Project
         return $this;
     }
     /**
-     * @return \DateTime|null
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
     /**
-     * @param \DateTime|null $updatedAt
+     * @param \DateTime $updatedAt
      *
      * @return self
      */
@@ -485,6 +497,57 @@ class Project
     public function setTotalTime($totalTime = null)
     {
         $this->totalTime = $totalTime;
+        return $this;
+    }
+    /**
+     * @return Leader
+     */
+    public function getLeader()
+    {
+        return $this->leader;
+    }
+    /**
+     * @param Leader $leader
+     *
+     * @return self
+     */
+    public function setLeader(Leader $leader = null)
+    {
+        $this->leader = $leader;
+        return $this;
+    }
+    /**
+     * @return Collaborator[]
+     */
+    public function getCollaborators()
+    {
+        return $this->collaborators;
+    }
+    /**
+     * @param Collaborator[] $collaborators
+     *
+     * @return self
+     */
+    public function setCollaborators(array $collaborators = null)
+    {
+        $this->collaborators = $collaborators;
+        return $this;
+    }
+    /**
+     * @return Theme
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+    /**
+     * @param Theme $theme
+     *
+     * @return self
+     */
+    public function setTheme(Theme $theme = null)
+    {
+        $this->theme = $theme;
         return $this;
     }
 }

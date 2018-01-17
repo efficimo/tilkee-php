@@ -10,20 +10,20 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-class ProjectsPostResponse200Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ProjectsPostResponse200') {
+        if ($type !== 'Tilkee\\API\\Model\\ResponseProjectDuplicate') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ProjectsPostResponse200) {
+        if ($data instanceof \Tilkee\API\Model\ResponseProjectDuplicate) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ProjectsPostResponse200Normalizer implements DenormalizerInterface, Normal
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ProjectsPostResponse200();
+        $object = new \Tilkee\API\Model\ResponseProjectDuplicate();
         if (property_exists($data, 'id')) {
             $object->setId($data->{'id'});
         }
@@ -41,24 +41,10 @@ class ProjectsPostResponse200Normalizer implements DenormalizerInterface, Normal
             $object->setName($data->{'name'});
         }
         if (property_exists($data, 'created_at')) {
-            $value = $data->{'created_at'};
-            if (is_string($data->{'created_at'}) and false !== \DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'created_at'})) {
-                $value = \DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'created_at'});
-            }
-            if (is_null($data->{'created_at'})) {
-                $value = $data->{'created_at'};
-            }
-            $object->setCreatedAt($value);
+            $object->setCreatedAt(\DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'created_at'}));
         }
         if (property_exists($data, 'updated_at')) {
-            $value_1 = $data->{'updated_at'};
-            if (is_string($data->{'updated_at'}) and false !== \DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'updated_at'})) {
-                $value_1 = \DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'updated_at'});
-            }
-            if (is_null($data->{'updated_at'})) {
-                $value_1 = $data->{'updated_at'};
-            }
-            $object->setUpdatedAt($value_1);
+            $object->setUpdatedAt(\DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'updated_at'}));
         }
         if (property_exists($data, 'archived_at')) {
             $object->setArchivedAt($data->{'archived_at'});
@@ -88,14 +74,14 @@ class ProjectsPostResponse200Normalizer implements DenormalizerInterface, Normal
             $object->setIsOrWasSignable($data->{'is_or_was_signable'});
         }
         if (property_exists($data, 'last_sign_in_at')) {
-            $value_2 = $data->{'last_sign_in_at'};
+            $value = $data->{'last_sign_in_at'};
             if (is_string($data->{'last_sign_in_at'}) and false !== \DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'last_sign_in_at'})) {
-                $value_2 = \DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'last_sign_in_at'});
+                $value = \DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'last_sign_in_at'});
             }
             if (isset($data->{'last_sign_in_at'})) {
-                $value_2 = $data->{'last_sign_in_at'};
+                $value = $data->{'last_sign_in_at'};
             }
-            $object->setLastSignInAt($value_2);
+            $object->setLastSignInAt($value);
         }
         if (property_exists($data, 'signed')) {
             $object->setSigned($data->{'signed'});
@@ -118,24 +104,15 @@ class ProjectsPostResponse200Normalizer implements DenormalizerInterface, Normal
         if (property_exists($data, 'first_access_at')) {
             $object->setFirstAccessAt($data->{'first_access_at'});
         }
-        if (property_exists($data, 'nb_connections')) {
-            $object->setNbConnections($data->{'nb_connections'});
-        }
-        if (property_exists($data, 'total_time')) {
-            $object->setTotalTime($data->{'total_time'});
-        }
-        if (property_exists($data, 'leader')) {
-            $object->setLeader($this->denormalizer->denormalize($data->{'leader'}, 'Tilkee\\API\\Model\\Leader', 'json', $context));
-        }
-        if (property_exists($data, 'collaborators')) {
-            $values = array();
-            foreach ($data->{'collaborators'} as $value_3) {
-                $values[] = $this->denormalizer->denormalize($value_3, 'Tilkee\\API\\Model\\Collaborator', 'json', $context);
-            }
-            $object->setCollaborators($values);
-        }
         if (property_exists($data, 'theme')) {
             $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'Tilkee\\API\\Model\\Theme', 'json', $context));
+        }
+        if (property_exists($data, 'tokens')) {
+            $values = array();
+            foreach ($data->{'tokens'} as $value_1) {
+                $values[] = $this->denormalizer->denormalize($value_1, 'Tilkee\\API\\Model\\Token', 'json', $context);
+            }
+            $object->setTokens($values);
         }
         return $object;
     }
@@ -148,22 +125,12 @@ class ProjectsPostResponse200Normalizer implements DenormalizerInterface, Normal
         if (null !== $object->getName()) {
             $data->{'name'} = $object->getName();
         }
-        $value = $object->getCreatedAt();
-        if (is_object($object->getCreatedAt())) {
-            $value = $object->getCreatedAt()->format("Y-m-d\TH:i:s.uP");
+        if (null !== $object->getCreatedAt()) {
+            $data->{'created_at'} = $object->getCreatedAt()->format("Y-m-d\TH:i:s.uP");
         }
-        if (is_null($object->getCreatedAt())) {
-            $value = $object->getCreatedAt();
+        if (null !== $object->getUpdatedAt()) {
+            $data->{'updated_at'} = $object->getUpdatedAt()->format("Y-m-d\TH:i:s.uP");
         }
-        $data->{'created_at'} = $value;
-        $value_1 = $object->getUpdatedAt();
-        if (is_object($object->getUpdatedAt())) {
-            $value_1 = $object->getUpdatedAt()->format("Y-m-d\TH:i:s.uP");
-        }
-        if (is_null($object->getUpdatedAt())) {
-            $value_1 = $object->getUpdatedAt();
-        }
-        $data->{'updated_at'} = $value_1;
         if (null !== $object->getArchivedAt()) {
             $data->{'archived_at'} = $object->getArchivedAt();
         }
@@ -192,14 +159,14 @@ class ProjectsPostResponse200Normalizer implements DenormalizerInterface, Normal
             $data->{'is_or_was_signable'} = $object->getIsOrWasSignable();
         }
         if (null !== $object->getLastSignInAt()) {
-            $value_2 = $object->getLastSignInAt();
+            $value = $object->getLastSignInAt();
             if (is_object($object->getLastSignInAt())) {
-                $value_2 = $object->getLastSignInAt()->format("Y-m-d\TH:i:s.uP");
+                $value = $object->getLastSignInAt()->format("Y-m-d\TH:i:s.uP");
             }
             if (!is_null($object->getLastSignInAt())) {
-                $value_2 = $object->getLastSignInAt();
+                $value = $object->getLastSignInAt();
             }
-            $data->{'last_sign_in_at'} = $value_2;
+            $data->{'last_sign_in_at'} = $value;
         }
         if (null !== $object->getSigned()) {
             $data->{'signed'} = $object->getSigned();
@@ -222,24 +189,15 @@ class ProjectsPostResponse200Normalizer implements DenormalizerInterface, Normal
         if (null !== $object->getFirstAccessAt()) {
             $data->{'first_access_at'} = $object->getFirstAccessAt();
         }
-        if (null !== $object->getNbConnections()) {
-            $data->{'nb_connections'} = $object->getNbConnections();
-        }
-        if (null !== $object->getTotalTime()) {
-            $data->{'total_time'} = $object->getTotalTime();
-        }
-        if (null !== $object->getLeader()) {
-            $data->{'leader'} = $this->normalizer->normalize($object->getLeader(), 'json', $context);
-        }
-        if (null !== $object->getCollaborators()) {
-            $values = array();
-            foreach ($object->getCollaborators() as $value_3) {
-                $values[] = $this->normalizer->normalize($value_3, 'json', $context);
-            }
-            $data->{'collaborators'} = $values;
-        }
         if (null !== $object->getTheme()) {
             $data->{'theme'} = $this->normalizer->normalize($object->getTheme(), 'json', $context);
+        }
+        if (null !== $object->getTokens()) {
+            $values = array();
+            foreach ($object->getTokens() as $value_1) {
+                $values[] = $this->normalizer->normalize($value_1, 'json', $context);
+            }
+            $data->{'tokens'} = $values;
         }
         return $data;
     }

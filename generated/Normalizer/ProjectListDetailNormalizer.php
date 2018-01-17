@@ -34,6 +34,12 @@ class ProjectListDetailNormalizer implements DenormalizerInterface, NormalizerIn
             throw new InvalidArgumentException();
         }
         $object = new \Tilkee\API\Model\ProjectListDetail();
+        if (property_exists($data, 'nb_connections')) {
+            $object->setNbConnections($data->{'nb_connections'});
+        }
+        if (property_exists($data, 'total_time')) {
+            $object->setTotalTime($data->{'total_time'});
+        }
         if (property_exists($data, 'leader_first_name')) {
             $object->setLeaderFirstName($data->{'leader_first_name'});
         }
@@ -57,6 +63,12 @@ class ProjectListDetailNormalizer implements DenormalizerInterface, NormalizerIn
     public function normalize($object, $format = null, array $context = array())
     {
         $data = new \stdClass();
+        if (null !== $object->getNbConnections()) {
+            $data->{'nb_connections'} = $object->getNbConnections();
+        }
+        if (null !== $object->getTotalTime()) {
+            $data->{'total_time'} = $object->getTotalTime();
+        }
         if (null !== $object->getLeaderFirstName()) {
             $data->{'leader_first_name'} = $object->getLeaderFirstName();
         }
