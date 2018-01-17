@@ -120,4 +120,41 @@ class ItemResource extends Resource
         }
         return $response;
     }
+    /**
+     * Use this to get the s3 informations to be used to upload on S3
+     *
+     * @param array  $parameters {
+     *     @var string $filename 
+     * }
+     * @param string $fetch      Fetch mode (object or response)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\UploadInformation|null
+     */
+    public function uploadItem($parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $queryParam = new QueryParam();
+        $queryParam->setDefault('filename', NULL);
+        $url = '/direct_upload_data/';
+        $url = $url . ('?' . $queryParam->buildQueryString($parameters));
+        $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
+        $body = $queryParam->buildFormDataString($parameters);
+        $request = $this->messageFactory->createRequest('GET', $url, $headers, $body);
+        $promise = $this->httpClient->sendAsyncRequest($request);
+        if (self::FETCH_PROMISE === $fetch) {
+            return $promise;
+        }
+        $response = $promise->wait();
+        if (self::FETCH_OBJECT == $fetch) {
+            if ('200' == $response->getStatusCode()) {
+                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\UploadInformation', 'json');
+            }
+            if ('400' == $response->getStatusCode()) {
+                return null;
+            }
+            if ('401' == $response->getStatusCode()) {
+                return null;
+            }
+        }
+        return $response;
+    }
 }

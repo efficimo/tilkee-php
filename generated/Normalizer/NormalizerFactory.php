@@ -40,6 +40,7 @@ class NormalizerFactory
         $normalizers[] = new CompanyNormalizer();
         $normalizers[] = new CompanyCustomBrandingNormalizer();
         $normalizers[] = new CompanyCustomBrandingOnboardingVideosUrlNormalizer();
+        $normalizers[] = new UploadInformationNormalizer();
         $normalizers[] = new ProjectsProjectIdDuplicatePostBodyNormalizer();
         $normalizers[] = new ProjectsProjectIdAddItemsPostBodyNormalizer();
         $normalizers[] = new ProjectsProjectIdAddItemsPostBodyItemsItemNormalizer();

@@ -812,6 +812,28 @@ paths:
           description: Bad Request
         401:
           description: Unauthorized
+  '/direct_upload_data/':
+    parameters:
+      - $ref: '#/parameters/tilkeeAuthParam'
+    get:
+      tags:
+        - Item
+      summary: Get upload information
+      description: Use this to get the s3 informations to be used to upload on S3
+      operationId: uploadItem
+      parameters:
+        - name: filename
+          in: query
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UploadInformation'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
 
 
 parameters:
@@ -1629,7 +1651,26 @@ definitions:
               fr:
                 type: string 
       location: 
-        type: string      
+        type: string
+  UploadInformation:
+    type: object
+    properties:
+      key:
+        type: string
+      acl:
+        type: string
+      policy:
+        type: string
+      signature:
+        type: string
+      AWSAccessKeyId:
+        type: string
+      success_action_status:
+        type: string
+      s3_endpoint:
+        type: string
+      name:
+        type: string
 security:
   - Bearer: []
 externalDocs:
