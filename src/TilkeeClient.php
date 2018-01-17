@@ -25,8 +25,8 @@ class TilkeeClient implements HttpClient
         $host = isset($clientOptions['host']) ? $clientOptions['host'] : 'https://api-staging.tilkee.com/';
         $headers = [
             'x-tilk-ref' => $tilkRef,
-            'accept' => '*/*',
-            'accept-encoding' => 'gzip, deflate'
+            'accept' => 'application/json',
+            'accept-encoding' => 'gzip, deflate, compress'
         ];
 
         $this->httpClient = new PluginClient(
