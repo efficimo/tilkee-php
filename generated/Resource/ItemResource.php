@@ -130,10 +130,10 @@ class ItemResource extends Resource
      *
      * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\UploadInformation|null
      */
-    public function uploadItem($parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function getUploadFileInformation($parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
-        $queryParam->setDefault('filename', NULL);
+        $queryParam->setRequired('filename');
         $url = '/direct_upload_data/';
         $url = $url . ('?' . $queryParam->buildQueryString($parameters));
         $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));

@@ -818,13 +818,14 @@ paths:
     get:
       tags:
         - Item
-      summary: Get upload information
+      summary: Get upload file information
       description: Use this to get the s3 informations to be used to upload on S3
-      operationId: uploadItem
+      operationId: getUploadFileInformation
       parameters:
         - name: filename
           in: query
           type: string
+          required: true
       responses:
         '200':
           description: OK
@@ -834,7 +835,6 @@ paths:
           description: Bad Request
         401:
           description: Unauthorized
-
 
 parameters:
   tilkeeAuthParam:
