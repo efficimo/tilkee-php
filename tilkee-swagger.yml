@@ -450,12 +450,6 @@ paths:
   '/projects/{projectId}/tokens':
     parameters:
       - $ref: '#/parameters/tilkeeAuthParam'
-      - name: projectId
-        in: path
-        description: ID of project
-        required: true
-        type: integer
-        format: int64
     post:
       tags:
         - Tilk
@@ -465,6 +459,12 @@ paths:
         You can create up to 200 "Tilks" with one call to this method.
       operationId: createTilk
       parameters:
+        - name: projectId
+          in: path
+          description: ID of project
+          required: true
+          type: integer
+          format: int64
         - name: tilks
           in: body
           schema:
@@ -487,6 +487,12 @@ paths:
         A project id is needed
       operationId: listProjectTilks
       parameters:
+        - name: projectId
+          in: path
+          description: ID of project
+          required: true
+          type: integer
+          format: int64
         - name: search
           in: query
           description: Title, name, email, token_url
@@ -739,9 +745,9 @@ paths:
       operationId: createItems
       parameters:
         - in: body
-          name: project
+          name: items
           required: true
-          description: The project
+          description: The items
           schema:
             type: array
             items:
