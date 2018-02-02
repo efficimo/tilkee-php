@@ -7,6 +7,9 @@ use GuzzleHttp\Psr7\Uri;
 use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
 use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Common\Plugin\AuthenticationPlugin;
+use Http\Client\Common\Plugin\ContentLengthPlugin;
+use Http\Client\Common\Plugin\ContentTypePlugin;
+use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\HeaderSetPlugin;
 use Http\Client\Common\PluginClient;
 use Http\Client\HttpClient;
@@ -35,6 +38,9 @@ class TilkeeClient implements HttpClient
                 new AuthenticationPlugin($authentication),
                 new HeaderSetPlugin($headers),
                 new AddHostPlugin(new Uri($host)),
+                new ErrorPlugin(),
+                new ContentLengthPlugin(),
+                new ContentTypePlugin()
             ]
         );
     }
