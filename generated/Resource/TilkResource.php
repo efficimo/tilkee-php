@@ -9,6 +9,7 @@ class TilkResource extends Resource
     /**
      * You can have several links (Tilks) for a project. This command is used to retrieve all of them. A project id is needed
      *
+     * @param int $projectId ID of project
      * @param array  $parameters {
      *     @var string $search Title, name, email, token_url
      *     @var int $limit 
@@ -26,7 +27,7 @@ class TilkResource extends Resource
      *
      * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ResponseTokenList|null
      */
-    public function listProjectTilks($parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function listProjectTilks($projectId, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $queryParam->setDefault('search', NULL);
@@ -41,6 +42,7 @@ class TilkResource extends Resource
         $queryParam->setDefault('interest', NULL);
         $queryParam->setDefault('external_id', NULL);
         $url = '/projects/{projectId}/tokens';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
         $url = $url . ('?' . $queryParam->buildQueryString($parameters));
         $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
         $body = $queryParam->buildFormDataString($parameters);
@@ -66,16 +68,18 @@ class TilkResource extends Resource
     /**
      * This method creates a "Tilk", which is a unique link to send your project to your prospect. You can create up to 200 "Tilks" with one call to this method.
      *
+     * @param int $projectId ID of project
      * @param \Tilkee\API\Model\InputToken $tilks 
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
      * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ResponseCreateToken|null
      */
-    public function createTilk(\Tilkee\API\Model\InputToken $tilks, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function createTilk($projectId, \Tilkee\API\Model\InputToken $tilks, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects/{projectId}/tokens';
+        $url = str_replace('{projectId}', urlencode($projectId), $url);
         $url = $url . ('?' . $queryParam->buildQueryString($parameters));
         $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
         $body = $this->serializer->serialize($tilks, 'json');

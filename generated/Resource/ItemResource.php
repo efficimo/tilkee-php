@@ -52,19 +52,19 @@ class ItemResource extends Resource
     /**
      * This section allows you to create items. You have 3 possibilities: add a document from a URL, add text or add external content.'
      *
-     * @param array $project The project
+     * @param array $items The items
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
      * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ItemWithOwnership[]|null
      */
-    public function createItems(array $project, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function createItems(array $items, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/items/';
         $url = $url . ('?' . $queryParam->buildQueryString($parameters));
         $headers = array_merge(array('Host' => 'api-staging.tilkee.com'), $queryParam->buildHeaders($parameters));
-        $body = $project;
+        $body = $items;
         $request = $this->messageFactory->createRequest('POST', $url, $headers, $body);
         $promise = $this->httpClient->sendAsyncRequest($request);
         if (self::FETCH_PROMISE === $fetch) {
