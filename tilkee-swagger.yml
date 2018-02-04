@@ -752,6 +752,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/InputItem'
+
       responses:
         '200':
           description: OK
@@ -1172,31 +1173,29 @@ definitions:
           $ref: '#/definitions/ItemWithOwnership'
 
   InputItem:
-    type: array
-    items:
-      type: object
-      required:
-        - name
-      properties:
-        name:
-          type: string
-          example: My new file
-        title:
-          type: string
-        content:
-          type: string
-          example: '<p>this is some html content</p>'
-        url:
-          type: string
-        from_url:
-          type: boolean
-        s3_url:
-          type: string
-        type:
-          type: string
-          enum: [file, text, link]
-        external_id:
-          type: string
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: My new file
+      title:
+        type: string
+      content:
+        type: string
+        example: '<p>this is some html content</p>'
+      url:
+        type: string
+      from_url:
+        type: boolean
+      s3_url:
+        type: string
+      type:
+        type: string
+        enum: [file, text, link]
+      external_id:
+        type: string
 
   Theme:
     type: object
@@ -1320,7 +1319,7 @@ definitions:
         type: string
         example: "no_init"
       archived_at:
-        type: string
+        type: [string, null]
         format: date-time
       signed:
         type: boolean
@@ -1347,7 +1346,7 @@ definitions:
       generated_by_prospect:
         type: boolean
       first_access_at:
-        type: string
+        type: [string, null]
         format: date-time
       # only in list
       total_time:
