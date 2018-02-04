@@ -15,4 +15,11 @@ class ItemManager extends ItemResource
     {
         return $this->getUploadFileInformation($parameters, $fetch);
     }
+    public function createItems($items, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    {
+        $items = $this->serializer->serialize($items, 'json');
+
+        return parent::createItems($items, $parameters, $fetch);
+    }
+
 }

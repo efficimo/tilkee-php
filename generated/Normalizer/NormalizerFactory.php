@@ -22,7 +22,7 @@ class NormalizerFactory
         $normalizers[] = new ItemWithOwnershipNormalizer();
         $normalizers[] = new ItemWithOwnershipprojectsItemNormalizer();
         $normalizers[] = new ResponseItemListNormalizer();
-        $normalizers[] = new InputItemItemNormalizer();
+        $normalizers[] = new InputItemNormalizer();
         $normalizers[] = new ThemeNormalizer();
         $normalizers[] = new LeaderNormalizer();
         $normalizers[] = new TokenNormalizer();

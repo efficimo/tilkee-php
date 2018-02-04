@@ -37,7 +37,7 @@ class Token
      */
     protected $signedStatus;
     /**
-     * @var \DateTime
+     * @var \DateTime|mixed
      */
     protected $archivedAt;
     /**
@@ -69,7 +69,7 @@ class Token
      */
     protected $generatedByProspect;
     /**
-     * @var \DateTime
+     * @var \DateTime|mixed
      */
     protected $firstAccessAt;
     /**
@@ -221,18 +221,18 @@ class Token
         return $this;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|mixed
      */
     public function getArchivedAt()
     {
         return $this->archivedAt;
     }
     /**
-     * @param \DateTime $archivedAt
+     * @param \DateTime|mixed $archivedAt
      *
      * @return self
      */
-    public function setArchivedAt(\DateTime $archivedAt = null)
+    public function setArchivedAt($archivedAt = null)
     {
         $this->archivedAt = $archivedAt;
         return $this;
@@ -357,18 +357,18 @@ class Token
         return $this;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|mixed
      */
     public function getFirstAccessAt()
     {
         return $this->firstAccessAt;
     }
     /**
-     * @param \DateTime $firstAccessAt
+     * @param \DateTime|mixed $firstAccessAt
      *
      * @return self
      */
-    public function setFirstAccessAt(\DateTime $firstAccessAt = null)
+    public function setFirstAccessAt($firstAccessAt = null)
     {
         $this->firstAccessAt = $firstAccessAt;
         return $this;

@@ -52,13 +52,13 @@ class ItemResource extends Resource
     /**
      * This section allows you to create items. You have 3 possibilities: add a document from a URL, add text or add external content.'
      *
-     * @param array $items The items
+     * @param \Tilkee\API\Model\InputItem[] $items The items
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
      * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ItemWithOwnership[]|null
      */
-    public function createItems(array $items, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function createItems($items, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/items/';
