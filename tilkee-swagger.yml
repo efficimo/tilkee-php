@@ -1476,7 +1476,7 @@ definitions:
         example: true
       frequency_proposal_sumup_email:
         type: integer
-        format: int32²²
+        format: int32
         example: 7
       position:
         type: string
