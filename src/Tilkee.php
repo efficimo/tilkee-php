@@ -62,7 +62,7 @@ class Tilkee
                 NormalizerFactory::create(),
                 [
                     new JsonEncoder(
-                        new JsonEncode(),
+                        new JsonEncode(JSON_UNESCAPED_SLASHES),
                         new JsonDecode()
                     )
                 ]
