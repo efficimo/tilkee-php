@@ -1,14 +1,14 @@
 <?php
-namespace Tilkee\Manager;
+namespace HbsResearch\Tilkee\Manager;
 
-use Tilkee\API\Resource\ItemResource;
+use HbsResearch\Tilkee\API\Resource\ItemResource;
 
 class ItemManager extends ItemResource
 {
     /**
      * @param array $parameters
      * @param string $fetch
-     * @return null|\Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\UploadInformation
+     * @return null|\Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\UploadInformation
      * @deprecated use ItemManager::getUploadFileInformation() instead
      */
     public function uploadItem($parameters = array(), $fetch = self::FETCH_OBJECT)

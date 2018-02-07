@@ -1,7 +1,7 @@
 <?php
-namespace Tilkee\Manager;
+namespace HbsResearch\Tilkee\Manager;
 
-use Tilkee\API\Resource\ProjectResource;
+use HbsResearch\Tilkee\API\Resource\ProjectResource;
 
 class ProjectManager extends ProjectResource
 {

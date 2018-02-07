@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Resource;
+namespace HbsResearch\Tilkee\API\Resource;
 
 use Joli\Jane\OpenApi\Runtime\Client\QueryParam;
 use Joli\Jane\OpenApi\Runtime\Client\Resource;
@@ -17,7 +17,7 @@ class ItemResource extends Resource
      * }
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ResponseItemList|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseItemList|null
      */
     public function listItems($parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -38,7 +38,7 @@ class ItemResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ResponseItemList', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseItemList', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -52,11 +52,11 @@ class ItemResource extends Resource
     /**
      * This section allows you to create items. You have 3 possibilities: add a document from a URL, add text or add external content.'
      *
-     * @param \Tilkee\API\Model\InputItem[] $items The items
+     * @param \HbsResearch\Tilkee\API\Model\InputItem[] $items The items
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ItemWithOwnership[]|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ItemWithOwnership[]|null
      */
     public function createItems($items, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -73,7 +73,7 @@ class ItemResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ItemWithOwnership[]', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ItemWithOwnership[]', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -128,7 +128,7 @@ class ItemResource extends Resource
      * }
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\UploadInformation|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\UploadInformation|null
      */
     public function getUploadFileInformation($parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -146,7 +146,7 @@ class ItemResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\UploadInformation', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\UploadInformation', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;

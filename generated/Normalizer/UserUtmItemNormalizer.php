@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class UserUtmItemNormalizer implements DenormalizerInterface, NormalizerInterfac
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\UserUtmItem') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\UserUtmItem') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\UserUtmItem) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\UserUtmItem) {
             return true;
         }
         return false;
@@ -33,12 +33,12 @@ class UserUtmItemNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\UserUtmItem();
+        $object = new \HbsResearch\Tilkee\API\Model\UserUtmItem();
         if (property_exists($data, 'url_referer')) {
             $object->setUrlReferer($data->{'url_referer'});
         }
         if (property_exists($data, 'UTM')) {
-            $object->setUTM($this->denormalizer->denormalize($data->{'UTM'}, 'Tilkee\\API\\Model\\UserUtmItemUTM', 'json', $context));
+            $object->setUTM($this->denormalizer->denormalize($data->{'UTM'}, 'HbsResearch\\Tilkee\\API\\Model\\UserUtmItemUTM', 'json', $context));
         }
         return $object;
     }

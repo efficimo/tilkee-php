@@ -1,11 +1,11 @@
 <?php
 
-namespace Tilkee;
+namespace HbsResearch\Tilkee;
 
 use Http\Client\HttpClient;
 use Http\Message\MessageFactory;
 use Http\Message\StreamFactory;
-use Tilkee\Manager\S3Manager;
+use HbsResearch\Tilkee\Manager\S3Manager;
 
 class TilkeeS3
 {
@@ -30,8 +30,8 @@ class TilkeeS3
     private $s3Manager;
 
     /**
-     * @param HttpClient|null $httpClient Http client to use with Tilkee
-     * @param MessageFactory|null $messageFactory How to create Tilkee request (in PSR7)
+     * @param HttpClient|null $httpClient Http client to use with HbsResearch\Tilkee
+     * @param MessageFactory|null $messageFactory How to create HbsResearch\Tilkee request (in PSR7)
      * @param StreamFactory|null $streamFactory
      */
     public function __construct(HttpClient $httpClient, MessageFactory $messageFactory = null, StreamFactory $streamFactory = null)

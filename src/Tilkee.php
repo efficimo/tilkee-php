@@ -1,11 +1,11 @@
 <?php
 
-namespace Tilkee;
+namespace HbsResearch\Tilkee;
 
-use Tilkee\API\Normalizer\NormalizerFactory;
-use Tilkee\Manager\ItemManager;
-use Tilkee\Manager\ProjectManager;
-use Tilkee\Manager\TilkManager;
+use HbsResearch\Tilkee\API\Normalizer\NormalizerFactory;
+use HbsResearch\Tilkee\Manager\ItemManager;
+use HbsResearch\Tilkee\Manager\ProjectManager;
+use HbsResearch\Tilkee\Manager\TilkManager;
 use Http\Client\HttpClient;
 use Http\Message\MessageFactory;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Serializer;
 
 /**
- * Tilkee\Tilkee
+ * HbsResearch\Tilkee\HbsResearch\Tilkee
  */
 class Tilkee
 {
@@ -49,9 +49,9 @@ class Tilkee
     private $itemManager;
 
     /**
-     * @param HttpClient|null     $httpClient     Http client to use with Tilkee
-     * @param Serializer|null     $serializer     Deserialize Tilkee response into php objects
-     * @param MessageFactory|null $messageFactory How to create Tilkee request (in PSR7)
+     * @param HttpClient|null     $httpClient     Http client to use with HbsResearch\Tilkee
+     * @param Serializer|null     $serializer     Deserialize HbsResearch\Tilkee response into php objects
+     * @param MessageFactory|null $messageFactory How to create HbsResearch\Tilkee request (in PSR7)
      */
     public function __construct(HttpClient $httpClient, Serializer $serializer = null, MessageFactory $messageFactory = null)
     {

@@ -1,7 +1,7 @@
 <?php
-namespace Tilkee\Manager;
+namespace HbsResearch\Tilkee\Manager;
 
-use Tilkee\API\Resource\TilkResource;
+use HbsResearch\Tilkee\API\Resource\TilkResource;
 
 class TilkManager extends TilkResource
 {

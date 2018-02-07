@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Model;
+namespace HbsResearch\Tilkee\API\Model;
 
 class ProjectCommon
 {

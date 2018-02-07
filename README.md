@@ -1,7 +1,7 @@
-Tilkee PHP
+HbsResearch\Tilkee PHP
 ==========
 
-**Tilkee PHP** is a [Tilkee](https://www.tilkee.fr/) client written in PHP.  
+**HbsResearch\Tilkee PHP** is a [HbsResearch\Tilkee](https://www.tilkee.fr/) client written in PHP.  
 This client supports the [API v1](https://tilkee.readme.io/v1.0/docs)
 
 > **Important:** This library doesn't support the full API for now.  
@@ -10,7 +10,7 @@ You are more than welcome to contribute to the swagger specifications
 Installation
 ------------
 
-The recommended way to install Tilkee PHP is through [Composer](http://getcomposer.org/):
+The recommended way to install HbsResearch\Tilkee PHP is through [Composer](http://getcomposer.org/):
 
 ```bash
 composer require hbs-research/tilkee-php
@@ -28,18 +28,18 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Http\Message\Authentication\Bearer;
 
-use Tilkee\Tilkee;
-use Tilkee\TilkeeClient;
+use HbsResearch\Tilkee\HbsResearch\Tilkee;
+use HbsResearch\Tilkee\TilkeeClient;
 
 // Place here your API key or Oauth Token
 $token = 'YOUR_TOKEN';
-// Here is your unique tilk ref provided by Tilkee
+// Here is your unique tilk ref provided by HbsResearch\Tilkee
 $tilkRef = 'TilkTestClient';
 
 
 $authentication = new Bearer($token);
 $tilkeeClient = new TilkeeClient($authentication, $tilkRef);
-$tilkee = new Tilkee($tilkeeClient);
+$tilkee = new HbsResearch\Tilkee($tilkeeClient);
 
 $projectList = $tilkee->getProjectManager()->listProject()->getContents();
 

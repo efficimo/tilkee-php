@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, Norma
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ResponseProjectDuplicate') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectDuplicate') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ResponseProjectDuplicate) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\ResponseProjectDuplicate) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, Norma
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ResponseProjectDuplicate();
+        $object = new \HbsResearch\Tilkee\API\Model\ResponseProjectDuplicate();
         if (property_exists($data, 'id')) {
             $object->setId($data->{'id'});
         }
@@ -105,12 +105,12 @@ class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, Norma
             $object->setFirstAccessAt($data->{'first_access_at'});
         }
         if (property_exists($data, 'theme')) {
-            $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'Tilkee\\API\\Model\\Theme', 'json', $context));
+            $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'HbsResearch\\Tilkee\\API\\Model\\Theme', 'json', $context));
         }
         if (property_exists($data, 'tokens')) {
             $values = array();
             foreach ($data->{'tokens'} as $value_1) {
-                $values[] = $this->denormalizer->denormalize($value_1, 'Tilkee\\API\\Model\\Token', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value_1, 'HbsResearch\\Tilkee\\API\\Model\\Token', 'json', $context);
             }
             $object->setTokens($values);
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class CompanyCustomBrandingOnboardingVideosUrlNormalizer implements Denormalizer
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\CompanyCustomBrandingOnboardingVideosUrl') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\CompanyCustomBrandingOnboardingVideosUrl') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\CompanyCustomBrandingOnboardingVideosUrl) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\CompanyCustomBrandingOnboardingVideosUrl) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class CompanyCustomBrandingOnboardingVideosUrlNormalizer implements Denormalizer
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\CompanyCustomBrandingOnboardingVideosUrl();
+        $object = new \HbsResearch\Tilkee\API\Model\CompanyCustomBrandingOnboardingVideosUrl();
         if (property_exists($data, 'en')) {
             $object->setEn($data->{'en'});
         }

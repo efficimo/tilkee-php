@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class ResponseProjectArchiveNormalizer implements DenormalizerInterface, Normali
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ResponseProjectArchive') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectArchive') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ResponseProjectArchive) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\ResponseProjectArchive) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ResponseProjectArchiveNormalizer implements DenormalizerInterface, Normali
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ResponseProjectArchive();
+        $object = new \HbsResearch\Tilkee\API\Model\ResponseProjectArchive();
         if (property_exists($data, 'id')) {
             $object->setId($data->{'id'});
         }
@@ -105,7 +105,7 @@ class ResponseProjectArchiveNormalizer implements DenormalizerInterface, Normali
             $object->setFirstAccessAt($data->{'first_access_at'});
         }
         if (property_exists($data, 'theme')) {
-            $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'Tilkee\\API\\Model\\Theme', 'json', $context));
+            $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'HbsResearch\\Tilkee\\API\\Model\\Theme', 'json', $context));
         }
         return $object;
     }

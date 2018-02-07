@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class TokenNormalizer implements DenormalizerInterface, NormalizerInterface, Den
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\Token') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\Token') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\Token) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\Token) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class TokenNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\Token();
+        $object = new \HbsResearch\Tilkee\API\Model\Token();
         if (property_exists($data, 'id')) {
             $object->setId($data->{'id'});
         }
@@ -74,7 +74,7 @@ class TokenNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (property_exists($data, 'signed_docs')) {
             $values = array();
             foreach ($data->{'signed_docs'} as $value_1) {
-                $values[] = $this->denormalizer->denormalize($value_1, 'Tilkee\\API\\Model\\TokenSignedDocsItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value_1, 'HbsResearch\\Tilkee\\API\\Model\\TokenSignedDocsItem', 'json', $context);
             }
             $object->setSignedDocs($values);
         }

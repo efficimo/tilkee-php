@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class CompanyNormalizer implements DenormalizerInterface, NormalizerInterface, D
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\Company') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\Company') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\Company) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\Company) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class CompanyNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\Company();
+        $object = new \HbsResearch\Tilkee\API\Model\Company();
         if (property_exists($data, 'id')) {
             $object->setId($data->{'id'});
         }
@@ -95,7 +95,7 @@ class CompanyNormalizer implements DenormalizerInterface, NormalizerInterface, D
             $object->setGeolocActivate($data->{'geoloc_activate'});
         }
         if (property_exists($data, 'custom_branding')) {
-            $object->setCustomBranding($this->denormalizer->denormalize($data->{'custom_branding'}, 'Tilkee\\API\\Model\\CompanyCustomBranding', 'json', $context));
+            $object->setCustomBranding($this->denormalizer->denormalize($data->{'custom_branding'}, 'HbsResearch\\Tilkee\\API\\Model\\CompanyCustomBranding', 'json', $context));
         }
         if (property_exists($data, 'location')) {
             $object->setLocation($data->{'location'});

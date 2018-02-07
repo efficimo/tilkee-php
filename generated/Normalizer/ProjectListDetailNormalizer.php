@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class ProjectListDetailNormalizer implements DenormalizerInterface, NormalizerIn
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ProjectListDetail') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ProjectListDetail') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ProjectListDetail) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\ProjectListDetail) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ProjectListDetailNormalizer implements DenormalizerInterface, NormalizerIn
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ProjectListDetail();
+        $object = new \HbsResearch\Tilkee\API\Model\ProjectListDetail();
         if (property_exists($data, 'nb_connections')) {
             $object->setNbConnections($data->{'nb_connections'});
         }
