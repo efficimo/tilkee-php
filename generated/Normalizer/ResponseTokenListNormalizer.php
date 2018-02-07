@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class ResponseTokenListNormalizer implements DenormalizerInterface, NormalizerIn
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ResponseTokenList') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ResponseTokenList') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ResponseTokenList) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\ResponseTokenList) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ResponseTokenListNormalizer implements DenormalizerInterface, NormalizerIn
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ResponseTokenList();
+        $object = new \HbsResearch\Tilkee\API\Model\ResponseTokenList();
         if (property_exists($data, 'search')) {
             $object->setSearch($data->{'search'});
         }
@@ -52,7 +52,7 @@ class ResponseTokenListNormalizer implements DenormalizerInterface, NormalizerIn
         if (property_exists($data, 'contents')) {
             $values = array();
             foreach ($data->{'contents'} as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'Tilkee\\API\\Model\\Token', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\Token', 'json', $context);
             }
             $object->setContents($values);
         }

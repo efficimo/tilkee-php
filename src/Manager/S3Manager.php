@@ -1,12 +1,12 @@
 <?php
 
-namespace Tilkee\Manager;
+namespace HbsResearch\Tilkee\Manager;
 
 use Http\Client\Common\FlexibleHttpClient;
 use Http\Message\MessageFactory;
 use Http\Message\MultipartStream\MultipartStreamBuilder;
 use Http\Message\StreamFactory;
-use Tilkee\API\Model\UploadInformation;
+use HbsResearch\Tilkee\API\Model\UploadInformation;
 
 class S3Manager
 {

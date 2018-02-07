@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class UserProfileNormalizer implements DenormalizerInterface, NormalizerInterfac
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\UserProfile') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\UserProfile') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\UserProfile) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\UserProfile) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class UserProfileNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\UserProfile();
+        $object = new \HbsResearch\Tilkee\API\Model\UserProfile();
         if (property_exists($data, 'should_receive_emails')) {
             $object->setShouldReceiveEmails($data->{'should_receive_emails'});
         }

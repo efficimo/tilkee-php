@@ -19,8 +19,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Tilkee\\": "src/",
-            "Tilkee\\API\\": "generated/"
+            "HbsResearch\\Tilkee\\": "src/",
+            "HbsResearch\\Tilkee\\API\\": "generated/"
         }
     },
     "minimum-stability": "stable",

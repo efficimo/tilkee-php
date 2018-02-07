@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\User') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\User') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\User) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\User) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\User();
+        $object = new \HbsResearch\Tilkee\API\Model\User();
         if (property_exists($data, 'id')) {
             $object->setId($data->{'id'});
         }
@@ -70,7 +70,7 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (property_exists($data, 'devices')) {
             $values = array();
             foreach ($data->{'devices'} as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'Tilkee\\API\\Model\\Device', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\Device', 'json', $context);
             }
             $object->setDevices($values);
         }
@@ -163,7 +163,7 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (property_exists($data, 'utm')) {
             $values_1 = array();
             foreach ($data->{'utm'} as $value_3) {
-                $values_1[] = $this->denormalizer->denormalize($value_3, 'Tilkee\\API\\Model\\UserUtmItem', 'json', $context);
+                $values_1[] = $this->denormalizer->denormalize($value_3, 'HbsResearch\\Tilkee\\API\\Model\\UserUtmItem', 'json', $context);
             }
             $object->setUtm($values_1);
         }
@@ -175,13 +175,13 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setRights($values_2);
         }
         if (property_exists($data, 'profile')) {
-            $object->setProfile($this->denormalizer->denormalize($data->{'profile'}, 'Tilkee\\API\\Model\\UserProfile', 'json', $context));
+            $object->setProfile($this->denormalizer->denormalize($data->{'profile'}, 'HbsResearch\\Tilkee\\API\\Model\\UserProfile', 'json', $context));
         }
         if (property_exists($data, 'location')) {
             $object->setLocation($data->{'location'});
         }
         if (property_exists($data, 'company')) {
-            $object->setCompany($this->denormalizer->denormalize($data->{'company'}, 'Tilkee\\API\\Model\\Company', 'json', $context));
+            $object->setCompany($this->denormalizer->denormalize($data->{'company'}, 'HbsResearch\\Tilkee\\API\\Model\\Company', 'json', $context));
         }
         return $object;
     }

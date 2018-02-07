@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee;
+namespace HbsResearch\Tilkee;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Uri;

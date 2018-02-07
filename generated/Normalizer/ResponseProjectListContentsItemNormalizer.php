@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class ResponseProjectListContentsItemNormalizer implements DenormalizerInterface
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ResponseProjectListContentsItem') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectListContentsItem') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ResponseProjectListContentsItem) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\ResponseProjectListContentsItem) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ResponseProjectListContentsItemNormalizer implements DenormalizerInterface
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ResponseProjectListContentsItem();
+        $object = new \HbsResearch\Tilkee\API\Model\ResponseProjectListContentsItem();
         if (property_exists($data, 'id')) {
             $object->setId($data->{'id'});
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class ProjectsProjectIdArchivePostBodyNormalizer implements DenormalizerInterfac
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ProjectsProjectIdArchivePostBody') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdArchivePostBody') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ProjectsProjectIdArchivePostBody) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ProjectsProjectIdArchivePostBodyNormalizer implements DenormalizerInterfac
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ProjectsProjectIdArchivePostBody();
+        $object = new \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody();
         if (property_exists($data, 'won')) {
             $object->setWon($data->{'won'});
         }

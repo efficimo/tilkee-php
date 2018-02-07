@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class ProjectDetailNormalizer implements DenormalizerInterface, NormalizerInterf
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ProjectDetail') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ProjectDetail') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ProjectDetail) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\ProjectDetail) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ProjectDetailNormalizer implements DenormalizerInterface, NormalizerInterf
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ProjectDetail();
+        $object = new \HbsResearch\Tilkee\API\Model\ProjectDetail();
         if (property_exists($data, 'nb_connections')) {
             $object->setNbConnections($data->{'nb_connections'});
         }
@@ -41,17 +41,17 @@ class ProjectDetailNormalizer implements DenormalizerInterface, NormalizerInterf
             $object->setTotalTime($data->{'total_time'});
         }
         if (property_exists($data, 'leader')) {
-            $object->setLeader($this->denormalizer->denormalize($data->{'leader'}, 'Tilkee\\API\\Model\\Leader', 'json', $context));
+            $object->setLeader($this->denormalizer->denormalize($data->{'leader'}, 'HbsResearch\\Tilkee\\API\\Model\\Leader', 'json', $context));
         }
         if (property_exists($data, 'collaborators')) {
             $values = array();
             foreach ($data->{'collaborators'} as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'Tilkee\\API\\Model\\Collaborator', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\Collaborator', 'json', $context);
             }
             $object->setCollaborators($values);
         }
         if (property_exists($data, 'theme')) {
-            $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'Tilkee\\API\\Model\\Theme', 'json', $context));
+            $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'HbsResearch\\Tilkee\\API\\Model\\Theme', 'json', $context));
         }
         return $object;
     }

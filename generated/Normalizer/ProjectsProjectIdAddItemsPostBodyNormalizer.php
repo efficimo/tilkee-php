@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class ProjectsProjectIdAddItemsPostBodyNormalizer implements DenormalizerInterfa
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBody') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBody') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody) {
             return true;
         }
         return false;
@@ -33,11 +33,11 @@ class ProjectsProjectIdAddItemsPostBodyNormalizer implements DenormalizerInterfa
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody();
+        $object = new \HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody();
         if (property_exists($data, 'items')) {
             $values = array();
             foreach ($data->{'items'} as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBodyItemsItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBodyItemsItem', 'json', $context);
             }
             $object->setItems($values);
         }

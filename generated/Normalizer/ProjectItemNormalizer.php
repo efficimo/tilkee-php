@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class ProjectItemNormalizer implements DenormalizerInterface, NormalizerInterfac
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ProjectItem') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ProjectItem') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ProjectItem) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\ProjectItem) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ProjectItemNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ProjectItem();
+        $object = new \HbsResearch\Tilkee\API\Model\ProjectItem();
         if (property_exists($data, 'id')) {
             $object->setId($data->{'id'});
         }
@@ -50,7 +50,7 @@ class ProjectItemNormalizer implements DenormalizerInterface, NormalizerInterfac
             $object->setSignable($data->{'signable'});
         }
         if (property_exists($data, 'item')) {
-            $object->setItem($this->denormalizer->denormalize($data->{'item'}, 'Tilkee\\API\\Model\\Item', 'json', $context));
+            $object->setItem($this->denormalizer->denormalize($data->{'item'}, 'HbsResearch\\Tilkee\\API\\Model\\Item', 'json', $context));
         }
         return $object;
     }

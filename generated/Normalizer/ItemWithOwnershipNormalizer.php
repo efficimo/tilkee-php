@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Normalizer;
+namespace HbsResearch\Tilkee\API\Normalizer;
 
 use Joli\Jane\Runtime\Reference;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
@@ -16,14 +16,14 @@ class ItemWithOwnershipNormalizer implements DenormalizerInterface, NormalizerIn
     use NormalizerAwareTrait;
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'Tilkee\\API\\Model\\ItemWithOwnership') {
+        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ItemWithOwnership') {
             return false;
         }
         return true;
     }
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \Tilkee\API\Model\ItemWithOwnership) {
+        if ($data instanceof \HbsResearch\Tilkee\API\Model\ItemWithOwnership) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ class ItemWithOwnershipNormalizer implements DenormalizerInterface, NormalizerIn
         if (!is_object($data)) {
             throw new InvalidArgumentException();
         }
-        $object = new \Tilkee\API\Model\ItemWithOwnership();
+        $object = new \HbsResearch\Tilkee\API\Model\ItemWithOwnership();
         if (property_exists($data, 'id')) {
             $object->setId($data->{'id'});
         }
@@ -71,12 +71,12 @@ class ItemWithOwnershipNormalizer implements DenormalizerInterface, NormalizerIn
             $object->setCreatedAt(\DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'created_at'}));
         }
         if (property_exists($data, 'owner')) {
-            $object->setOwner($this->denormalizer->denormalize($data->{'owner'}, 'Tilkee\\API\\Model\\User', 'json', $context));
+            $object->setOwner($this->denormalizer->denormalize($data->{'owner'}, 'HbsResearch\\Tilkee\\API\\Model\\User', 'json', $context));
         }
         if (property_exists($data, 'projects')) {
             $values = array();
             foreach ($data->{'projects'} as $value) {
-                $values[] = $this->denormalizer->denormalize($value, 'Tilkee\\API\\Model\\ItemWithOwnershipprojectsItem', 'json', $context);
+                $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\ItemWithOwnershipprojectsItem', 'json', $context);
             }
             $object->setProjects($values);
         }

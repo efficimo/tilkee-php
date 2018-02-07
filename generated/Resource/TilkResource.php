@@ -1,6 +1,6 @@
 <?php
 
-namespace Tilkee\API\Resource;
+namespace HbsResearch\Tilkee\API\Resource;
 
 use Joli\Jane\OpenApi\Runtime\Client\QueryParam;
 use Joli\Jane\OpenApi\Runtime\Client\Resource;
@@ -25,7 +25,7 @@ class TilkResource extends Resource
      * }
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ResponseTokenList|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseTokenList|null
      */
     public function listProjectTilks($projectId, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -54,7 +54,7 @@ class TilkResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ResponseTokenList', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseTokenList', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -69,13 +69,13 @@ class TilkResource extends Resource
      * This method creates a "Tilk", which is a unique link to send your project to your prospect. You can create up to 200 "Tilks" with one call to this method.
      *
      * @param int $projectId ID of project
-     * @param \Tilkee\API\Model\InputToken $tilks 
+     * @param \HbsResearch\Tilkee\API\Model\InputToken $tilks 
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ResponseCreateToken|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseCreateToken|null
      */
-    public function createTilk($projectId, \Tilkee\API\Model\InputToken $tilks, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function createTilk($projectId, \HbsResearch\Tilkee\API\Model\InputToken $tilks, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects/{projectId}/tokens';
@@ -91,7 +91,7 @@ class TilkResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ResponseCreateToken', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseCreateToken', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -119,7 +119,7 @@ class TilkResource extends Resource
      * }
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\ResponseTokenList|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseTokenList|null
      */
     public function listTilks($parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -146,7 +146,7 @@ class TilkResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\ResponseTokenList', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseTokenList', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -165,7 +165,7 @@ class TilkResource extends Resource
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\Token|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Token|null
      */
     public function getProjectTilk($projectId, $id, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -184,7 +184,7 @@ class TilkResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\Token', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\Token', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -200,13 +200,13 @@ class TilkResource extends Resource
      *
      * @param int $projectId ID of project
      * @param int $id ID of tilk
-     * @param \Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $tilk 
+     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $tilk 
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\Token|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Token|null
      */
-    public function updateProjectTilk($projectId, $id, \Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $tilk, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function updateProjectTilk($projectId, $id, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $tilk, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects/{projectId}/tokens/{id}';
@@ -223,7 +223,7 @@ class TilkResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\Token', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\Token', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -242,7 +242,7 @@ class TilkResource extends Resource
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\Token|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Token|null
      */
     public function archiveProjectTilk($projectId, $id, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -261,7 +261,7 @@ class TilkResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\Token', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\Token', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -279,7 +279,7 @@ class TilkResource extends Resource
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\Tilkee\API\Model\Token|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Token|null
      */
     public function restoreTilk($id, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -297,7 +297,7 @@ class TilkResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'Tilkee\\API\\Model\\Token', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\Token', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
