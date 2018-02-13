@@ -28,7 +28,7 @@ class ProjectResource extends Resource
      * }
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseProjectList|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ProjectListResponse|null
      */
     public function listProject($parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -60,7 +60,7 @@ class ProjectResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectList', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ProjectListResponse', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -74,13 +74,13 @@ class ProjectResource extends Resource
     /**
      * Creating a project in this way you need to add everything; name, items, properties, etc. This section is used for creating projects with documents directly added in. To use this section you need to have a project already created or a template, and your documents have to be on the S3.
      *
-     * @param \HbsResearch\Tilkee\API\Model\InputProject $project The project
+     * @param \HbsResearch\Tilkee\API\Model\Project $project The project
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
      * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Project|null
      */
-    public function addProject(\HbsResearch\Tilkee\API\Model\InputProject $project, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function addProject(\HbsResearch\Tilkee\API\Model\Project $project, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects';
@@ -182,13 +182,13 @@ class ProjectResource extends Resource
      * This method can change a Tilkee project, in the following cases: - Say that a project is won - Archive a project - Change its name - Modify options like downloadable
      *
      * @param int $projectId ID of project
-     * @param \HbsResearch\Tilkee\API\Model\InputProject $project The project
+     * @param \HbsResearch\Tilkee\API\Model\Project $project The project
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
      * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Project|null
      */
-    public function putProject($projectId, \HbsResearch\Tilkee\API\Model\InputProject $project, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function putProject($projectId, \HbsResearch\Tilkee\API\Model\Project $project, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects/{projectId}';
@@ -219,13 +219,13 @@ class ProjectResource extends Resource
      * In this section you can create a project using an existing one (copying it). Every part of the new project will be the same except the tilks.
      *
      * @param int $projectId ID of project
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdDuplicatePostBody $project The project
+     * @param \HbsResearch\Tilkee\API\Model\ProjectDuplicateQuery $project The project
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseProjectDuplicate|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Project|null
      */
-    public function duplicateProject($projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdDuplicatePostBody $project, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function duplicateProject($projectId, \HbsResearch\Tilkee\API\Model\ProjectDuplicateQuery $project, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects/{projectId}/duplicate';
@@ -241,7 +241,7 @@ class ProjectResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectDuplicate', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\Project', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -299,13 +299,13 @@ class ProjectResource extends Resource
      * Use this section to add an existing item to a project
      *
      * @param int $projectId ID of project
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody $item 
+     * @param \HbsResearch\Tilkee\API\Model\ProjectItemCollection $item 
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
      * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ProjectItem[]|null
      */
-    public function addItemToProject($projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody $item, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function addItemToProject($projectId, \HbsResearch\Tilkee\API\Model\ProjectItemCollection $item, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects/{projectId}/add_items';
@@ -336,13 +336,13 @@ class ProjectResource extends Resource
      * Use this command to remove items from a project by ids
      *
      * @param int $projectId ID of project
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdRemoveItemsPostBody $items 
+     * @param \HbsResearch\Tilkee\API\Model\ProjectRemoveItemsQuery $items 
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
      * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ProjectItem[]|null
      */
-    public function removeProjectItems($projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdRemoveItemsPostBody $items, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function removeProjectItems($projectId, \HbsResearch\Tilkee\API\Model\ProjectRemoveItemsQuery $items, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects/{projectId}/remove_items';
@@ -373,13 +373,13 @@ class ProjectResource extends Resource
      * Usse this method to archive a project, you can use the won parameter to archive won, lost or undefined
      *
      * @param int $projectId ID of project
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody $won 
+     * @param \HbsResearch\Tilkee\API\Model\ProjectArchiveQuery $won 
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseProjectArchive|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Project|null
      */
-    public function archiveProject($projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody $won, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function archiveProject($projectId, \HbsResearch\Tilkee\API\Model\ProjectArchiveQuery $won, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects/{projectId}/archive';
@@ -395,7 +395,7 @@ class ProjectResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectArchive', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\Project', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -413,7 +413,7 @@ class ProjectResource extends Resource
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseProjectArchive|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Project|null
      */
     public function restoreProject($projectId, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -431,7 +431,7 @@ class ProjectResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectArchive', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\Project', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;

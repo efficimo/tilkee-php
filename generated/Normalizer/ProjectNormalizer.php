@@ -113,6 +113,18 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if (property_exists($data, 'leader')) {
             $object->setLeader($this->denormalizer->denormalize($data->{'leader'}, 'HbsResearch\\Tilkee\\API\\Model\\Leader', 'json', $context));
         }
+        if (property_exists($data, 'leader_first_name')) {
+            $object->setLeaderFirstName($data->{'leader_first_name'});
+        }
+        if (property_exists($data, 'leader_last_name')) {
+            $object->setLeaderLastName($data->{'leader_last_name'});
+        }
+        if (property_exists($data, 'leader_id')) {
+            $object->setLeaderId($data->{'leader_id'});
+        }
+        if (property_exists($data, 'leader_avatar')) {
+            $object->setLeaderAvatar($data->{'leader_avatar'});
+        }
         if (property_exists($data, 'collaborators')) {
             $values = array();
             foreach ($data->{'collaborators'} as $value_1) {
@@ -122,6 +134,19 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         }
         if (property_exists($data, 'theme')) {
             $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'HbsResearch\\Tilkee\\API\\Model\\Theme', 'json', $context));
+        }
+        if (property_exists($data, 'tokens_count')) {
+            $object->setTokensCount($data->{'tokens_count'});
+        }
+        if (property_exists($data, 'tokens')) {
+            $values_1 = array();
+            foreach ($data->{'tokens'} as $value_2) {
+                $values_1[] = $this->denormalizer->denormalize($value_2, 'HbsResearch\\Tilkee\\API\\Model\\Token', 'json', $context);
+            }
+            $object->setTokens($values_1);
+        }
+        if (property_exists($data, 'project_items_count')) {
+            $object->setProjectItemsCount($data->{'project_items_count'});
         }
         return $object;
     }
@@ -207,6 +232,18 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if (null !== $object->getLeader()) {
             $data->{'leader'} = $this->normalizer->normalize($object->getLeader(), 'json', $context);
         }
+        if (null !== $object->getLeaderFirstName()) {
+            $data->{'leader_first_name'} = $object->getLeaderFirstName();
+        }
+        if (null !== $object->getLeaderLastName()) {
+            $data->{'leader_last_name'} = $object->getLeaderLastName();
+        }
+        if (null !== $object->getLeaderId()) {
+            $data->{'leader_id'} = $object->getLeaderId();
+        }
+        if (null !== $object->getLeaderAvatar()) {
+            $data->{'leader_avatar'} = $object->getLeaderAvatar();
+        }
         if (null !== $object->getCollaborators()) {
             $values = array();
             foreach ($object->getCollaborators() as $value_1) {
@@ -216,6 +253,19 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         }
         if (null !== $object->getTheme()) {
             $data->{'theme'} = $this->normalizer->normalize($object->getTheme(), 'json', $context);
+        }
+        if (null !== $object->getTokensCount()) {
+            $data->{'tokens_count'} = $object->getTokensCount();
+        }
+        if (null !== $object->getTokens()) {
+            $values_1 = array();
+            foreach ($object->getTokens() as $value_2) {
+                $values_1[] = $this->normalizer->normalize($value_2, 'json', $context);
+            }
+            $data->{'tokens'} = $values_1;
+        }
+        if (null !== $object->getProjectItemsCount()) {
+            $data->{'project_items_count'} = $object->getProjectItemsCount();
         }
         return $data;
     }

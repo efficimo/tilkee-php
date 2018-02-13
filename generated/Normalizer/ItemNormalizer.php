@@ -70,6 +70,19 @@ class ItemNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (property_exists($data, 'created_at')) {
             $object->setCreatedAt(\DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'created_at'}));
         }
+        if (property_exists($data, 'owner')) {
+            $object->setOwner($this->denormalizer->denormalize($data->{'owner'}, 'HbsResearch\\Tilkee\\API\\Model\\User', 'json', $context));
+        }
+        if (property_exists($data, 'projects')) {
+            $values = array();
+            foreach ($data->{'projects'} as $value) {
+                $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\ItemProjectsItem', 'json', $context);
+            }
+            $object->setProjects($values);
+        }
+        if (property_exists($data, 'projects_count')) {
+            $object->setProjectsCount($data->{'projects_count'});
+        }
         return $object;
     }
     public function normalize($object, $format = null, array $context = array())
@@ -110,6 +123,19 @@ class ItemNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         }
         if (null !== $object->getCreatedAt()) {
             $data->{'created_at'} = $object->getCreatedAt()->format("Y-m-d\TH:i:s.uP");
+        }
+        if (null !== $object->getOwner()) {
+            $data->{'owner'} = $this->normalizer->normalize($object->getOwner(), 'json', $context);
+        }
+        if (null !== $object->getProjects()) {
+            $values = array();
+            foreach ($object->getProjects() as $value) {
+                $values[] = $this->normalizer->normalize($value, 'json', $context);
+            }
+            $data->{'projects'} = $values;
+        }
+        if (null !== $object->getProjectsCount()) {
+            $data->{'projects_count'} = $object->getProjectsCount();
         }
         return $data;
     }

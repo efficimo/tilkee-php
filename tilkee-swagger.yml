@@ -61,7 +61,7 @@ paths:
           name: project
           description: The project
           schema:
-            $ref: '#/definitions/InputProject'
+            $ref: '#/definitions/Project'
     get:
       tags:
         - Project
@@ -127,7 +127,7 @@ paths:
         200:
           description: OK
           schema:
-            $ref: '#/definitions/ResponseProjectList'
+            $ref: '#/definitions/ProjectListResponse'
         400:
           description: Bad Request
         401:
@@ -180,7 +180,7 @@ paths:
           required: true
           description: The project
           schema:
-            $ref: '#/definitions/InputProject'
+            $ref: '#/definitions/Project'
       responses:
         '200':
           description: OK
@@ -231,32 +231,12 @@ paths:
           required: true
           description: The project
           schema:
-            type: object
-            properties:
-              name:
-                type: string
-                example: Name of the project (any alphanumeric info)
-              can_be_downladed:
-                type: boolean
-                description: >-
-                  To choose if visitor can download all of the project (only
-                  if company have right « download_option »)
-              archived_at:
-                type: string
-                format: date
-                example: '2017-12-29'
-                description: >-
-                  Date to choose when a project is archived (only if company
-                  has right « end_date_option »)
-              should_duplicate_assignments:
-                type: boolean
-                description: >-
-                  To choose if project assignments should be kept
+            $ref: '#/definitions/ProjectDuplicateQuery'
       responses:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/ResponseProjectDuplicate'
+            $ref: '#/definitions/Project'
         400:
           description: Bad Request
         401:
@@ -321,24 +301,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              items:
-                type: array
-                items:
-                  type: object
-                  required:
-                    - id
-                    - title
-                    - signable
-                  properties:
-                    id:
-                      type: integer
-                      format: int64
-                    title:
-                      type: string
-                    signable:
-                      type: boolean
+            $ref: '#/definitions/ProjectItemCollection'
       responses:
         '200':
           description: OK
@@ -370,13 +333,7 @@ paths:
           in: body
           required: true
           schema:
-            type: object
-            properties:
-              project_items_ids:
-                type: array
-                items:
-                  type: integer
-                  format: int64
+            $ref: '#/definitions/ProjectRemoveItemsQuery'
       responses:
         '200':
           description: The response is the list of items in your project
@@ -407,16 +364,12 @@ paths:
         - name: won
           in: body
           schema:
-            type: object
-            properties:
-              won:
-                type: string
-                enum: [won, lost, ac]
+            $ref: '#/definitions/ProjectArchiveQuery'
       responses:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/ResponseProjectArchive'
+            $ref: '#/definitions/Project'
         400:
           description: Bad Request
         401:
@@ -441,7 +394,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/ResponseProjectArchive'
+            $ref: '#/definitions/Project'
         400:
           description: Bad Request
         401:
@@ -468,12 +421,12 @@ paths:
         - name: tilks
           in: body
           schema:
-            $ref: '#/definitions/InputToken'
+            $ref: '#/definitions/CreateTokenQuery'
       responses:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/ResponseCreateToken'
+            $ref: '#/definitions/CreateTokenResponse'
         400:
           description: Bad Request
         401:
@@ -536,7 +489,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/ResponseTokenList'
+            $ref: '#/definitions/TokenListResponse'
         400:
           description: Bad Request
         401:
@@ -593,7 +546,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/ResponseTokenList'
+            $ref: '#/definitions/TokenListResponse'
         400:
           description: Bad Request
         401:
@@ -654,16 +607,7 @@ paths:
         - name: tilk
           in: body
           schema:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Update your project name
-              won:
-                type: boolean
-                description: Specify if the tilk succeeded
-              extenal_id:
-                type: string
+            $ref: '#/definitions/TokenUpdateQuery'
       responses:
         '200':
           description: OK
@@ -749,17 +693,18 @@ paths:
           required: true
           description: The items
           schema:
-            type: array
             items:
-              $ref: '#/definitions/InputItem'
-
+              oneOf:
+                - $ref: '#/definitions/ItemFromS3'
+                - $ref: '#/definitions/ItemFromURL'
+                - $ref: '#/definitions/ItemFromContent'
       responses:
         '200':
           description: OK
           schema:
             type: array
             items:
-              $ref: '#/definitions/ItemWithOwnership'
+              $ref: '#/definitions/Item'
         400:
           description: Bad Request
         401:
@@ -791,7 +736,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/ResponseItemList'
+            $ref: '#/definitions/ItemListResponse'
         400:
           description: Bad Request
         401:
@@ -853,11 +798,6 @@ parameters:
 
 definitions:
   Project:
-    allOf:
-      - $ref: '#/definitions/ProjectCommon'
-      - $ref: '#/definitions/ProjectDetail'
-
-  ProjectCommon:
     type: object
     required:
       - name
@@ -942,9 +882,6 @@ definitions:
       first_access_at:
         type: string
         format: date
-  ProjectDetail:
-    type: object
-    properties:
       nb_connections:
         type: integer
         format: int32
@@ -953,21 +890,6 @@ definitions:
         format: int64
       leader:
         $ref: '#/definitions/Leader'
-      collaborators:
-        type: array
-        items:
-          $ref: '#/definitions/Collaborator'
-      theme:
-        $ref: '#/definitions/Theme'
-  ProjectListDetail:
-    type: object
-    properties:
-      nb_connections:
-        type: integer
-        format: int32
-      total_time:
-        type: integer
-        format: int64
       leader_first_name:
         type: string
       leader_last_name:
@@ -978,14 +900,23 @@ definitions:
         example: 4658
       leader_avatar:
         type: string
+      collaborators:
+        type: array
+        items:
+          $ref: '#/definitions/Collaborator'
+      theme:
+        $ref: '#/definitions/Theme'
       tokens_count:
         type: integer
         format: int32
+      tokens:
+        type: array
+        items:
+          $ref: '#/definitions/Token'
       project_items_count:
         type: integer
         format: int32
-
-  ResponseProjectList:
+  ProjectListResponse:
     type: object
     properties:
       search:
@@ -1009,39 +940,18 @@ definitions:
       contents:
         type: array
         items:
-          allOf:
-            - $ref: '#/definitions/ProjectCommon'
-            - $ref: '#/definitions/ProjectListDetail'
-  ResponseProjectDuplicate:
-    allOf:
-      - $ref: '#/definitions/ProjectCommon'
-      - type: object
-        properties:
-          theme:
-            $ref: '#/definitions/Theme'
-      - type: object
-        properties:
-          tokens:
-            type: array
-            items:
-              $ref: '#/definitions/Token'
-  ResponseProjectArchive:
-    allOf:
-      - $ref: '#/definitions/ProjectCommon'
-      - type: object
-        properties:
-          theme:
-            $ref: '#/definitions/Theme'
-
-
-  InputProject:
+          $ref: '#/definitions/Project'
+  ProjectDuplicateQuery:
     type: object
-    required:
-      - name
     properties:
       name:
         type: string
-        example: My first project
+        example: Name of the project (any alphanumeric info)
+      can_be_downladed:
+        type: boolean
+        description: >-
+          To choose if visitor can download all of the project (only
+          if company have right « download_option »)
       archived_at:
         type: string
         format: date
@@ -1049,25 +959,31 @@ definitions:
         description: >-
           Date to choose when a project is archived (only if company
           has right « end_date_option »)
-      can_be_downladed:
+      should_duplicate_assignments:
         type: boolean
         description: >-
-          To choose if visitor can download all of the project (only
-          if company have right « download_option »)
-      external_id:
+          To choose if project assignments should be kept
+  ProjectArchiveQuery:
+    type: object
+    properties:
+      won:
         type: string
-        example: 'PIPEDRIVE_DEAL:21654'
-        description: ID of the project in your system
-      duration:
-        type: integer
-        format: int32
-        example: 30
-        description: >-
-          Used only for templates, you can create projects from this
-          template that will expire  days later.
+        enum: [won, lost, ac]
+  ProjectRemoveItemsQuery:
+    type: object
+    properties:
+      project_items_ids:
+        type: array
+        items:
+          type: integer
+          format: int64
 
   ProjectItem:
     type: object
+    required:
+      - id
+      - title
+      - signable
     properties:
       id:
         type: integer
@@ -1086,8 +1002,64 @@ definitions:
         type: boolean
       item:
         $ref: '#/definitions/Item'
+  ProjectItemCollection:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/ProjectItem'
+
+  ItemFromS3:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: My new file
+      from_url:
+        type: boolean
+      s3_url:
+        type: string
+      type:
+        type: string
+        enum: [file]
+      external_id:
+        type: string
+  ItemFromURL:
+    type: object
+    required:
+      - name
+    properties:
+      title:
+        type: string
+      url:
+        type: string
+      type:
+        type: string
+        enum: [link]
+      external_id:
+        type: string
+  ItemFromContent:
+    type: object
+    required:
+      - name
+    properties:
+      title:
+        type: string
+      content:
+        type: string
+        example: '<p>this is some html content</p>'
+      type:
+        type: string
+        enum: [text]
+      external_id:
+        type: string
   Item:
     type: object
+    required:
+      - name
     properties:
       id:
         type: integer
@@ -1123,30 +1095,19 @@ definitions:
       created_at:
         type: string
         format: date-time
+      owner:
+        $ref: '#/definitions/User'
+      projects:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+      projects_count:
+        type: integer
 
-  ItemWithOwnership:
-    allOf:
-      - $ref: '#/definitions/Item'
-      - type: object
-        properties:
-          owner:
-            $ref: '#/definitions/User'
-      - type: object
-        properties:
-          projects:
-            type: array
-            items:
-              type: object
-              properties:
-                name:
-                  type: string
-      - type: object
-        properties:
-          projects_count:
-            type: integer
-
-
-  ResponseItemList:
+  ItemListResponse:
     type: object
     properties:
       search:
@@ -1170,32 +1131,8 @@ definitions:
       contents:
         type: array
         items:
-          $ref: '#/definitions/ItemWithOwnership'
+          $ref: '#/definitions/Item'
 
-  InputItem:
-    type: object
-    required:
-      - name
-    properties:
-      name:
-        type: string
-        example: My new file
-      title:
-        type: string
-      content:
-        type: string
-        example: '<p>this is some html content</p>'
-      url:
-        type: string
-      from_url:
-        type: boolean
-      s3_url:
-        type: string
-      type:
-        type: string
-        enum: [file, text, link]
-      external_id:
-        type: string
 
   Theme:
     type: object
@@ -1359,37 +1296,7 @@ definitions:
       nb_connections:
         type: integer
         format: int32
-
-
-
-
-  InputToken:
-    type: object
-    required:
-      - persons
-      - name
-    properties:
-      persons:
-        type: array
-        items:
-          type: object
-          properties:
-            name:
-              type: string
-              example: Jean
-            external_id:
-              type: integer
-              format: int64
-              example: 1234
-  ResponseCreateToken:
-    type: object
-    properties:
-      contents:
-        type: array
-        items:
-          $ref: '#/definitions/Token'
-
-  ResponseTokenList:
+  TokenListResponse:
     type: object
     properties:
       search:
@@ -1414,6 +1321,44 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Token'
+  CreateTokenQuery:
+    type: object
+    required:
+      - persons
+      - name
+    properties:
+      persons:
+        type: array
+        items:
+          $ref: '#/definitions/TokenRecipient'
+  TokenRecipient:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Jean
+      external_id:
+        type: integer
+        format: int64
+        example: 1234
+  CreateTokenResponse:
+    type: object
+    properties:
+      contents:
+        type: array
+        items:
+          $ref: '#/definitions/Token'
+  TokenUpdateQuery:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Update your token name
+      won:
+        type: boolean
+        description: Specify if the tilk succeeded
+      extenal_id:
+        type: string
 
   # Definition not correct
   Device:
@@ -1550,7 +1495,6 @@ definitions:
               properties:
                 id:
                   type: string
-      
       rights:
         type: array
         items:

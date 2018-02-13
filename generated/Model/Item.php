@@ -53,6 +53,18 @@ class Item
      */
     protected $createdAt;
     /**
+     * @var User
+     */
+    protected $owner;
+    /**
+     * @var ItemProjectsItem[]
+     */
+    protected $projects;
+    /**
+     * @var int
+     */
+    protected $projectsCount;
+    /**
      * @return int
      */
     public function getId()
@@ -254,6 +266,57 @@ class Item
     public function setCreatedAt(\DateTime $createdAt = null)
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+    /**
+     * @return User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+    /**
+     * @param User $owner
+     *
+     * @return self
+     */
+    public function setOwner(User $owner = null)
+    {
+        $this->owner = $owner;
+        return $this;
+    }
+    /**
+     * @return ItemProjectsItem[]
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+    /**
+     * @param ItemProjectsItem[] $projects
+     *
+     * @return self
+     */
+    public function setProjects(array $projects = null)
+    {
+        $this->projects = $projects;
+        return $this;
+    }
+    /**
+     * @return int
+     */
+    public function getProjectsCount()
+    {
+        return $this->projectsCount;
+    }
+    /**
+     * @param int $projectsCount
+     *
+     * @return self
+     */
+    public function setProjectsCount($projectsCount = null)
+    {
+        $this->projectsCount = $projectsCount;
         return $this;
     }
 }

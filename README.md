@@ -41,10 +41,30 @@ $authentication = new Bearer($token);
 $tilkeeClient = new TilkeeClient($authentication, $tilkRef);
 $tilkee = new HbsResearch\Tilkee($tilkeeClient);
 
-$projectList = $tilkee->getProjectManager()->listProject()->getContents();
 
-foreach ($projectList as $project) {
-    echo sprintf("%s: %s\n", $project->getId(), $project->getName());
+echo "\n\nList Project";
+$projectList = $tilkee->getProjectManager()->listProject()->getContents();
+foreach ($projectList as $projectL) {
+    echo sprintf("%s: %s\n", $projectL->getId(), $projectL->getName());
+}
+
+$filename = "jobi joba.pdf";
+
+echo "\n\nCreate Project";
+$project = new Model\Project();
+$project->setCanBeDownladed(true);
+$project->setName('Company ID - '.$filename);
+$project->setExternalId('T 1234');
+$project = $tilkee->getProjectManager()->addProject($project);
+echo "\n=> ".$project->getId();
+
+echo "\n\nCreate Tilk for ".$project->getId();
+$tilkee->getTilkManager()->addRecipient($project, new \HbsResearch\Tilkee\Model\TokenRecipient('Jean Paul'));
+echo "\n\nList Tilk for ".$project->getId();
+$tilks = $tilkee->getTilkManager()->listProjectTilks($project->getId());
+$tilks = $tilks->getContents();
+foreach ($tilks as $tilk) {
+    echo sprintf("\n-> %s (%s)", $tilk->getName(), $tilk->getLink());
 }
 ```
 

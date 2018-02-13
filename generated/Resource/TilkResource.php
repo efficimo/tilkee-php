@@ -25,7 +25,7 @@ class TilkResource extends Resource
      * }
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseTokenList|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\TokenListResponse|null
      */
     public function listProjectTilks($projectId, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -54,7 +54,7 @@ class TilkResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseTokenList', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\TokenListResponse', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -69,13 +69,13 @@ class TilkResource extends Resource
      * This method creates a "Tilk", which is a unique link to send your project to your prospect. You can create up to 200 "Tilks" with one call to this method.
      *
      * @param int $projectId ID of project
-     * @param \HbsResearch\Tilkee\API\Model\InputToken $tilks 
+     * @param \HbsResearch\Tilkee\API\Model\CreateTokenQuery $tilks 
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseCreateToken|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\CreateTokenResponse|null
      */
-    public function createTilk($projectId, \HbsResearch\Tilkee\API\Model\InputToken $tilks, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function createTilk($projectId, \HbsResearch\Tilkee\API\Model\CreateTokenQuery $tilks, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects/{projectId}/tokens';
@@ -91,7 +91,7 @@ class TilkResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseCreateToken', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\CreateTokenResponse', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -119,7 +119,7 @@ class TilkResource extends Resource
      * }
      * @param string $fetch      Fetch mode (object or response)
      *
-     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\ResponseTokenList|null
+     * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\TokenListResponse|null
      */
     public function listTilks($parameters = array(), $fetch = self::FETCH_OBJECT)
     {
@@ -146,7 +146,7 @@ class TilkResource extends Resource
         $response = $promise->wait();
         if (self::FETCH_OBJECT == $fetch) {
             if ('200' == $response->getStatusCode()) {
-                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\ResponseTokenList', 'json');
+                return $this->serializer->deserialize((string) $response->getBody(), 'HbsResearch\\Tilkee\\API\\Model\\TokenListResponse', 'json');
             }
             if ('400' == $response->getStatusCode()) {
                 return null;
@@ -200,13 +200,13 @@ class TilkResource extends Resource
      *
      * @param int $projectId ID of project
      * @param int $id ID of tilk
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $tilk 
+     * @param \HbsResearch\Tilkee\API\Model\TokenUpdateQuery $tilk 
      * @param array  $parameters List of parameters
      * @param string $fetch      Fetch mode (object or response)
      *
      * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Token|null
      */
-    public function updateProjectTilk($projectId, $id, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $tilk, $parameters = array(), $fetch = self::FETCH_OBJECT)
+    public function updateProjectTilk($projectId, $id, \HbsResearch\Tilkee\API\Model\TokenUpdateQuery $tilk, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
         $url = '/projects/{projectId}/tokens/{id}';
