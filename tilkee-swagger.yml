@@ -916,6 +916,11 @@ definitions:
       project_items_count:
         type: integer
         format: int32
+      consultable:
+        type: boolean
+        exemple: false
+      iframes:
+        type: object
   ProjectListResponse:
     type: object
     properties:

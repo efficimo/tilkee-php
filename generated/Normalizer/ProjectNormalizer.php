@@ -104,12 +104,6 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if (property_exists($data, 'first_access_at')) {
             $object->setFirstAccessAt($data->{'first_access_at'});
         }
-        if (property_exists($data, 'consultable')) {
-            $object->setConsultable($data->{'consultable'});
-        }
-        if (property_exists($data, 'iframes')) {
-            $object->setIframes($data->{'iframes'});
-        }
         if (property_exists($data, 'nb_connections')) {
             $object->setNbConnections($data->{'nb_connections'});
         }
@@ -153,6 +147,12 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         }
         if (property_exists($data, 'project_items_count')) {
             $object->setProjectItemsCount($data->{'project_items_count'});
+        }
+        if (property_exists($data, 'consultable')) {
+            $object->setConsultable($data->{'consultable'});
+        }
+        if (property_exists($data, 'iframes')) {
+            $object->setIframes($data->{'iframes'});
         }
         return $object;
     }
@@ -229,12 +229,6 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         if (null !== $object->getFirstAccessAt()) {
             $data->{'first_access_at'} = $object->getFirstAccessAt();
         }
-        if (null !== $object->getConsultable()) {
-            $data->{'consultable'} = $object->getConsultable();
-        }
-        if (null !== $object->getIframes()) {
-            $data->{'iframes'} = $object->getIframes();
-        }
         if (null !== $object->getNbConnections()) {
             $data->{'nb_connections'} = $object->getNbConnections();
         }
@@ -278,6 +272,12 @@ class ProjectNormalizer implements DenormalizerInterface, NormalizerInterface, D
         }
         if (null !== $object->getProjectItemsCount()) {
             $data->{'project_items_count'} = $object->getProjectItemsCount();
+        }
+        if (null !== $object->getConsultable()) {
+            $data->{'consultable'} = $object->getConsultable();
+        }
+        if (null !== $object->getIframes()) {
+            $data->{'iframes'} = $object->getIframes();
         }
         return $data;
     }
