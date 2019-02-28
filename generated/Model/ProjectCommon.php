@@ -89,6 +89,14 @@ class ProjectCommon
      */
     protected $firstAccessAt;
     /**
+     * @var bool
+     */
+    protected $consultable;
+    /**
+     * @var mixed
+     */
+    protected $iframes;
+    /**
      * @return int
      */
     public function getId()
@@ -443,6 +451,40 @@ class ProjectCommon
     public function setFirstAccessAt($firstAccessAt = null)
     {
         $this->firstAccessAt = $firstAccessAt;
+        return $this;
+    }
+    /**
+     * @return bool
+     */
+    public function getConsultable()
+    {
+        return $this->consultable;
+    }
+    /**
+     * @param bool $consultable
+     *
+     * @return self
+     */
+    public function setConsultable($consultable = null)
+    {
+        $this->consultable = $consultable;
+        return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getIframes()
+    {
+        return $this->iframes;
+    }
+    /**
+     * @param mixed $iframes
+     *
+     * @return self
+     */
+    public function setIframes($iframes = null)
+    {
+        $this->iframes = $iframes;
         return $this;
     }
 }
