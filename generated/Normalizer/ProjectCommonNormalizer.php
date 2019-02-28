@@ -104,6 +104,12 @@ class ProjectCommonNormalizer implements DenormalizerInterface, NormalizerInterf
         if (property_exists($data, 'first_access_at')) {
             $object->setFirstAccessAt($data->{'first_access_at'});
         }
+        if (property_exists($data, 'consultable')) {
+            $object->setConsultable($data->{'consultable'});
+        }
+        if (property_exists($data, 'iframes')) {
+            $object->setIframes($data->{'iframes'});
+        }
         return $object;
     }
     public function normalize($object, $format = null, array $context = array())
@@ -178,6 +184,12 @@ class ProjectCommonNormalizer implements DenormalizerInterface, NormalizerInterf
         }
         if (null !== $object->getFirstAccessAt()) {
             $data->{'first_access_at'} = $object->getFirstAccessAt();
+        }
+        if (null !== $object->getConsultable()) {
+            $data->{'consultable'} = $object->getConsultable();
+        }
+        if (null !== $object->getIframes()) {
+            $data->{'iframes'} = $object->getIframes();
         }
         return $data;
     }
