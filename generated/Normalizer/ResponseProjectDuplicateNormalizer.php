@@ -104,6 +104,12 @@ class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, Norma
         if (property_exists($data, 'first_access_at')) {
             $object->setFirstAccessAt($data->{'first_access_at'});
         }
+        if (property_exists($data, 'consultable')) {
+            $object->setConsultable($data->{'consultable'});
+        }
+        if (property_exists($data, 'iframes')) {
+            $object->setIframes($data->{'iframes'});
+        }
         if (property_exists($data, 'theme')) {
             $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'HbsResearch\\Tilkee\\API\\Model\\Theme', 'json', $context));
         }
@@ -188,6 +194,12 @@ class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, Norma
         }
         if (null !== $object->getFirstAccessAt()) {
             $data->{'first_access_at'} = $object->getFirstAccessAt();
+        }
+        if (null !== $object->getConsultable()) {
+            $data->{'consultable'} = $object->getConsultable();
+        }
+        if (null !== $object->getIframes()) {
+            $data->{'iframes'} = $object->getIframes();
         }
         if (null !== $object->getTheme()) {
             $data->{'theme'} = $this->normalizer->normalize($object->getTheme(), 'json', $context);
