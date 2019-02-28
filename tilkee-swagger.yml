@@ -942,6 +942,11 @@ definitions:
       first_access_at:
         type: string
         format: date
+      consultable:
+        type: boolean
+        exemple: false
+      iframes:
+        type: object
   ProjectDetail:
     type: object
     properties:
