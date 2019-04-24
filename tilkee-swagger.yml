@@ -148,6 +148,12 @@ paths:
           required: true
           type: integer
           format: int64
+        - name: iframe_url
+          in: query
+          description: Determine whether to display or not the iframe url
+          type: string
+          enum: [true, false]
+          default: true
       responses:
         '200':
           description: OK

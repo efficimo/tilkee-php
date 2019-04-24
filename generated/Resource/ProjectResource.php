@@ -146,7 +146,9 @@ class ProjectResource extends Resource
      * Used to get all details of a specific project
      *
      * @param int $projectId ID of project
-     * @param array  $parameters List of parameters
+     * @param array  $parameters {
+     *     @var string $iframe_url Determine whether to display or not the iframe url
+     * }
      * @param string $fetch      Fetch mode (object or response)
      *
      * @return \Psr\Http\Message\ResponseInterface|\HbsResearch\Tilkee\API\Model\Project|null
@@ -154,6 +156,7 @@ class ProjectResource extends Resource
     public function getProject($projectId, $parameters = array(), $fetch = self::FETCH_OBJECT)
     {
         $queryParam = new QueryParam();
+        $queryParam->setDefault('iframe_url', true);
         $url = '/projects/{projectId}';
         $url = str_replace('{projectId}', urlencode($projectId), $url);
         $url = $url . ('?' . $queryParam->buildQueryString($parameters));
