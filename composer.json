@@ -1,6 +1,6 @@
 {
-    "name": "hbs-research/tilkee-php",
-    "description": "PHP implementation of Tilkee API https://tilkee.readme.io/",
+    "name": "efficimo/tilkee-php",
+    "description": "PHP implementation of Tilkee API https://tilkee.readme.io/ (fork https://gitlab.com/hbs-research/tilkee-php) ",
     "type": "library",
     "license": "MIT",
     "require": {
