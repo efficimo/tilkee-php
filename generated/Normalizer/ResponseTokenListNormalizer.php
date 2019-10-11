@@ -2,62 +2,60 @@
 
 namespace HbsResearch\Tilkee\API\Normalizer;
 
-use Joli\Jane\Runtime\Reference;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 class ResponseTokenListNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
+
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ResponseTokenList') {
-            return false;
-        }
-        return true;
+        return 'HbsResearch\\Tilkee\\API\\Model\\ResponseTokenList' === $type;
     }
+
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \HbsResearch\Tilkee\API\Model\ResponseTokenList) {
-            return true;
-        }
-        return false;
+        return 'HbsResearch\\Tilkee\\API\\Model\\ResponseTokenList' === get_class($data);
     }
+
     public function denormalize($data, $class, $format = null, array $context = array())
     {
         if (!is_object($data)) {
-            throw new InvalidArgumentException();
+            return null;
         }
         $object = new \HbsResearch\Tilkee\API\Model\ResponseTokenList();
-        if (property_exists($data, 'search')) {
+        if (property_exists($data, 'search') && null !== $data->{'search'}) {
             $object->setSearch($data->{'search'});
         }
-        if (property_exists($data, 'limit')) {
+        if (property_exists($data, 'limit') && null !== $data->{'limit'}) {
             $object->setLimit($data->{'limit'});
         }
-        if (property_exists($data, 'offset')) {
+        if (property_exists($data, 'offset') && null !== $data->{'offset'}) {
             $object->setOffset($data->{'offset'});
         }
-        if (property_exists($data, 'total')) {
+        if (property_exists($data, 'total') && null !== $data->{'total'}) {
             $object->setTotal($data->{'total'});
         }
-        if (property_exists($data, 'order')) {
+        if (property_exists($data, 'order') && null !== $data->{'order'}) {
             $object->setOrder($data->{'order'});
         }
-        if (property_exists($data, 'contents')) {
+        if (property_exists($data, 'contents') && null !== $data->{'contents'}) {
             $values = array();
             foreach ($data->{'contents'} as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\Token', 'json', $context);
             }
             $object->setContents($values);
         }
+
         return $object;
     }
+
     public function normalize($object, $format = null, array $context = array())
     {
         $data = new \stdClass();
@@ -83,6 +81,7 @@ class ResponseTokenListNormalizer implements DenormalizerInterface, NormalizerIn
             }
             $data->{'contents'} = $values;
         }
+
         return $data;
     }
 }

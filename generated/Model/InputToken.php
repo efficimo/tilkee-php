@@ -5,24 +5,27 @@ namespace HbsResearch\Tilkee\API\Model;
 class InputToken
 {
     /**
-     * @var InputTokenPersonsItem[]
+     * @var InputTokenPersonsItem[]|null
      */
     protected $persons;
+
     /**
-     * @return InputTokenPersonsItem[]
+     * @return InputTokenPersonsItem[]|null
      */
-    public function getPersons()
+    public function getPersons(): ?array
     {
         return $this->persons;
     }
+
     /**
-     * @param InputTokenPersonsItem[] $persons
+     * @param InputTokenPersonsItem[]|null $persons
      *
      * @return self
      */
-    public function setPersons(array $persons = null)
+    public function setPersons(?array $persons): self
     {
         $this->persons = $persons;
+
         return $this;
     }
 }

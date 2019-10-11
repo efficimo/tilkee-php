@@ -5,24 +5,27 @@ namespace HbsResearch\Tilkee\API\Model;
 class ProjectsProjectIdRemoveItemsPostBody
 {
     /**
-     * @var int[]
+     * @var int[]|null
      */
     protected $projectItemsIds;
+
     /**
-     * @return int[]
+     * @return int[]|null
      */
-    public function getProjectItemsIds()
+    public function getProjectItemsIds(): ?array
     {
         return $this->projectItemsIds;
     }
+
     /**
-     * @param int[] $projectItemsIds
+     * @param int[]|null $projectItemsIds
      *
      * @return self
      */
-    public function setProjectItemsIds(array $projectItemsIds = null)
+    public function setProjectItemsIds(?array $projectItemsIds): self
     {
         $this->projectItemsIds = $projectItemsIds;
+
         return $this;
     }
 }

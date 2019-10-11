@@ -5,24 +5,27 @@ namespace HbsResearch\Tilkee\API\Model;
 class TokenSignedDocsItem
 {
     /**
-     * @var int
+     * @var int|null
      */
     protected $id;
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
+
     /**
-     * @param int $id
+     * @param int|null $id
      *
      * @return self
      */
-    public function setId($id = null)
+    public function setId(?int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 }

@@ -5,381 +5,435 @@ namespace HbsResearch\Tilkee\API\Model;
 class Company
 {
     /**
-     * @var int
+     * @var int|null
      */
     protected $id;
     /**
-     * @var string
+     * @var string|null
      */
     protected $name;
     /**
-     * @var int
+     * @var int|null
      */
     protected $usersToChargeCounter;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $haveYousign;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $haveManagement;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $hasCustomBranding;
     /**
-     * @var string[]
+     * @var string[]|null
      */
     protected $companyRights;
     /**
-     * @var int
+     * @var int|null
      */
     protected $nbEmployees;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $hasProabono;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $subscriptionHasPayment;
     /**
-     * @var string
+     * @var string|null
      */
     protected $subscriptionSegment;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $slimpayValidated;
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $subscriptionTrialDate;
     /**
-     * @var int
+     * @var int|null
      */
     protected $defaultThemeId;
     /**
-     * @var string[][]
+     * @var string[][]|null
      */
     protected $usableDomains;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $geolocActivate;
     /**
-     * @var CompanyCustomBranding
+     * @var CompanyCustomBranding|null
      */
     protected $customBranding;
     /**
-     * @var string
+     * @var string|null
      */
     protected $location;
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
+
     /**
-     * @param int $id
+     * @param int|null $id
      *
      * @return self
      */
-    public function setId($id = null)
+    public function setId(?int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
+
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return self
      */
-    public function setName($name = null)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getUsersToChargeCounter()
+    public function getUsersToChargeCounter(): ?int
     {
         return $this->usersToChargeCounter;
     }
+
     /**
-     * @param int $usersToChargeCounter
+     * @param int|null $usersToChargeCounter
      *
      * @return self
      */
-    public function setUsersToChargeCounter($usersToChargeCounter = null)
+    public function setUsersToChargeCounter(?int $usersToChargeCounter): self
     {
         $this->usersToChargeCounter = $usersToChargeCounter;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getHaveYousign()
+    public function getHaveYousign(): ?bool
     {
         return $this->haveYousign;
     }
+
     /**
-     * @param bool $haveYousign
+     * @param bool|null $haveYousign
      *
      * @return self
      */
-    public function setHaveYousign($haveYousign = null)
+    public function setHaveYousign(?bool $haveYousign): self
     {
         $this->haveYousign = $haveYousign;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getHaveManagement()
+    public function getHaveManagement(): ?bool
     {
         return $this->haveManagement;
     }
+
     /**
-     * @param bool $haveManagement
+     * @param bool|null $haveManagement
      *
      * @return self
      */
-    public function setHaveManagement($haveManagement = null)
+    public function setHaveManagement(?bool $haveManagement): self
     {
         $this->haveManagement = $haveManagement;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getHasCustomBranding()
+    public function getHasCustomBranding(): ?bool
     {
         return $this->hasCustomBranding;
     }
+
     /**
-     * @param bool $hasCustomBranding
+     * @param bool|null $hasCustomBranding
      *
      * @return self
      */
-    public function setHasCustomBranding($hasCustomBranding = null)
+    public function setHasCustomBranding(?bool $hasCustomBranding): self
     {
         $this->hasCustomBranding = $hasCustomBranding;
+
         return $this;
     }
+
     /**
-     * @return string[]
+     * @return string[]|null
      */
-    public function getCompanyRights()
+    public function getCompanyRights(): ?array
     {
         return $this->companyRights;
     }
+
     /**
-     * @param string[] $companyRights
+     * @param string[]|null $companyRights
      *
      * @return self
      */
-    public function setCompanyRights(array $companyRights = null)
+    public function setCompanyRights(?array $companyRights): self
     {
         $this->companyRights = $companyRights;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getNbEmployees()
+    public function getNbEmployees(): ?int
     {
         return $this->nbEmployees;
     }
+
     /**
-     * @param int $nbEmployees
+     * @param int|null $nbEmployees
      *
      * @return self
      */
-    public function setNbEmployees($nbEmployees = null)
+    public function setNbEmployees(?int $nbEmployees): self
     {
         $this->nbEmployees = $nbEmployees;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getHasProabono()
+    public function getHasProabono(): ?bool
     {
         return $this->hasProabono;
     }
+
     /**
-     * @param bool $hasProabono
+     * @param bool|null $hasProabono
      *
      * @return self
      */
-    public function setHasProabono($hasProabono = null)
+    public function setHasProabono(?bool $hasProabono): self
     {
         $this->hasProabono = $hasProabono;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getSubscriptionHasPayment()
+    public function getSubscriptionHasPayment(): ?bool
     {
         return $this->subscriptionHasPayment;
     }
+
     /**
-     * @param bool $subscriptionHasPayment
+     * @param bool|null $subscriptionHasPayment
      *
      * @return self
      */
-    public function setSubscriptionHasPayment($subscriptionHasPayment = null)
+    public function setSubscriptionHasPayment(?bool $subscriptionHasPayment): self
     {
         $this->subscriptionHasPayment = $subscriptionHasPayment;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSubscriptionSegment()
+    public function getSubscriptionSegment(): ?string
     {
         return $this->subscriptionSegment;
     }
+
     /**
-     * @param string $subscriptionSegment
+     * @param string|null $subscriptionSegment
      *
      * @return self
      */
-    public function setSubscriptionSegment($subscriptionSegment = null)
+    public function setSubscriptionSegment(?string $subscriptionSegment): self
     {
         $this->subscriptionSegment = $subscriptionSegment;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getSlimpayValidated()
+    public function getSlimpayValidated(): ?bool
     {
         return $this->slimpayValidated;
     }
+
     /**
-     * @param bool $slimpayValidated
+     * @param bool|null $slimpayValidated
      *
      * @return self
      */
-    public function setSlimpayValidated($slimpayValidated = null)
+    public function setSlimpayValidated(?bool $slimpayValidated): self
     {
         $this->slimpayValidated = $slimpayValidated;
+
         return $this;
     }
+
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getSubscriptionTrialDate()
+    public function getSubscriptionTrialDate(): ?\DateTime
     {
         return $this->subscriptionTrialDate;
     }
+
     /**
-     * @param \DateTime $subscriptionTrialDate
+     * @param \DateTime|null $subscriptionTrialDate
      *
      * @return self
      */
-    public function setSubscriptionTrialDate(\DateTime $subscriptionTrialDate = null)
+    public function setSubscriptionTrialDate(?\DateTime $subscriptionTrialDate): self
     {
         $this->subscriptionTrialDate = $subscriptionTrialDate;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getDefaultThemeId()
+    public function getDefaultThemeId(): ?int
     {
         return $this->defaultThemeId;
     }
+
     /**
-     * @param int $defaultThemeId
+     * @param int|null $defaultThemeId
      *
      * @return self
      */
-    public function setDefaultThemeId($defaultThemeId = null)
+    public function setDefaultThemeId(?int $defaultThemeId): self
     {
         $this->defaultThemeId = $defaultThemeId;
+
         return $this;
     }
+
     /**
-     * @return string[][]
+     * @return string[][]|null
      */
-    public function getUsableDomains()
+    public function getUsableDomains(): ?array
     {
         return $this->usableDomains;
     }
+
     /**
-     * @param string[][] $usableDomains
+     * @param string[][]|null $usableDomains
      *
      * @return self
      */
-    public function setUsableDomains(array $usableDomains = null)
+    public function setUsableDomains(?array $usableDomains): self
     {
         $this->usableDomains = $usableDomains;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getGeolocActivate()
+    public function getGeolocActivate(): ?bool
     {
         return $this->geolocActivate;
     }
+
     /**
-     * @param bool $geolocActivate
+     * @param bool|null $geolocActivate
      *
      * @return self
      */
-    public function setGeolocActivate($geolocActivate = null)
+    public function setGeolocActivate(?bool $geolocActivate): self
     {
         $this->geolocActivate = $geolocActivate;
+
         return $this;
     }
+
     /**
-     * @return CompanyCustomBranding
+     * @return CompanyCustomBranding|null
      */
-    public function getCustomBranding()
+    public function getCustomBranding(): ?CompanyCustomBranding
     {
         return $this->customBranding;
     }
+
     /**
-     * @param CompanyCustomBranding $customBranding
+     * @param CompanyCustomBranding|null $customBranding
      *
      * @return self
      */
-    public function setCustomBranding(CompanyCustomBranding $customBranding = null)
+    public function setCustomBranding(?CompanyCustomBranding $customBranding): self
     {
         $this->customBranding = $customBranding;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLocation()
+    public function getLocation(): ?string
     {
         return $this->location;
     }
+
     /**
-     * @param string $location
+     * @param string|null $location
      *
      * @return self
      */
-    public function setLocation($location = null)
+    public function setLocation(?string $location): self
     {
         $this->location = $location;
+
         return $this;
     }
 }

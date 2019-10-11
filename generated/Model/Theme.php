@@ -5,150 +5,171 @@ namespace HbsResearch\Tilkee\API\Model;
 class Theme
 {
     /**
-     * @var int
+     * @var int|null
      */
     protected $id;
     /**
-     * @var string
+     * @var string|null
      */
     protected $name;
     /**
-     * @var string
+     * @var string|null
      */
     protected $logo;
     /**
-     * @var string
+     * @var string|null
      */
     protected $mainColor;
     /**
-     * @var string
+     * @var string|null
      */
     protected $secondaryColor;
     /**
-     * @var string
+     * @var string|null
      */
     protected $textColor;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $default;
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
+
     /**
-     * @param int $id
+     * @param int|null $id
      *
      * @return self
      */
-    public function setId($id = null)
+    public function setId(?int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
+
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return self
      */
-    public function setName($name = null)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLogo()
+    public function getLogo(): ?string
     {
         return $this->logo;
     }
+
     /**
-     * @param string $logo
+     * @param string|null $logo
      *
      * @return self
      */
-    public function setLogo($logo = null)
+    public function setLogo(?string $logo): self
     {
         $this->logo = $logo;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMainColor()
+    public function getMainColor(): ?string
     {
         return $this->mainColor;
     }
+
     /**
-     * @param string $mainColor
+     * @param string|null $mainColor
      *
      * @return self
      */
-    public function setMainColor($mainColor = null)
+    public function setMainColor(?string $mainColor): self
     {
         $this->mainColor = $mainColor;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSecondaryColor()
+    public function getSecondaryColor(): ?string
     {
         return $this->secondaryColor;
     }
+
     /**
-     * @param string $secondaryColor
+     * @param string|null $secondaryColor
      *
      * @return self
      */
-    public function setSecondaryColor($secondaryColor = null)
+    public function setSecondaryColor(?string $secondaryColor): self
     {
         $this->secondaryColor = $secondaryColor;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTextColor()
+    public function getTextColor(): ?string
     {
         return $this->textColor;
     }
+
     /**
-     * @param string $textColor
+     * @param string|null $textColor
      *
      * @return self
      */
-    public function setTextColor($textColor = null)
+    public function setTextColor(?string $textColor): self
     {
         $this->textColor = $textColor;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getDefault()
+    public function getDefault(): ?bool
     {
         return $this->default;
     }
+
     /**
-     * @param bool $default
+     * @param bool|null $default
      *
      * @return self
      */
-    public function setDefault($default = null)
+    public function setDefault(?bool $default): self
     {
         $this->default = $default;
+
         return $this;
     }
 }

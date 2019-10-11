@@ -5,108 +5,147 @@ namespace HbsResearch\Tilkee\API\Model;
 class InputProject
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $name;
     /**
-     * @var string
+     * Date to choose when a project is archived (only if company has right « end_date_option »).
+     *
+     * @var string|null
      */
     protected $archivedAt;
     /**
-     * @var bool
+     * To choose if visitor can download all of the project (only if company have right « download_option »).
+     *
+     * @var bool|null
      */
     protected $canBeDownladed;
     /**
-     * @var string
+     * ID of the project in your system.
+     *
+     * @var string|null
      */
     protected $externalId;
     /**
-     * @var int
+     * Used only for templates, you can create projects from this template that will expire  days later.
+     *
+     * @var int|null
      */
     protected $duration;
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
+
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return self
      */
-    public function setName($name = null)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
+
     /**
-     * @return string
+     * Date to choose when a project is archived (only if company has right « end_date_option »).
+     *
+     * @return string|null
      */
-    public function getArchivedAt()
+    public function getArchivedAt(): ?string
     {
         return $this->archivedAt;
     }
+
     /**
-     * @param string $archivedAt
+     * Date to choose when a project is archived (only if company has right « end_date_option »).
+     *
+     * @param string|null $archivedAt
      *
      * @return self
      */
-    public function setArchivedAt($archivedAt = null)
+    public function setArchivedAt(?string $archivedAt): self
     {
         $this->archivedAt = $archivedAt;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * To choose if visitor can download all of the project (only if company have right « download_option »).
+     *
+     * @return bool|null
      */
-    public function getCanBeDownladed()
+    public function getCanBeDownladed(): ?bool
     {
         return $this->canBeDownladed;
     }
+
     /**
-     * @param bool $canBeDownladed
+     * To choose if visitor can download all of the project (only if company have right « download_option »).
+     *
+     * @param bool|null $canBeDownladed
      *
      * @return self
      */
-    public function setCanBeDownladed($canBeDownladed = null)
+    public function setCanBeDownladed(?bool $canBeDownladed): self
     {
         $this->canBeDownladed = $canBeDownladed;
+
         return $this;
     }
+
     /**
-     * @return string
+     * ID of the project in your system.
+     *
+     * @return string|null
      */
-    public function getExternalId()
+    public function getExternalId(): ?string
     {
         return $this->externalId;
     }
+
     /**
-     * @param string $externalId
+     * ID of the project in your system.
+     *
+     * @param string|null $externalId
      *
      * @return self
      */
-    public function setExternalId($externalId = null)
+    public function setExternalId(?string $externalId): self
     {
         $this->externalId = $externalId;
+
         return $this;
     }
+
     /**
-     * @return int
+     * Used only for templates, you can create projects from this template that will expire  days later.
+     *
+     * @return int|null
      */
-    public function getDuration()
+    public function getDuration(): ?int
     {
         return $this->duration;
     }
+
     /**
-     * @param int $duration
+     * Used only for templates, you can create projects from this template that will expire  days later.
+     *
+     * @param int|null $duration
      *
      * @return self
      */
-    public function setDuration($duration = null)
+    public function setDuration(?int $duration): self
     {
         $this->duration = $duration;
+
         return $this;
     }
 }

@@ -2,49 +2,47 @@
 
 namespace HbsResearch\Tilkee\API\Normalizer;
 
-use Joli\Jane\Runtime\Reference;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 class ProjectsProjectIdTokensIdPutBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
+
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdTokensIdPutBody') {
-            return false;
-        }
-        return true;
+        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdTokensIdPutBody' === $type;
     }
+
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody) {
-            return true;
-        }
-        return false;
+        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdTokensIdPutBody' === get_class($data);
     }
+
     public function denormalize($data, $class, $format = null, array $context = array())
     {
         if (!is_object($data)) {
-            throw new InvalidArgumentException();
+            return null;
         }
         $object = new \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody();
-        if (property_exists($data, 'name')) {
+        if (property_exists($data, 'name') && null !== $data->{'name'}) {
             $object->setName($data->{'name'});
         }
-        if (property_exists($data, 'won')) {
+        if (property_exists($data, 'won') && null !== $data->{'won'}) {
             $object->setWon($data->{'won'});
         }
-        if (property_exists($data, 'extenal_id')) {
+        if (property_exists($data, 'extenal_id') && null !== $data->{'extenal_id'}) {
             $object->setExtenalId($data->{'extenal_id'});
         }
+
         return $object;
     }
+
     public function normalize($object, $format = null, array $context = array())
     {
         $data = new \stdClass();
@@ -57,6 +55,7 @@ class ProjectsProjectIdTokensIdPutBodyNormalizer implements DenormalizerInterfac
         if (null !== $object->getExtenalId()) {
             $data->{'extenal_id'} = $object->getExtenalId();
         }
+
         return $data;
     }
 }

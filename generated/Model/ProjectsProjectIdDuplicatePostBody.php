@@ -5,87 +5,117 @@ namespace HbsResearch\Tilkee\API\Model;
 class ProjectsProjectIdDuplicatePostBody
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $name;
     /**
-     * @var bool
+     * To choose if visitor can download all of the project (only if company have right « download_option »).
+     *
+     * @var bool|null
      */
     protected $canBeDownladed;
     /**
-     * @var string
+     * Date to choose when a project is archived (only if company has right « end_date_option »).
+     *
+     * @var string|null
      */
     protected $archivedAt;
     /**
-     * @var bool
+     * To choose if project assignments should be kept.
+     *
+     * @var bool|null
      */
     protected $shouldDuplicateAssignments;
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
+
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return self
      */
-    public function setName($name = null)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * To choose if visitor can download all of the project (only if company have right « download_option »).
+     *
+     * @return bool|null
      */
-    public function getCanBeDownladed()
+    public function getCanBeDownladed(): ?bool
     {
         return $this->canBeDownladed;
     }
+
     /**
-     * @param bool $canBeDownladed
+     * To choose if visitor can download all of the project (only if company have right « download_option »).
+     *
+     * @param bool|null $canBeDownladed
      *
      * @return self
      */
-    public function setCanBeDownladed($canBeDownladed = null)
+    public function setCanBeDownladed(?bool $canBeDownladed): self
     {
         $this->canBeDownladed = $canBeDownladed;
+
         return $this;
     }
+
     /**
-     * @return string
+     * Date to choose when a project is archived (only if company has right « end_date_option »).
+     *
+     * @return string|null
      */
-    public function getArchivedAt()
+    public function getArchivedAt(): ?string
     {
         return $this->archivedAt;
     }
+
     /**
-     * @param string $archivedAt
+     * Date to choose when a project is archived (only if company has right « end_date_option »).
+     *
+     * @param string|null $archivedAt
      *
      * @return self
      */
-    public function setArchivedAt($archivedAt = null)
+    public function setArchivedAt(?string $archivedAt): self
     {
         $this->archivedAt = $archivedAt;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * To choose if project assignments should be kept.
+     *
+     * @return bool|null
      */
-    public function getShouldDuplicateAssignments()
+    public function getShouldDuplicateAssignments(): ?bool
     {
         return $this->shouldDuplicateAssignments;
     }
+
     /**
-     * @param bool $shouldDuplicateAssignments
+     * To choose if project assignments should be kept.
+     *
+     * @param bool|null $shouldDuplicateAssignments
      *
      * @return self
      */
-    public function setShouldDuplicateAssignments($shouldDuplicateAssignments = null)
+    public function setShouldDuplicateAssignments(?bool $shouldDuplicateAssignments): self
     {
         $this->shouldDuplicateAssignments = $shouldDuplicateAssignments;
+
         return $this;
     }
 }

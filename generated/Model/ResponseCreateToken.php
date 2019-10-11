@@ -5,24 +5,27 @@ namespace HbsResearch\Tilkee\API\Model;
 class ResponseCreateToken
 {
     /**
-     * @var Token[]
+     * @var Token[]|null
      */
     protected $contents;
+
     /**
-     * @return Token[]
+     * @return Token[]|null
      */
-    public function getContents()
+    public function getContents(): ?array
     {
         return $this->contents;
     }
+
     /**
-     * @param Token[] $contents
+     * @param Token[]|null $contents
      *
      * @return self
      */
-    public function setContents(array $contents = null)
+    public function setContents(?array $contents): self
     {
         $this->contents = $contents;
+
         return $this;
     }
 }

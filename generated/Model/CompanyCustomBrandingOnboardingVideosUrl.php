@@ -5,66 +5,75 @@ namespace HbsResearch\Tilkee\API\Model;
 class CompanyCustomBrandingOnboardingVideosUrl
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $en;
     /**
-     * @var string
+     * @var string|null
      */
     protected $de;
     /**
-     * @var string
+     * @var string|null
      */
     protected $fr;
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEn()
+    public function getEn(): ?string
     {
         return $this->en;
     }
+
     /**
-     * @param string $en
+     * @param string|null $en
      *
      * @return self
      */
-    public function setEn($en = null)
+    public function setEn(?string $en): self
     {
         $this->en = $en;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDe()
+    public function getDe(): ?string
     {
         return $this->de;
     }
+
     /**
-     * @param string $de
+     * @param string|null $de
      *
      * @return self
      */
-    public function setDe($de = null)
+    public function setDe(?string $de): self
     {
         $this->de = $de;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFr()
+    public function getFr(): ?string
     {
         return $this->fr;
     }
+
     /**
-     * @param string $fr
+     * @param string|null $fr
      *
      * @return self
      */
-    public function setFr($fr = null)
+    public function setFr(?string $fr): self
     {
         $this->fr = $fr;
+
         return $this;
     }
 }

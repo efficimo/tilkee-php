@@ -2,58 +2,56 @@
 
 namespace HbsResearch\Tilkee\API\Normalizer;
 
-use Joli\Jane\Runtime\Reference;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 class ProjectItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
+
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ProjectItem') {
-            return false;
-        }
-        return true;
+        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectItem' === $type;
     }
+
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \HbsResearch\Tilkee\API\Model\ProjectItem) {
-            return true;
-        }
-        return false;
+        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectItem' === get_class($data);
     }
+
     public function denormalize($data, $class, $format = null, array $context = array())
     {
         if (!is_object($data)) {
-            throw new InvalidArgumentException();
+            return null;
         }
         $object = new \HbsResearch\Tilkee\API\Model\ProjectItem();
-        if (property_exists($data, 'id')) {
+        if (property_exists($data, 'id') && null !== $data->{'id'}) {
             $object->setId($data->{'id'});
         }
-        if (property_exists($data, 'type')) {
+        if (property_exists($data, 'type') && null !== $data->{'type'}) {
             $object->setType($data->{'type'});
         }
-        if (property_exists($data, 'element_id')) {
+        if (property_exists($data, 'element_id') && null !== $data->{'element_id'}) {
             $object->setElementId($data->{'element_id'});
         }
-        if (property_exists($data, 'title')) {
+        if (property_exists($data, 'title') && null !== $data->{'title'}) {
             $object->setTitle($data->{'title'});
         }
-        if (property_exists($data, 'signable')) {
+        if (property_exists($data, 'signable') && null !== $data->{'signable'}) {
             $object->setSignable($data->{'signable'});
         }
-        if (property_exists($data, 'item')) {
+        if (property_exists($data, 'item') && null !== $data->{'item'}) {
             $object->setItem($this->denormalizer->denormalize($data->{'item'}, 'HbsResearch\\Tilkee\\API\\Model\\Item', 'json', $context));
         }
+
         return $object;
     }
+
     public function normalize($object, $format = null, array $context = array())
     {
         $data = new \stdClass();
@@ -75,6 +73,7 @@ class ProjectItemNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (null !== $object->getItem()) {
             $data->{'item'} = $this->normalizer->normalize($object->getItem(), 'json', $context);
         }
+
         return $data;
     }
 }

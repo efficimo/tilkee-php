@@ -5,66 +5,87 @@ namespace HbsResearch\Tilkee\API\Model;
 class ProjectsProjectIdTokensIdPutBody
 {
     /**
-     * @var string
+     * Update your project name.
+     *
+     * @var string|null
      */
     protected $name;
     /**
-     * @var bool
+     * Specify if the tilk succeeded.
+     *
+     * @var bool|null
      */
     protected $won;
     /**
-     * @var string
+     * @var string|null
      */
     protected $extenalId;
+
     /**
-     * @return string
+     * Update your project name.
+     *
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
+
     /**
-     * @param string $name
+     * Update your project name.
+     *
+     * @param string|null $name
      *
      * @return self
      */
-    public function setName($name = null)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * Specify if the tilk succeeded.
+     *
+     * @return bool|null
      */
-    public function getWon()
+    public function getWon(): ?bool
     {
         return $this->won;
     }
+
     /**
-     * @param bool $won
+     * Specify if the tilk succeeded.
+     *
+     * @param bool|null $won
      *
      * @return self
      */
-    public function setWon($won = null)
+    public function setWon(?bool $won): self
     {
         $this->won = $won;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getExtenalId()
+    public function getExtenalId(): ?string
     {
         return $this->extenalId;
     }
+
     /**
-     * @param string $extenalId
+     * @param string|null $extenalId
      *
      * @return self
      */
-    public function setExtenalId($extenalId = null)
+    public function setExtenalId(?string $extenalId): self
     {
         $this->extenalId = $extenalId;
+
         return $this;
     }
 }
