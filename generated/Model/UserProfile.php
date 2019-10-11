@@ -5,171 +5,195 @@ namespace HbsResearch\Tilkee\API\Model;
 class UserProfile
 {
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $shouldReceiveEmails;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $shouldReceiveConnexionEmail;
     /**
-     * @var int
+     * @var int|null
      */
     protected $csvRateLimit;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $receiveDefaultNotifContactEmail;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $hasDefaultPointer;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $legalOverlayRights;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $retention;
     /**
-     * @var int
+     * @var int|null
      */
     protected $retentionDelay;
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getShouldReceiveEmails()
+    public function getShouldReceiveEmails(): ?bool
     {
         return $this->shouldReceiveEmails;
     }
+
     /**
-     * @param bool $shouldReceiveEmails
+     * @param bool|null $shouldReceiveEmails
      *
      * @return self
      */
-    public function setShouldReceiveEmails($shouldReceiveEmails = null)
+    public function setShouldReceiveEmails(?bool $shouldReceiveEmails): self
     {
         $this->shouldReceiveEmails = $shouldReceiveEmails;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getShouldReceiveConnexionEmail()
+    public function getShouldReceiveConnexionEmail(): ?bool
     {
         return $this->shouldReceiveConnexionEmail;
     }
+
     /**
-     * @param bool $shouldReceiveConnexionEmail
+     * @param bool|null $shouldReceiveConnexionEmail
      *
      * @return self
      */
-    public function setShouldReceiveConnexionEmail($shouldReceiveConnexionEmail = null)
+    public function setShouldReceiveConnexionEmail(?bool $shouldReceiveConnexionEmail): self
     {
         $this->shouldReceiveConnexionEmail = $shouldReceiveConnexionEmail;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCsvRateLimit()
+    public function getCsvRateLimit(): ?int
     {
         return $this->csvRateLimit;
     }
+
     /**
-     * @param int $csvRateLimit
+     * @param int|null $csvRateLimit
      *
      * @return self
      */
-    public function setCsvRateLimit($csvRateLimit = null)
+    public function setCsvRateLimit(?int $csvRateLimit): self
     {
         $this->csvRateLimit = $csvRateLimit;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getReceiveDefaultNotifContactEmail()
+    public function getReceiveDefaultNotifContactEmail(): ?bool
     {
         return $this->receiveDefaultNotifContactEmail;
     }
+
     /**
-     * @param bool $receiveDefaultNotifContactEmail
+     * @param bool|null $receiveDefaultNotifContactEmail
      *
      * @return self
      */
-    public function setReceiveDefaultNotifContactEmail($receiveDefaultNotifContactEmail = null)
+    public function setReceiveDefaultNotifContactEmail(?bool $receiveDefaultNotifContactEmail): self
     {
         $this->receiveDefaultNotifContactEmail = $receiveDefaultNotifContactEmail;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getHasDefaultPointer()
+    public function getHasDefaultPointer(): ?bool
     {
         return $this->hasDefaultPointer;
     }
+
     /**
-     * @param bool $hasDefaultPointer
+     * @param bool|null $hasDefaultPointer
      *
      * @return self
      */
-    public function setHasDefaultPointer($hasDefaultPointer = null)
+    public function setHasDefaultPointer(?bool $hasDefaultPointer): self
     {
         $this->hasDefaultPointer = $hasDefaultPointer;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getLegalOverlayRights()
+    public function getLegalOverlayRights(): ?bool
     {
         return $this->legalOverlayRights;
     }
+
     /**
-     * @param bool $legalOverlayRights
+     * @param bool|null $legalOverlayRights
      *
      * @return self
      */
-    public function setLegalOverlayRights($legalOverlayRights = null)
+    public function setLegalOverlayRights(?bool $legalOverlayRights): self
     {
         $this->legalOverlayRights = $legalOverlayRights;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getRetention()
+    public function getRetention(): ?bool
     {
         return $this->retention;
     }
+
     /**
-     * @param bool $retention
+     * @param bool|null $retention
      *
      * @return self
      */
-    public function setRetention($retention = null)
+    public function setRetention(?bool $retention): self
     {
         $this->retention = $retention;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getRetentionDelay()
+    public function getRetentionDelay(): ?int
     {
         return $this->retentionDelay;
     }
+
     /**
-     * @param int $retentionDelay
+     * @param int|null $retentionDelay
      *
      * @return self
      */
-    public function setRetentionDelay($retentionDelay = null)
+    public function setRetentionDelay(?int $retentionDelay): self
     {
         $this->retentionDelay = $retentionDelay;
+
         return $this;
     }
 }

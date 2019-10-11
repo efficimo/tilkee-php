@@ -2,64 +2,62 @@
 
 namespace HbsResearch\Tilkee\API\Normalizer;
 
-use Joli\Jane\Runtime\Reference;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 class ProjectListDetailNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
+
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ProjectListDetail') {
-            return false;
-        }
-        return true;
+        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectListDetail' === $type;
     }
+
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \HbsResearch\Tilkee\API\Model\ProjectListDetail) {
-            return true;
-        }
-        return false;
+        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectListDetail' === get_class($data);
     }
+
     public function denormalize($data, $class, $format = null, array $context = array())
     {
         if (!is_object($data)) {
-            throw new InvalidArgumentException();
+            return null;
         }
         $object = new \HbsResearch\Tilkee\API\Model\ProjectListDetail();
-        if (property_exists($data, 'nb_connections')) {
+        if (property_exists($data, 'nb_connections') && null !== $data->{'nb_connections'}) {
             $object->setNbConnections($data->{'nb_connections'});
         }
-        if (property_exists($data, 'total_time')) {
+        if (property_exists($data, 'total_time') && null !== $data->{'total_time'}) {
             $object->setTotalTime($data->{'total_time'});
         }
-        if (property_exists($data, 'leader_first_name')) {
+        if (property_exists($data, 'leader_first_name') && null !== $data->{'leader_first_name'}) {
             $object->setLeaderFirstName($data->{'leader_first_name'});
         }
-        if (property_exists($data, 'leader_last_name')) {
+        if (property_exists($data, 'leader_last_name') && null !== $data->{'leader_last_name'}) {
             $object->setLeaderLastName($data->{'leader_last_name'});
         }
-        if (property_exists($data, 'leader_id')) {
+        if (property_exists($data, 'leader_id') && null !== $data->{'leader_id'}) {
             $object->setLeaderId($data->{'leader_id'});
         }
-        if (property_exists($data, 'leader_avatar')) {
+        if (property_exists($data, 'leader_avatar') && null !== $data->{'leader_avatar'}) {
             $object->setLeaderAvatar($data->{'leader_avatar'});
         }
-        if (property_exists($data, 'tokens_count')) {
+        if (property_exists($data, 'tokens_count') && null !== $data->{'tokens_count'}) {
             $object->setTokensCount($data->{'tokens_count'});
         }
-        if (property_exists($data, 'project_items_count')) {
+        if (property_exists($data, 'project_items_count') && null !== $data->{'project_items_count'}) {
             $object->setProjectItemsCount($data->{'project_items_count'});
         }
+
         return $object;
     }
+
     public function normalize($object, $format = null, array $context = array())
     {
         $data = new \stdClass();
@@ -87,6 +85,7 @@ class ProjectListDetailNormalizer implements DenormalizerInterface, NormalizerIn
         if (null !== $object->getProjectItemsCount()) {
             $data->{'project_items_count'} = $object->getProjectItemsCount();
         }
+
         return $data;
     }
 }

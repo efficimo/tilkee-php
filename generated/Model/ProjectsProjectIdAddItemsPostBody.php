@@ -5,24 +5,27 @@ namespace HbsResearch\Tilkee\API\Model;
 class ProjectsProjectIdAddItemsPostBody
 {
     /**
-     * @var ProjectsProjectIdAddItemsPostBodyItemsItem[]
+     * @var ProjectsProjectIdAddItemsPostBodyItemsItem[]|null
      */
     protected $items;
+
     /**
-     * @return ProjectsProjectIdAddItemsPostBodyItemsItem[]
+     * @return ProjectsProjectIdAddItemsPostBodyItemsItem[]|null
      */
-    public function getItems()
+    public function getItems(): ?array
     {
         return $this->items;
     }
+
     /**
-     * @param ProjectsProjectIdAddItemsPostBodyItemsItem[] $items
+     * @param ProjectsProjectIdAddItemsPostBodyItemsItem[]|null $items
      *
      * @return self
      */
-    public function setItems(array $items = null)
+    public function setItems(?array $items): self
     {
         $this->items = $items;
+
         return $this;
     }
 }

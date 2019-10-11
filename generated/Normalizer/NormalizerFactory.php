@@ -47,6 +47,7 @@ class NormalizerFactory
         $normalizers[] = new ProjectsProjectIdRemoveItemsPostBodyNormalizer();
         $normalizers[] = new ProjectsProjectIdArchivePostBodyNormalizer();
         $normalizers[] = new ProjectsProjectIdTokensIdPutBodyNormalizer();
+
         return $normalizers;
     }
 }

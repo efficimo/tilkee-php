@@ -5,171 +5,195 @@ namespace HbsResearch\Tilkee\API\Model;
 class UploadInformation
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $key;
     /**
-     * @var string
+     * @var string|null
      */
     protected $acl;
     /**
-     * @var string
+     * @var string|null
      */
     protected $policy;
     /**
-     * @var string
+     * @var string|null
      */
     protected $signature;
     /**
-     * @var string
+     * @var string|null
      */
     protected $aWSAccessKeyId;
     /**
-     * @var string
+     * @var string|null
      */
     protected $successActionStatus;
     /**
-     * @var string
+     * @var string|null
      */
     protected $s3Endpoint;
     /**
-     * @var string
+     * @var string|null
      */
     protected $name;
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getKey()
+    public function getKey(): ?string
     {
         return $this->key;
     }
+
     /**
-     * @param string $key
+     * @param string|null $key
      *
      * @return self
      */
-    public function setKey($key = null)
+    public function setKey(?string $key): self
     {
         $this->key = $key;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAcl()
+    public function getAcl(): ?string
     {
         return $this->acl;
     }
+
     /**
-     * @param string $acl
+     * @param string|null $acl
      *
      * @return self
      */
-    public function setAcl($acl = null)
+    public function setAcl(?string $acl): self
     {
         $this->acl = $acl;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPolicy()
+    public function getPolicy(): ?string
     {
         return $this->policy;
     }
+
     /**
-     * @param string $policy
+     * @param string|null $policy
      *
      * @return self
      */
-    public function setPolicy($policy = null)
+    public function setPolicy(?string $policy): self
     {
         $this->policy = $policy;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSignature()
+    public function getSignature(): ?string
     {
         return $this->signature;
     }
+
     /**
-     * @param string $signature
+     * @param string|null $signature
      *
      * @return self
      */
-    public function setSignature($signature = null)
+    public function setSignature(?string $signature): self
     {
         $this->signature = $signature;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAWSAccessKeyId()
+    public function getAWSAccessKeyId(): ?string
     {
         return $this->aWSAccessKeyId;
     }
+
     /**
-     * @param string $aWSAccessKeyId
+     * @param string|null $aWSAccessKeyId
      *
      * @return self
      */
-    public function setAWSAccessKeyId($aWSAccessKeyId = null)
+    public function setAWSAccessKeyId(?string $aWSAccessKeyId): self
     {
         $this->aWSAccessKeyId = $aWSAccessKeyId;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSuccessActionStatus()
+    public function getSuccessActionStatus(): ?string
     {
         return $this->successActionStatus;
     }
+
     /**
-     * @param string $successActionStatus
+     * @param string|null $successActionStatus
      *
      * @return self
      */
-    public function setSuccessActionStatus($successActionStatus = null)
+    public function setSuccessActionStatus(?string $successActionStatus): self
     {
         $this->successActionStatus = $successActionStatus;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getS3Endpoint()
+    public function getS3Endpoint(): ?string
     {
         return $this->s3Endpoint;
     }
+
     /**
-     * @param string $s3Endpoint
+     * @param string|null $s3Endpoint
      *
      * @return self
      */
-    public function setS3Endpoint($s3Endpoint = null)
+    public function setS3Endpoint(?string $s3Endpoint): self
     {
         $this->s3Endpoint = $s3Endpoint;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
+
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return self
      */
-    public function setName($name = null)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 }

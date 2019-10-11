@@ -2,49 +2,47 @@
 
 namespace HbsResearch\Tilkee\API\Normalizer;
 
-use Joli\Jane\Runtime\Reference;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 class ProjectsProjectIdAddItemsPostBodyItemsItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
+
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBodyItemsItem') {
-            return false;
-        }
-        return true;
+        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBodyItemsItem' === $type;
     }
+
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBodyItemsItem) {
-            return true;
-        }
-        return false;
+        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBodyItemsItem' === get_class($data);
     }
+
     public function denormalize($data, $class, $format = null, array $context = array())
     {
         if (!is_object($data)) {
-            throw new InvalidArgumentException();
+            return null;
         }
         $object = new \HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBodyItemsItem();
-        if (property_exists($data, 'id')) {
+        if (property_exists($data, 'id') && null !== $data->{'id'}) {
             $object->setId($data->{'id'});
         }
-        if (property_exists($data, 'title')) {
+        if (property_exists($data, 'title') && null !== $data->{'title'}) {
             $object->setTitle($data->{'title'});
         }
-        if (property_exists($data, 'signable')) {
+        if (property_exists($data, 'signable') && null !== $data->{'signable'}) {
             $object->setSignable($data->{'signable'});
         }
+
         return $object;
     }
+
     public function normalize($object, $format = null, array $context = array())
     {
         $data = new \stdClass();
@@ -57,6 +55,7 @@ class ProjectsProjectIdAddItemsPostBodyItemsItemNormalizer implements Denormaliz
         if (null !== $object->getSignable()) {
             $data->{'signable'} = $object->getSignable();
         }
+
         return $data;
     }
 }

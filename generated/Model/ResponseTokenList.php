@@ -5,129 +5,153 @@ namespace HbsResearch\Tilkee\API\Model;
 class ResponseTokenList
 {
     /**
-     * @var string
+     * Name.
+     *
+     * @var string|null
      */
     protected $search;
     /**
-     * @var int
+     * @var int|null
      */
     protected $limit;
     /**
-     * @var int
+     * @var int|null
      */
     protected $offset;
     /**
-     * @var int
+     * @var int|null
      */
     protected $total;
     /**
-     * @var string
+     * @var string|null
      */
     protected $order;
     /**
-     * @var Token[]
+     * @var Token[]|null
      */
     protected $contents;
+
     /**
-     * @return string
+     * Name.
+     *
+     * @return string|null
      */
-    public function getSearch()
+    public function getSearch(): ?string
     {
         return $this->search;
     }
+
     /**
-     * @param string $search
+     * Name.
+     *
+     * @param string|null $search
      *
      * @return self
      */
-    public function setSearch($search = null)
+    public function setSearch(?string $search): self
     {
         $this->search = $search;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLimit()
+    public function getLimit(): ?int
     {
         return $this->limit;
     }
+
     /**
-     * @param int $limit
+     * @param int|null $limit
      *
      * @return self
      */
-    public function setLimit($limit = null)
+    public function setLimit(?int $limit): self
     {
         $this->limit = $limit;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOffset()
+    public function getOffset(): ?int
     {
         return $this->offset;
     }
+
     /**
-     * @param int $offset
+     * @param int|null $offset
      *
      * @return self
      */
-    public function setOffset($offset = null)
+    public function setOffset(?int $offset): self
     {
         $this->offset = $offset;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTotal()
+    public function getTotal(): ?int
     {
         return $this->total;
     }
+
     /**
-     * @param int $total
+     * @param int|null $total
      *
      * @return self
      */
-    public function setTotal($total = null)
+    public function setTotal(?int $total): self
     {
         $this->total = $total;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getOrder()
+    public function getOrder(): ?string
     {
         return $this->order;
     }
+
     /**
-     * @param string $order
+     * @param string|null $order
      *
      * @return self
      */
-    public function setOrder($order = null)
+    public function setOrder(?string $order): self
     {
         $this->order = $order;
+
         return $this;
     }
+
     /**
-     * @return Token[]
+     * @return Token[]|null
      */
-    public function getContents()
+    public function getContents(): ?array
     {
         return $this->contents;
     }
+
     /**
-     * @param Token[] $contents
+     * @param Token[]|null $contents
      *
      * @return self
      */
-    public function setContents(array $contents = null)
+    public function setContents(?array $contents): self
     {
         $this->contents = $contents;
+
         return $this;
     }
 }

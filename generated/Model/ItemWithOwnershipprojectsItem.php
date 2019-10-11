@@ -5,24 +5,27 @@ namespace HbsResearch\Tilkee\API\Model;
 class ItemWithOwnershipprojectsItem
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $name;
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
+
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return self
      */
-    public function setName($name = null)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 }

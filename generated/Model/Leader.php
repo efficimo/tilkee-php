@@ -5,465 +5,537 @@ namespace HbsResearch\Tilkee\API\Model;
 class Leader
 {
     /**
-     * @var int
+     * @var int|null
      */
     protected $id;
     /**
-     * @var string
+     * @var string|null
      */
     protected $firstName;
     /**
-     * @var string
+     * @var string|null
      */
     protected $lastName;
     /**
-     * @var string
+     * @var string|null
      */
     protected $fullName;
     /**
-     * @var string
+     * @var string|null
      */
     protected $email;
     /**
-     * @var string
+     * @var string|null
      */
     protected $cellPhoneNumber;
     /**
-     * @var string
+     * @var string|null
      */
     protected $phoneNumber;
     /**
-     * @var string
+     * @var string|null
      */
     protected $contactEmail;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $shouldReceiveEmails;
     /**
-     * @var int
+     * @var int|null
      */
     protected $levelId;
     /**
-     * @var Device[]
+     * @var Device[]|null
      */
     protected $devices;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $isOwner;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $isOrangeUser;
     /**
-     * @var string
+     * @var string|null
      */
     protected $locale;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $shouldReceiveConnexionEmail;
     /**
-     * @var int
+     * @var int|null
      */
     protected $frequencyProposalSumupEmail;
     /**
-     * @var string
+     * @var string|null
      */
     protected $position;
     /**
-     * @var string
+     * @var string|null
      */
     protected $avatar;
     /**
-     * @var string
+     * @var string|null
      */
-    protected $linkedinAccountUrl;
+    protected $linkedinAccountUrl = '';
     /**
-     * @var string
+     * @var string|null
      */
-    protected $twitterAccountUrl;
+    protected $twitterAccountUrl = '';
     /**
-     * @var string
+     * @var string|null
      */
-    protected $facebookAccountUrl;
+    protected $facebookAccountUrl = '';
     /**
-     * @var int|mixed
+     * Timestamp.
+     *
+     * @var int|null
      */
     protected $lastSignInAt;
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
+
     /**
-     * @param int $id
+     * @param int|null $id
      *
      * @return self
      */
-    public function setId($id = null)
+    public function setId(?int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFirstName()
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
+
     /**
-     * @param string $firstName
+     * @param string|null $firstName
      *
      * @return self
      */
-    public function setFirstName($firstName = null)
+    public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLastName()
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
+
     /**
-     * @param string $lastName
+     * @param string|null $lastName
      *
      * @return self
      */
-    public function setLastName($lastName = null)
+    public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFullName()
+    public function getFullName(): ?string
     {
         return $this->fullName;
     }
+
     /**
-     * @param string $fullName
+     * @param string|null $fullName
      *
      * @return self
      */
-    public function setFullName($fullName = null)
+    public function setFullName(?string $fullName): self
     {
         $this->fullName = $fullName;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
+
     /**
-     * @param string $email
+     * @param string|null $email
      *
      * @return self
      */
-    public function setEmail($email = null)
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCellPhoneNumber()
+    public function getCellPhoneNumber(): ?string
     {
         return $this->cellPhoneNumber;
     }
+
     /**
-     * @param string $cellPhoneNumber
+     * @param string|null $cellPhoneNumber
      *
      * @return self
      */
-    public function setCellPhoneNumber($cellPhoneNumber = null)
+    public function setCellPhoneNumber(?string $cellPhoneNumber): self
     {
         $this->cellPhoneNumber = $cellPhoneNumber;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPhoneNumber()
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
+
     /**
-     * @param string $phoneNumber
+     * @param string|null $phoneNumber
      *
      * @return self
      */
-    public function setPhoneNumber($phoneNumber = null)
+    public function setPhoneNumber(?string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContactEmail()
+    public function getContactEmail(): ?string
     {
         return $this->contactEmail;
     }
+
     /**
-     * @param string $contactEmail
+     * @param string|null $contactEmail
      *
      * @return self
      */
-    public function setContactEmail($contactEmail = null)
+    public function setContactEmail(?string $contactEmail): self
     {
         $this->contactEmail = $contactEmail;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getShouldReceiveEmails()
+    public function getShouldReceiveEmails(): ?bool
     {
         return $this->shouldReceiveEmails;
     }
+
     /**
-     * @param bool $shouldReceiveEmails
+     * @param bool|null $shouldReceiveEmails
      *
      * @return self
      */
-    public function setShouldReceiveEmails($shouldReceiveEmails = null)
+    public function setShouldReceiveEmails(?bool $shouldReceiveEmails): self
     {
         $this->shouldReceiveEmails = $shouldReceiveEmails;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLevelId()
+    public function getLevelId(): ?int
     {
         return $this->levelId;
     }
+
     /**
-     * @param int $levelId
+     * @param int|null $levelId
      *
      * @return self
      */
-    public function setLevelId($levelId = null)
+    public function setLevelId(?int $levelId): self
     {
         $this->levelId = $levelId;
+
         return $this;
     }
+
     /**
-     * @return Device[]
+     * @return Device[]|null
      */
-    public function getDevices()
+    public function getDevices(): ?array
     {
         return $this->devices;
     }
+
     /**
-     * @param Device[] $devices
+     * @param Device[]|null $devices
      *
      * @return self
      */
-    public function setDevices(array $devices = null)
+    public function setDevices(?array $devices): self
     {
         $this->devices = $devices;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getIsOwner()
+    public function getIsOwner(): ?bool
     {
         return $this->isOwner;
     }
+
     /**
-     * @param bool $isOwner
+     * @param bool|null $isOwner
      *
      * @return self
      */
-    public function setIsOwner($isOwner = null)
+    public function setIsOwner(?bool $isOwner): self
     {
         $this->isOwner = $isOwner;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getIsOrangeUser()
+    public function getIsOrangeUser(): ?bool
     {
         return $this->isOrangeUser;
     }
+
     /**
-     * @param bool $isOrangeUser
+     * @param bool|null $isOrangeUser
      *
      * @return self
      */
-    public function setIsOrangeUser($isOrangeUser = null)
+    public function setIsOrangeUser(?bool $isOrangeUser): self
     {
         $this->isOrangeUser = $isOrangeUser;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLocale()
+    public function getLocale(): ?string
     {
         return $this->locale;
     }
+
     /**
-     * @param string $locale
+     * @param string|null $locale
      *
      * @return self
      */
-    public function setLocale($locale = null)
+    public function setLocale(?string $locale): self
     {
         $this->locale = $locale;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getShouldReceiveConnexionEmail()
+    public function getShouldReceiveConnexionEmail(): ?bool
     {
         return $this->shouldReceiveConnexionEmail;
     }
+
     /**
-     * @param bool $shouldReceiveConnexionEmail
+     * @param bool|null $shouldReceiveConnexionEmail
      *
      * @return self
      */
-    public function setShouldReceiveConnexionEmail($shouldReceiveConnexionEmail = null)
+    public function setShouldReceiveConnexionEmail(?bool $shouldReceiveConnexionEmail): self
     {
         $this->shouldReceiveConnexionEmail = $shouldReceiveConnexionEmail;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getFrequencyProposalSumupEmail()
+    public function getFrequencyProposalSumupEmail(): ?int
     {
         return $this->frequencyProposalSumupEmail;
     }
+
     /**
-     * @param int $frequencyProposalSumupEmail
+     * @param int|null $frequencyProposalSumupEmail
      *
      * @return self
      */
-    public function setFrequencyProposalSumupEmail($frequencyProposalSumupEmail = null)
+    public function setFrequencyProposalSumupEmail(?int $frequencyProposalSumupEmail): self
     {
         $this->frequencyProposalSumupEmail = $frequencyProposalSumupEmail;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPosition()
+    public function getPosition(): ?string
     {
         return $this->position;
     }
+
     /**
-     * @param string $position
+     * @param string|null $position
      *
      * @return self
      */
-    public function setPosition($position = null)
+    public function setPosition(?string $position): self
     {
         $this->position = $position;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAvatar()
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
+
     /**
-     * @param string $avatar
+     * @param string|null $avatar
      *
      * @return self
      */
-    public function setAvatar($avatar = null)
+    public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLinkedinAccountUrl()
+    public function getLinkedinAccountUrl(): ?string
     {
         return $this->linkedinAccountUrl;
     }
+
     /**
-     * @param string $linkedinAccountUrl
+     * @param string|null $linkedinAccountUrl
      *
      * @return self
      */
-    public function setLinkedinAccountUrl($linkedinAccountUrl = null)
+    public function setLinkedinAccountUrl(?string $linkedinAccountUrl): self
     {
         $this->linkedinAccountUrl = $linkedinAccountUrl;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTwitterAccountUrl()
+    public function getTwitterAccountUrl(): ?string
     {
         return $this->twitterAccountUrl;
     }
+
     /**
-     * @param string $twitterAccountUrl
+     * @param string|null $twitterAccountUrl
      *
      * @return self
      */
-    public function setTwitterAccountUrl($twitterAccountUrl = null)
+    public function setTwitterAccountUrl(?string $twitterAccountUrl): self
     {
         $this->twitterAccountUrl = $twitterAccountUrl;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFacebookAccountUrl()
+    public function getFacebookAccountUrl(): ?string
     {
         return $this->facebookAccountUrl;
     }
+
     /**
-     * @param string $facebookAccountUrl
+     * @param string|null $facebookAccountUrl
      *
      * @return self
      */
-    public function setFacebookAccountUrl($facebookAccountUrl = null)
+    public function setFacebookAccountUrl(?string $facebookAccountUrl): self
     {
         $this->facebookAccountUrl = $facebookAccountUrl;
+
         return $this;
     }
+
     /**
-     * @return int|mixed
+     * Timestamp.
+     *
+     * @return int|null
      */
-    public function getLastSignInAt()
+    public function getLastSignInAt(): ?int
     {
         return $this->lastSignInAt;
     }
+
     /**
-     * @param int|mixed $lastSignInAt
+     * Timestamp.
+     *
+     * @param int|null $lastSignInAt
      *
      * @return self
      */
-    public function setLastSignInAt($lastSignInAt = null)
+    public function setLastSignInAt(?int $lastSignInAt): self
     {
         $this->lastSignInAt = $lastSignInAt;
+
         return $this;
     }
 }

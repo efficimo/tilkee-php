@@ -5,318 +5,363 @@ namespace HbsResearch\Tilkee\API\Model;
 class ItemWithOwnership
 {
     /**
-     * @var int
+     * @var int|null
      */
     protected $id;
     /**
-     * @var string
+     * @var string|null
      */
     protected $title;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $usable;
     /**
-     * @var string
+     * @var string|null
      */
     protected $elementType;
     /**
-     * @var string
+     * @var string|null
      */
     protected $extension;
     /**
-     * @var string
+     * @var string|null
      */
     protected $type;
     /**
-     * @var string
+     * @var string|null
      */
     protected $externalId;
     /**
-     * @var string
+     * @var string|null
      */
     protected $s3Url;
     /**
-     * @var string
+     * @var string|null
      */
     protected $contentUrl;
     /**
-     * @var string
+     * @var string|null
      */
     protected $thumbnailUrl;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $visible;
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $createdAt;
     /**
-     * @var User
+     * @var User|null
      */
     protected $owner;
     /**
-     * @var ItemWithOwnershipprojectsItem[]
+     * @var ItemWithOwnershipprojectsItem[]|null
      */
     protected $projects;
     /**
-     * @var int
+     * @var int|null
      */
     protected $projectsCount;
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
+
     /**
-     * @param int $id
+     * @param int|null $id
      *
      * @return self
      */
-    public function setId($id = null)
+    public function setId(?int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
+
     /**
-     * @param string $title
+     * @param string|null $title
      *
      * @return self
      */
-    public function setTitle($title = null)
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getUsable()
+    public function getUsable(): ?bool
     {
         return $this->usable;
     }
+
     /**
-     * @param bool $usable
+     * @param bool|null $usable
      *
      * @return self
      */
-    public function setUsable($usable = null)
+    public function setUsable(?bool $usable): self
     {
         $this->usable = $usable;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getElementType()
+    public function getElementType(): ?string
     {
         return $this->elementType;
     }
+
     /**
-     * @param string $elementType
+     * @param string|null $elementType
      *
      * @return self
      */
-    public function setElementType($elementType = null)
+    public function setElementType(?string $elementType): self
     {
         $this->elementType = $elementType;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getExtension()
+    public function getExtension(): ?string
     {
         return $this->extension;
     }
+
     /**
-     * @param string $extension
+     * @param string|null $extension
      *
      * @return self
      */
-    public function setExtension($extension = null)
+    public function setExtension(?string $extension): self
     {
         $this->extension = $extension;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getType()
+    public function getType(): ?string
     {
         return $this->type;
     }
+
     /**
-     * @param string $type
+     * @param string|null $type
      *
      * @return self
      */
-    public function setType($type = null)
+    public function setType(?string $type): self
     {
         $this->type = $type;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getExternalId()
+    public function getExternalId(): ?string
     {
         return $this->externalId;
     }
+
     /**
-     * @param string $externalId
+     * @param string|null $externalId
      *
      * @return self
      */
-    public function setExternalId($externalId = null)
+    public function setExternalId(?string $externalId): self
     {
         $this->externalId = $externalId;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getS3Url()
+    public function getS3Url(): ?string
     {
         return $this->s3Url;
     }
+
     /**
-     * @param string $s3Url
+     * @param string|null $s3Url
      *
      * @return self
      */
-    public function setS3Url($s3Url = null)
+    public function setS3Url(?string $s3Url): self
     {
         $this->s3Url = $s3Url;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContentUrl()
+    public function getContentUrl(): ?string
     {
         return $this->contentUrl;
     }
+
     /**
-     * @param string $contentUrl
+     * @param string|null $contentUrl
      *
      * @return self
      */
-    public function setContentUrl($contentUrl = null)
+    public function setContentUrl(?string $contentUrl): self
     {
         $this->contentUrl = $contentUrl;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getThumbnailUrl()
+    public function getThumbnailUrl(): ?string
     {
         return $this->thumbnailUrl;
     }
+
     /**
-     * @param string $thumbnailUrl
+     * @param string|null $thumbnailUrl
      *
      * @return self
      */
-    public function setThumbnailUrl($thumbnailUrl = null)
+    public function setThumbnailUrl(?string $thumbnailUrl): self
     {
         $this->thumbnailUrl = $thumbnailUrl;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getVisible()
+    public function getVisible(): ?bool
     {
         return $this->visible;
     }
+
     /**
-     * @param bool $visible
+     * @param bool|null $visible
      *
      * @return self
      */
-    public function setVisible($visible = null)
+    public function setVisible(?bool $visible): self
     {
         $this->visible = $visible;
+
         return $this;
     }
+
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+
     /**
-     * @param \DateTime $createdAt
+     * @param \DateTime|null $createdAt
      *
      * @return self
      */
-    public function setCreatedAt(\DateTime $createdAt = null)
+    public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
+
     /**
-     * @return User
+     * @return User|null
      */
-    public function getOwner()
+    public function getOwner(): ?User
     {
         return $this->owner;
     }
+
     /**
-     * @param User $owner
+     * @param User|null $owner
      *
      * @return self
      */
-    public function setOwner(User $owner = null)
+    public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
+
         return $this;
     }
+
     /**
-     * @return ItemWithOwnershipprojectsItem[]
+     * @return ItemWithOwnershipprojectsItem[]|null
      */
-    public function getProjects()
+    public function getProjects(): ?array
     {
         return $this->projects;
     }
+
     /**
-     * @param ItemWithOwnershipprojectsItem[] $projects
+     * @param ItemWithOwnershipprojectsItem[]|null $projects
      *
      * @return self
      */
-    public function setProjects(array $projects = null)
+    public function setProjects(?array $projects): self
     {
         $this->projects = $projects;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getProjectsCount()
+    public function getProjectsCount(): ?int
     {
         return $this->projectsCount;
     }
+
     /**
-     * @param int $projectsCount
+     * @param int|null $projectsCount
      *
      * @return self
      */
-    public function setProjectsCount($projectsCount = null)
+    public function setProjectsCount(?int $projectsCount): self
     {
         $this->projectsCount = $projectsCount;
+
         return $this;
     }
 }

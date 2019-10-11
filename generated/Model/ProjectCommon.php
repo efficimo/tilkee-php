@@ -5,471 +5,538 @@ namespace HbsResearch\Tilkee\API\Model;
 class ProjectCommon
 {
     /**
-     * @var int
+     * @var int|null
      */
     protected $id;
     /**
-     * @var string
+     * @var string|null
      */
     protected $name;
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $createdAt;
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $updatedAt;
     /**
-     * @var string
+     * Date to choose when a project is archived (only if company has right « end_date_option »).
+     *
+     * @var string|null
      */
     protected $archivedAt;
     /**
-     * @var string
+     * @var string|null
      */
     protected $status;
     /**
-     * @var string
+     * @var string|null
      */
     protected $won;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $isTemplate;
     /**
-     * @var bool
+     * To choose if visitor can download all of the project (only if company have right « download_option »).
+     *
+     * @var bool|null
      */
     protected $canBeDownladed;
     /**
-     * @var string
+     * @var string|null
      */
     protected $preview;
     /**
-     * @var string
+     * @var string|null
      */
     protected $previewNew;
     /**
-     * @var int
+     * Used only for templates, you can create projects from this template that will expire  days later.
+     *
+     * @var int|null
      */
     protected $duration;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $isOrWasSignable;
     /**
-     * @var \DateTime|mixed
-     */
-    protected $lastSignInAt;
-    /**
-     * @var bool
+     * @var bool|null
      */
     protected $signed;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $starred;
     /**
-     * @var string
+     * ID of the project in your system.
+     *
+     * @var string|null
      */
     protected $externalId;
     /**
-     * @var string
+     * @var string|null
      */
     protected $tokenUrl;
     /**
-     * @var string
+     * @var string|null
      */
     protected $url;
     /**
-     * @var int
+     * @var int|null
      */
     protected $collaboratorsCount;
     /**
-     * @var string
+     * @var mixed|null
      */
     protected $firstAccessAt;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $consultable;
     /**
-     * @var mixed
+     * @var mixed|null
      */
     protected $iframes;
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
+
     /**
-     * @param int $id
+     * @param int|null $id
      *
      * @return self
      */
-    public function setId($id = null)
+    public function setId(?int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
+
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return self
      */
-    public function setName($name = null)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
+
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+
     /**
-     * @param \DateTime $createdAt
+     * @param \DateTime|null $createdAt
      *
      * @return self
      */
-    public function setCreatedAt(\DateTime $createdAt = null)
+    public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
+
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
+
     /**
-     * @param \DateTime $updatedAt
+     * @param \DateTime|null $updatedAt
      *
      * @return self
      */
-    public function setUpdatedAt(\DateTime $updatedAt = null)
+    public function setUpdatedAt(?\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
+
     /**
-     * @return string
+     * Date to choose when a project is archived (only if company has right « end_date_option »).
+     *
+     * @return string|null
      */
-    public function getArchivedAt()
+    public function getArchivedAt(): ?string
     {
         return $this->archivedAt;
     }
+
     /**
-     * @param string $archivedAt
+     * Date to choose when a project is archived (only if company has right « end_date_option »).
+     *
+     * @param string|null $archivedAt
      *
      * @return self
      */
-    public function setArchivedAt($archivedAt = null)
+    public function setArchivedAt(?string $archivedAt): self
     {
         $this->archivedAt = $archivedAt;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): ?string
     {
         return $this->status;
     }
+
     /**
-     * @param string $status
+     * @param string|null $status
      *
      * @return self
      */
-    public function setStatus($status = null)
+    public function setStatus(?string $status): self
     {
         $this->status = $status;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getWon()
+    public function getWon(): ?string
     {
         return $this->won;
     }
+
     /**
-     * @param string $won
+     * @param string|null $won
      *
      * @return self
      */
-    public function setWon($won = null)
+    public function setWon(?string $won): self
     {
         $this->won = $won;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getIsTemplate()
+    public function getIsTemplate(): ?bool
     {
         return $this->isTemplate;
     }
+
     /**
-     * @param bool $isTemplate
+     * @param bool|null $isTemplate
      *
      * @return self
      */
-    public function setIsTemplate($isTemplate = null)
+    public function setIsTemplate(?bool $isTemplate): self
     {
         $this->isTemplate = $isTemplate;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * To choose if visitor can download all of the project (only if company have right « download_option »).
+     *
+     * @return bool|null
      */
-    public function getCanBeDownladed()
+    public function getCanBeDownladed(): ?bool
     {
         return $this->canBeDownladed;
     }
+
     /**
-     * @param bool $canBeDownladed
+     * To choose if visitor can download all of the project (only if company have right « download_option »).
+     *
+     * @param bool|null $canBeDownladed
      *
      * @return self
      */
-    public function setCanBeDownladed($canBeDownladed = null)
+    public function setCanBeDownladed(?bool $canBeDownladed): self
     {
         $this->canBeDownladed = $canBeDownladed;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPreview()
+    public function getPreview(): ?string
     {
         return $this->preview;
     }
+
     /**
-     * @param string $preview
+     * @param string|null $preview
      *
      * @return self
      */
-    public function setPreview($preview = null)
+    public function setPreview(?string $preview): self
     {
         $this->preview = $preview;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPreviewNew()
+    public function getPreviewNew(): ?string
     {
         return $this->previewNew;
     }
+
     /**
-     * @param string $previewNew
+     * @param string|null $previewNew
      *
      * @return self
      */
-    public function setPreviewNew($previewNew = null)
+    public function setPreviewNew(?string $previewNew): self
     {
         $this->previewNew = $previewNew;
+
         return $this;
     }
+
     /**
-     * @return int
+     * Used only for templates, you can create projects from this template that will expire  days later.
+     *
+     * @return int|null
      */
-    public function getDuration()
+    public function getDuration(): ?int
     {
         return $this->duration;
     }
+
     /**
-     * @param int $duration
+     * Used only for templates, you can create projects from this template that will expire  days later.
+     *
+     * @param int|null $duration
      *
      * @return self
      */
-    public function setDuration($duration = null)
+    public function setDuration(?int $duration): self
     {
         $this->duration = $duration;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getIsOrWasSignable()
+    public function getIsOrWasSignable(): ?bool
     {
         return $this->isOrWasSignable;
     }
+
     /**
-     * @param bool $isOrWasSignable
+     * @param bool|null $isOrWasSignable
      *
      * @return self
      */
-    public function setIsOrWasSignable($isOrWasSignable = null)
+    public function setIsOrWasSignable(?bool $isOrWasSignable): self
     {
         $this->isOrWasSignable = $isOrWasSignable;
+
         return $this;
     }
+
     /**
-     * @return \DateTime|mixed
+     * @return bool|null
      */
-    public function getLastSignInAt()
-    {
-        return $this->lastSignInAt;
-    }
-    /**
-     * @param \DateTime|mixed $lastSignInAt
-     *
-     * @return self
-     */
-    public function setLastSignInAt($lastSignInAt = null)
-    {
-        $this->lastSignInAt = $lastSignInAt;
-        return $this;
-    }
-    /**
-     * @return bool
-     */
-    public function getSigned()
+    public function getSigned(): ?bool
     {
         return $this->signed;
     }
+
     /**
-     * @param bool $signed
+     * @param bool|null $signed
      *
      * @return self
      */
-    public function setSigned($signed = null)
+    public function setSigned(?bool $signed): self
     {
         $this->signed = $signed;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getStarred()
+    public function getStarred(): ?bool
     {
         return $this->starred;
     }
+
     /**
-     * @param bool $starred
+     * @param bool|null $starred
      *
      * @return self
      */
-    public function setStarred($starred = null)
+    public function setStarred(?bool $starred): self
     {
         $this->starred = $starred;
+
         return $this;
     }
+
     /**
-     * @return string
+     * ID of the project in your system.
+     *
+     * @return string|null
      */
-    public function getExternalId()
+    public function getExternalId(): ?string
     {
         return $this->externalId;
     }
+
     /**
-     * @param string $externalId
+     * ID of the project in your system.
+     *
+     * @param string|null $externalId
      *
      * @return self
      */
-    public function setExternalId($externalId = null)
+    public function setExternalId(?string $externalId): self
     {
         $this->externalId = $externalId;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTokenUrl()
+    public function getTokenUrl(): ?string
     {
         return $this->tokenUrl;
     }
+
     /**
-     * @param string $tokenUrl
+     * @param string|null $tokenUrl
      *
      * @return self
      */
-    public function setTokenUrl($tokenUrl = null)
+    public function setTokenUrl(?string $tokenUrl): self
     {
         $this->tokenUrl = $tokenUrl;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUrl()
+    public function getUrl(): ?string
     {
         return $this->url;
     }
+
     /**
-     * @param string $url
+     * @param string|null $url
      *
      * @return self
      */
-    public function setUrl($url = null)
+    public function setUrl(?string $url): self
     {
         $this->url = $url;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCollaboratorsCount()
+    public function getCollaboratorsCount(): ?int
     {
         return $this->collaboratorsCount;
     }
+
     /**
-     * @param int $collaboratorsCount
+     * @param int|null $collaboratorsCount
      *
      * @return self
      */
-    public function setCollaboratorsCount($collaboratorsCount = null)
+    public function setCollaboratorsCount(?int $collaboratorsCount): self
     {
         $this->collaboratorsCount = $collaboratorsCount;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return mixed
      */
     public function getFirstAccessAt()
     {
         return $this->firstAccessAt;
     }
+
     /**
-     * @param string $firstAccessAt
+     * @param mixed $firstAccessAt
      *
      * @return self
      */
-    public function setFirstAccessAt($firstAccessAt = null)
+    public function setFirstAccessAt($firstAccessAt): self
     {
         $this->firstAccessAt = $firstAccessAt;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getConsultable()
+    public function getConsultable(): ?bool
     {
         return $this->consultable;
     }
+
     /**
-     * @param bool $consultable
+     * @param bool|null $consultable
      *
      * @return self
      */
-    public function setConsultable($consultable = null)
+    public function setConsultable(?bool $consultable): self
     {
         $this->consultable = $consultable;
+
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -477,14 +544,16 @@ class ProjectCommon
     {
         return $this->iframes;
     }
+
     /**
      * @param mixed $iframes
      *
      * @return self
      */
-    public function setIframes($iframes = null)
+    public function setIframes($iframes): self
     {
         $this->iframes = $iframes;
+
         return $this;
     }
 }

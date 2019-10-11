@@ -5,66 +5,75 @@ namespace HbsResearch\Tilkee\API\Model;
 class ProjectsProjectIdAddItemsPostBodyItemsItem
 {
     /**
-     * @var int
+     * @var int|null
      */
     protected $id;
     /**
-     * @var string
+     * @var string|null
      */
     protected $title;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $signable;
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
+
     /**
-     * @param int $id
+     * @param int|null $id
      *
      * @return self
      */
-    public function setId($id = null)
+    public function setId(?int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
+
     /**
-     * @param string $title
+     * @param string|null $title
      *
      * @return self
      */
-    public function setTitle($title = null)
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getSignable()
+    public function getSignable(): ?bool
     {
         return $this->signable;
     }
+
     /**
-     * @param bool $signable
+     * @param bool|null $signable
      *
      * @return self
      */
-    public function setSignable($signable = null)
+    public function setSignable(?bool $signable): self
     {
         $this->signable = $signable;
+
         return $this;
     }
 }

@@ -5,171 +5,195 @@ namespace HbsResearch\Tilkee\API\Model;
 class ProjectListDetail
 {
     /**
-     * @var int
+     * @var int|null
      */
     protected $nbConnections;
     /**
-     * @var int
+     * @var int|null
      */
     protected $totalTime;
     /**
-     * @var string
+     * @var string|null
      */
     protected $leaderFirstName;
     /**
-     * @var string
+     * @var string|null
      */
     protected $leaderLastName;
     /**
-     * @var int
+     * @var int|null
      */
     protected $leaderId;
     /**
-     * @var string
+     * @var string|null
      */
     protected $leaderAvatar;
     /**
-     * @var int
+     * @var int|null
      */
     protected $tokensCount;
     /**
-     * @var int
+     * @var int|null
      */
     protected $projectItemsCount;
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getNbConnections()
+    public function getNbConnections(): ?int
     {
         return $this->nbConnections;
     }
+
     /**
-     * @param int $nbConnections
+     * @param int|null $nbConnections
      *
      * @return self
      */
-    public function setNbConnections($nbConnections = null)
+    public function setNbConnections(?int $nbConnections): self
     {
         $this->nbConnections = $nbConnections;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTotalTime()
+    public function getTotalTime(): ?int
     {
         return $this->totalTime;
     }
+
     /**
-     * @param int $totalTime
+     * @param int|null $totalTime
      *
      * @return self
      */
-    public function setTotalTime($totalTime = null)
+    public function setTotalTime(?int $totalTime): self
     {
         $this->totalTime = $totalTime;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLeaderFirstName()
+    public function getLeaderFirstName(): ?string
     {
         return $this->leaderFirstName;
     }
+
     /**
-     * @param string $leaderFirstName
+     * @param string|null $leaderFirstName
      *
      * @return self
      */
-    public function setLeaderFirstName($leaderFirstName = null)
+    public function setLeaderFirstName(?string $leaderFirstName): self
     {
         $this->leaderFirstName = $leaderFirstName;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLeaderLastName()
+    public function getLeaderLastName(): ?string
     {
         return $this->leaderLastName;
     }
+
     /**
-     * @param string $leaderLastName
+     * @param string|null $leaderLastName
      *
      * @return self
      */
-    public function setLeaderLastName($leaderLastName = null)
+    public function setLeaderLastName(?string $leaderLastName): self
     {
         $this->leaderLastName = $leaderLastName;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLeaderId()
+    public function getLeaderId(): ?int
     {
         return $this->leaderId;
     }
+
     /**
-     * @param int $leaderId
+     * @param int|null $leaderId
      *
      * @return self
      */
-    public function setLeaderId($leaderId = null)
+    public function setLeaderId(?int $leaderId): self
     {
         $this->leaderId = $leaderId;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLeaderAvatar()
+    public function getLeaderAvatar(): ?string
     {
         return $this->leaderAvatar;
     }
+
     /**
-     * @param string $leaderAvatar
+     * @param string|null $leaderAvatar
      *
      * @return self
      */
-    public function setLeaderAvatar($leaderAvatar = null)
+    public function setLeaderAvatar(?string $leaderAvatar): self
     {
         $this->leaderAvatar = $leaderAvatar;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTokensCount()
+    public function getTokensCount(): ?int
     {
         return $this->tokensCount;
     }
+
     /**
-     * @param int $tokensCount
+     * @param int|null $tokensCount
      *
      * @return self
      */
-    public function setTokensCount($tokensCount = null)
+    public function setTokensCount(?int $tokensCount): self
     {
         $this->tokensCount = $tokensCount;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getProjectItemsCount()
+    public function getProjectItemsCount(): ?int
     {
         return $this->projectItemsCount;
     }
+
     /**
-     * @param int $projectItemsCount
+     * @param int|null $projectItemsCount
      *
      * @return self
      */
-    public function setProjectItemsCount($projectItemsCount = null)
+    public function setProjectItemsCount(?int $projectItemsCount): self
     {
         $this->projectItemsCount = $projectItemsCount;
+
         return $this;
     }
 }

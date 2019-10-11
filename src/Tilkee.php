@@ -2,114 +2,20 @@
 
 namespace HbsResearch\Tilkee;
 
-use HbsResearch\Tilkee\API\Normalizer\NormalizerFactory;
-use HbsResearch\Tilkee\Manager\ItemManager;
-use HbsResearch\Tilkee\Manager\ProjectManager;
-use HbsResearch\Tilkee\Manager\TilkManager;
+use HbsResearch\Tilkee\API\Client as ApiClient;
 use Http\Client\HttpClient;
-use Http\Message\MessageFactory;
-use Symfony\Component\Serializer\Encoder\JsonDecode;
-use Symfony\Component\Serializer\Encoder\JsonEncode;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Serializer;
 
-/**
- * HbsResearch\Tilkee\HbsResearch\Tilkee
- */
 class Tilkee
 {
-    /**
-     * @var HttpClient
-     */
-    private $httpClient;
+    private $client;
 
-    /**
-     * @var Serializer
-     */
-    private $serializer;
-
-    /**
-     * @var MessageFactory
-     */
-    private $messageFactory;
-
-    /**
-     * @var ProjectManager
-     */
-    private $projectManager;
-
-    /**
-     * @var TilkManager
-     */
-    private $tilkManager;
-
-    /**
-     * @var ItemManager
-     */
-    private $itemManager;
-
-    /**
-     * @param HttpClient|null     $httpClient     Http client to use with HbsResearch\Tilkee
-     * @param Serializer|null     $serializer     Deserialize HbsResearch\Tilkee response into php objects
-     * @param MessageFactory|null $messageFactory How to create HbsResearch\Tilkee request (in PSR7)
-     */
-    public function __construct(HttpClient $httpClient, Serializer $serializer = null, MessageFactory $messageFactory = null)
+    public function __construct(HttpClient $httpClient)
     {
-        $this->httpClient = $httpClient;
+        $this->client = ApiClient::create($httpClient);
+     }
 
-        if ($serializer === null) {
-            $serializer = new Serializer(
-                NormalizerFactory::create(),
-                [
-                    new JsonEncoder(
-                        new JsonEncode(JSON_UNESCAPED_SLASHES),
-                        new JsonDecode()
-                    )
-                ]
-            );
-        }
-
-        if ($messageFactory === null) {
-            $messageFactory = new MessageFactory\GuzzleMessageFactory();
-        }
-
-        $this->serializer = $serializer;
-        $this->messageFactory = $messageFactory;
-    }
-
-    /**
-     * @return ItemManager
-     */
-    public function getItemManager()
+    public function getClient(): ApiClient
     {
-        if (null === $this->itemManager) {
-            $this->itemManager = new ItemManager($this->httpClient, $this->messageFactory, $this->serializer);
-        }
-
-        return $this->itemManager;
-    }
-
-    /**
-     * @return ProjectManager
-     */
-    public function getProjectManager()
-    {
-        if (null === $this->projectManager) {
-            $this->projectManager = new ProjectManager($this->httpClient, $this->messageFactory, $this->serializer);
-        }
-
-        return $this->projectManager;
-    }
-
-    /**
-     * @return TilkManager
-     */
-    public function getTilkManager()
-    {
-        if (null === $this->tilkManager) {
-            $this->tilkManager = new TilkManager($this->httpClient, $this->messageFactory, $this->serializer);
-        }
-
-        return $this->tilkManager;
+        return $this->client;
     }
 }

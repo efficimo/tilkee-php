@@ -4,11 +4,8 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "guzzlehttp/psr7": "^1.4",
-        "jane/openapi-runtime": "^2.0",
-        "php": ">=7.0",
-        "php-http/guzzle6-adapter": "^1.1",
-        "php-http/message": "^1.6",
+        "jane-php/open-api-runtime": "^5.1",
+        "php-http/guzzle6-adapter": "^2.0",
         "php-http/multipart-stream-builder": "^1.0"
     },
     "authors": [
@@ -19,20 +16,33 @@
     ],
     "autoload": {
         "psr-4": {
-            "HbsResearch\\Tilkee\\": "src/",
-            "HbsResearch\\Tilkee\\API\\": "generated/"
+            "HbsResearch\\Tilkee\\": "src",
+            "HbsResearch\\Tilkee\\API\\": "generated"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HbsResearch\\Tilkee\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable",
     "config": {
         "platform": {
-            "php": "7.1"
+            "php": "7.2"
         }
     },
     "require-dev": {
-        "jane/open-api": "^3.1"
+        "jane-php/open-api": "^5.1",
+        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/psr7": "^1.6",
+        "php-http/curl-client": "^2.0",
+        "php-http/message": "^1.8",
+        "http-interop/http-factory-guzzle": "^1.0",
+        "phpunit/phpunit": "^7"
     },
     "archive": {
-        "exclude": ["/bin", "Dockerfile"]
+        "exclude": ["/bin",
+            "Dockerfile"
+        ]
     }
 }

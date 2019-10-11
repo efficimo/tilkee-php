@@ -1,9 +1,10 @@
 <?php
 
 return [
-    'openapi-file' => __DIR__ . '/tilkee-swagger.yml',
+    'openapi-file' => __DIR__ . '/tilkee-openapi.yml',
     'namespace' => 'HbsResearch\Tilkee\API',
     'directory' => __DIR__ . '/generated',
-    //'date-format' => \DateTime::RFC3339_EXTENDED
-    'date-format' => 'Y-m-d\TH:i:s.uP'
+    'date-format' => 'Y-m-d\TH:i:s.uP',
+    'client' => 'psr18',
+    'strict' => false,
 ];

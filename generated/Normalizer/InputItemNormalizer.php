@@ -2,64 +2,62 @@
 
 namespace HbsResearch\Tilkee\API\Normalizer;
 
-use Joli\Jane\Runtime\Reference;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 class InputItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
+
     public function supportsDenormalization($data, $type, $format = null)
     {
-        if ($type !== 'HbsResearch\\Tilkee\\API\\Model\\InputItem') {
-            return false;
-        }
-        return true;
+        return 'HbsResearch\\Tilkee\\API\\Model\\InputItem' === $type;
     }
+
     public function supportsNormalization($data, $format = null)
     {
-        if ($data instanceof \HbsResearch\Tilkee\API\Model\InputItem) {
-            return true;
-        }
-        return false;
+        return 'HbsResearch\\Tilkee\\API\\Model\\InputItem' === get_class($data);
     }
+
     public function denormalize($data, $class, $format = null, array $context = array())
     {
         if (!is_object($data)) {
-            throw new InvalidArgumentException();
+            return null;
         }
         $object = new \HbsResearch\Tilkee\API\Model\InputItem();
-        if (property_exists($data, 'name')) {
+        if (property_exists($data, 'name') && null !== $data->{'name'}) {
             $object->setName($data->{'name'});
         }
-        if (property_exists($data, 'title')) {
+        if (property_exists($data, 'title') && null !== $data->{'title'}) {
             $object->setTitle($data->{'title'});
         }
-        if (property_exists($data, 'content')) {
+        if (property_exists($data, 'content') && null !== $data->{'content'}) {
             $object->setContent($data->{'content'});
         }
-        if (property_exists($data, 'url')) {
+        if (property_exists($data, 'url') && null !== $data->{'url'}) {
             $object->setUrl($data->{'url'});
         }
-        if (property_exists($data, 'from_url')) {
+        if (property_exists($data, 'from_url') && null !== $data->{'from_url'}) {
             $object->setFromUrl($data->{'from_url'});
         }
-        if (property_exists($data, 's3_url')) {
+        if (property_exists($data, 's3_url') && null !== $data->{'s3_url'}) {
             $object->setS3Url($data->{'s3_url'});
         }
-        if (property_exists($data, 'type')) {
+        if (property_exists($data, 'type') && null !== $data->{'type'}) {
             $object->setType($data->{'type'});
         }
-        if (property_exists($data, 'external_id')) {
+        if (property_exists($data, 'external_id') && null !== $data->{'external_id'}) {
             $object->setExternalId($data->{'external_id'});
         }
+
         return $object;
     }
+
     public function normalize($object, $format = null, array $context = array())
     {
         $data = new \stdClass();
@@ -87,6 +85,7 @@ class InputItemNormalizer implements DenormalizerInterface, NormalizerInterface,
         if (null !== $object->getExternalId()) {
             $data->{'external_id'} = $object->getExternalId();
         }
+
         return $data;
     }
 }

@@ -5,45 +5,51 @@ namespace HbsResearch\Tilkee\API\Model;
 class InputTokenPersonsItem
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $name;
     /**
-     * @var int
+     * @var int|null
      */
     protected $externalId;
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
+
     /**
-     * @param string $name
+     * @param string|null $name
      *
      * @return self
      */
-    public function setName($name = null)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
+
     /**
-     * @return int
+     * @return int|null
      */
-    public function getExternalId()
+    public function getExternalId(): ?int
     {
         return $this->externalId;
     }
+
     /**
-     * @param int $externalId
+     * @param int|null $externalId
      *
      * @return self
      */
-    public function setExternalId($externalId = null)
+    public function setExternalId(?int $externalId): self
     {
         $this->externalId = $externalId;
+
         return $this;
     }
 }

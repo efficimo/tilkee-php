@@ -5,24 +5,27 @@ namespace HbsResearch\Tilkee\API\Model;
 class UserUtmItemUTM
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected $id;
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getId()
+    public function getId(): ?string
     {
         return $this->id;
     }
+
     /**
-     * @param string $id
+     * @param string|null $id
      *
      * @return self
      */
-    public function setId($id = null)
+    public function setId(?string $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 }

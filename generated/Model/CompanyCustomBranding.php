@@ -5,255 +5,291 @@ namespace HbsResearch\Tilkee\API\Model;
 class CompanyCustomBranding
 {
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $accessReferral;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $accessWebNotifications;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $accessSubscription;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $excelUpload;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $hasSupport;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $productMap;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $accessTabCollaborators;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $collaboratorsUpsell;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $alertSubscription;
     /**
-     * @var bool
+     * @var bool|null
      */
     protected $excelUpsell;
     /**
-     * @var string
+     * @var string|null
      */
     protected $productTitle;
     /**
-     * @var CompanyCustomBrandingOnboardingVideosUrl
+     * @var CompanyCustomBrandingOnboardingVideosUrl|null
      */
     protected $onboardingVideosUrl;
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getAccessReferral()
+    public function getAccessReferral(): ?bool
     {
         return $this->accessReferral;
     }
+
     /**
-     * @param bool $accessReferral
+     * @param bool|null $accessReferral
      *
      * @return self
      */
-    public function setAccessReferral($accessReferral = null)
+    public function setAccessReferral(?bool $accessReferral): self
     {
         $this->accessReferral = $accessReferral;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getAccessWebNotifications()
+    public function getAccessWebNotifications(): ?bool
     {
         return $this->accessWebNotifications;
     }
+
     /**
-     * @param bool $accessWebNotifications
+     * @param bool|null $accessWebNotifications
      *
      * @return self
      */
-    public function setAccessWebNotifications($accessWebNotifications = null)
+    public function setAccessWebNotifications(?bool $accessWebNotifications): self
     {
         $this->accessWebNotifications = $accessWebNotifications;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getAccessSubscription()
+    public function getAccessSubscription(): ?bool
     {
         return $this->accessSubscription;
     }
+
     /**
-     * @param bool $accessSubscription
+     * @param bool|null $accessSubscription
      *
      * @return self
      */
-    public function setAccessSubscription($accessSubscription = null)
+    public function setAccessSubscription(?bool $accessSubscription): self
     {
         $this->accessSubscription = $accessSubscription;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getExcelUpload()
+    public function getExcelUpload(): ?bool
     {
         return $this->excelUpload;
     }
+
     /**
-     * @param bool $excelUpload
+     * @param bool|null $excelUpload
      *
      * @return self
      */
-    public function setExcelUpload($excelUpload = null)
+    public function setExcelUpload(?bool $excelUpload): self
     {
         $this->excelUpload = $excelUpload;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getHasSupport()
+    public function getHasSupport(): ?bool
     {
         return $this->hasSupport;
     }
+
     /**
-     * @param bool $hasSupport
+     * @param bool|null $hasSupport
      *
      * @return self
      */
-    public function setHasSupport($hasSupport = null)
+    public function setHasSupport(?bool $hasSupport): self
     {
         $this->hasSupport = $hasSupport;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getProductMap()
+    public function getProductMap(): ?bool
     {
         return $this->productMap;
     }
+
     /**
-     * @param bool $productMap
+     * @param bool|null $productMap
      *
      * @return self
      */
-    public function setProductMap($productMap = null)
+    public function setProductMap(?bool $productMap): self
     {
         $this->productMap = $productMap;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getAccessTabCollaborators()
+    public function getAccessTabCollaborators(): ?bool
     {
         return $this->accessTabCollaborators;
     }
+
     /**
-     * @param bool $accessTabCollaborators
+     * @param bool|null $accessTabCollaborators
      *
      * @return self
      */
-    public function setAccessTabCollaborators($accessTabCollaborators = null)
+    public function setAccessTabCollaborators(?bool $accessTabCollaborators): self
     {
         $this->accessTabCollaborators = $accessTabCollaborators;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getCollaboratorsUpsell()
+    public function getCollaboratorsUpsell(): ?bool
     {
         return $this->collaboratorsUpsell;
     }
+
     /**
-     * @param bool $collaboratorsUpsell
+     * @param bool|null $collaboratorsUpsell
      *
      * @return self
      */
-    public function setCollaboratorsUpsell($collaboratorsUpsell = null)
+    public function setCollaboratorsUpsell(?bool $collaboratorsUpsell): self
     {
         $this->collaboratorsUpsell = $collaboratorsUpsell;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getAlertSubscription()
+    public function getAlertSubscription(): ?bool
     {
         return $this->alertSubscription;
     }
+
     /**
-     * @param bool $alertSubscription
+     * @param bool|null $alertSubscription
      *
      * @return self
      */
-    public function setAlertSubscription($alertSubscription = null)
+    public function setAlertSubscription(?bool $alertSubscription): self
     {
         $this->alertSubscription = $alertSubscription;
+
         return $this;
     }
+
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getExcelUpsell()
+    public function getExcelUpsell(): ?bool
     {
         return $this->excelUpsell;
     }
+
     /**
-     * @param bool $excelUpsell
+     * @param bool|null $excelUpsell
      *
      * @return self
      */
-    public function setExcelUpsell($excelUpsell = null)
+    public function setExcelUpsell(?bool $excelUpsell): self
     {
         $this->excelUpsell = $excelUpsell;
+
         return $this;
     }
+
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProductTitle()
+    public function getProductTitle(): ?string
     {
         return $this->productTitle;
     }
+
     /**
-     * @param string $productTitle
+     * @param string|null $productTitle
      *
      * @return self
      */
-    public function setProductTitle($productTitle = null)
+    public function setProductTitle(?string $productTitle): self
     {
         $this->productTitle = $productTitle;
+
         return $this;
     }
+
     /**
-     * @return CompanyCustomBrandingOnboardingVideosUrl
+     * @return CompanyCustomBrandingOnboardingVideosUrl|null
      */
-    public function getOnboardingVideosUrl()
+    public function getOnboardingVideosUrl(): ?CompanyCustomBrandingOnboardingVideosUrl
     {
         return $this->onboardingVideosUrl;
     }
+
     /**
-     * @param CompanyCustomBrandingOnboardingVideosUrl $onboardingVideosUrl
+     * @param CompanyCustomBrandingOnboardingVideosUrl|null $onboardingVideosUrl
      *
      * @return self
      */
-    public function setOnboardingVideosUrl(CompanyCustomBrandingOnboardingVideosUrl $onboardingVideosUrl = null)
+    public function setOnboardingVideosUrl(?CompanyCustomBrandingOnboardingVideosUrl $onboardingVideosUrl): self
     {
         $this->onboardingVideosUrl = $onboardingVideosUrl;
+
         return $this;
     }
 }
