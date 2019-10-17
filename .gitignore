@@ -5,3 +5,4 @@ composer.lock
 /*.pdf
 /phpunit.xml
 .php_cs.cache
+/tests/files

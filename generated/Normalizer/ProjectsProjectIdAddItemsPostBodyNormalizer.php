@@ -21,7 +21,7 @@ class ProjectsProjectIdAddItemsPostBodyNormalizer implements DenormalizerInterfa
 
     public function supportsNormalization($data, $format = null)
     {
-        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBody' === get_class($data);
+        return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBody' === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = array())

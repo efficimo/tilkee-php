@@ -21,7 +21,7 @@ class InputTokenPersonsItemNormalizer implements DenormalizerInterface, Normaliz
 
     public function supportsNormalization($data, $format = null)
     {
-        return 'HbsResearch\\Tilkee\\API\\Model\\InputTokenPersonsItem' === get_class($data);
+        return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\InputTokenPersonsItem' === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = array())

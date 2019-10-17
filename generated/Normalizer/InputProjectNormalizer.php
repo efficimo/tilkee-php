@@ -21,7 +21,7 @@ class InputProjectNormalizer implements DenormalizerInterface, NormalizerInterfa
 
     public function supportsNormalization($data, $format = null)
     {
-        return 'HbsResearch\\Tilkee\\API\\Model\\InputProject' === get_class($data);
+        return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\InputProject' === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = array())

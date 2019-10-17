@@ -65,6 +65,27 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     }
 
     /**
+     * After uploading one (or more) files, you can then create a project and one or several unique access links.
+     *
+     * @param \HbsResearch\Tilkee\API\Model\WrapperTokenFromFilesPostBody $requestBody
+     * @param array                                                       $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\CreateProjectBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\CreateProjectUnauthorizedException
+     *
+     * @return \HbsResearch\Tilkee\API\Model\WrapperTokenFromFilesPostResponse200|\Psr\Http\Message\ResponseInterface|null
+     */
+    public function createProject(\HbsResearch\Tilkee\API\Model\WrapperTokenFromFilesPostBody $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\CreateProject($requestBody, $headerParameters), $fetch);
+    }
+
+    /**
      * Permanently deletes a specific project.
      *
      * @param int   $projectId        ID of project
@@ -88,7 +109,12 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * Used to get all details of a specific project.
      *
-     * @param int   $projectId        ID of project
+     * @param int   $projectId       ID of project
+     * @param array $queryParameters {
+     *
+     *     @var bool $iframe_url Tell if iframe links are wanted
+     * }
+     *
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
@@ -101,9 +127,9 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\Project|\Psr\Http\Message\ResponseInterface|null
      */
-    public function getProject(int $projectId, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function getProject(int $projectId, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
     {
-        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\GetProject($projectId, $headerParameters), $fetch);
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\GetProject($projectId, $queryParameters, $headerParameters), $fetch);
     }
 
     /**

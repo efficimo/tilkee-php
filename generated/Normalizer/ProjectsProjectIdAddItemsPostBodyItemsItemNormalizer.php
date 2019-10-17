@@ -21,7 +21,7 @@ class ProjectsProjectIdAddItemsPostBodyItemsItemNormalizer implements Denormaliz
 
     public function supportsNormalization($data, $format = null)
     {
-        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBodyItemsItem' === get_class($data);
+        return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdAddItemsPostBodyItemsItem' === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = array())
@@ -39,6 +39,9 @@ class ProjectsProjectIdAddItemsPostBodyItemsItemNormalizer implements Denormaliz
         if (property_exists($data, 'signable') && null !== $data->{'signable'}) {
             $object->setSignable($data->{'signable'});
         }
+        if (property_exists($data, 'downloadable') && null !== $data->{'downloadable'}) {
+            $object->setDownloadable($data->{'downloadable'});
+        }
 
         return $object;
     }
@@ -54,6 +57,9 @@ class ProjectsProjectIdAddItemsPostBodyItemsItemNormalizer implements Denormaliz
         }
         if (null !== $object->getSignable()) {
             $data->{'signable'} = $object->getSignable();
+        }
+        if (null !== $object->getDownloadable()) {
+            $data->{'downloadable'} = $object->getDownloadable();
         }
 
         return $data;

@@ -2,41 +2,41 @@
 
 namespace HbsResearch\Tilkee\API\Model;
 
-class ProjectsProjectIdAddItemsPostBodyItemsItem
+class WrapperTokenFromFilesPostBodyDocumentsItem
 {
-    /**
-     * @var int|null
-     */
-    protected $id;
     /**
      * @var string|null
      */
-    protected $title;
+    protected $name;
+    /**
+     * @var string|null
+     */
+    protected $s3Url;
     /**
      * @var bool|null
      */
-    protected $signable;
+    protected $signable = false;
     /**
      * @var bool|null
      */
-    protected $downloadable;
+    protected $downloadable = false;
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getId(): ?int
+    public function getName(): ?string
     {
-        return $this->id;
+        return $this->name;
     }
 
     /**
-     * @param int|null $id
+     * @param string|null $name
      *
      * @return self
      */
-    public function setId(?int $id): self
+    public function setName(?string $name): self
     {
-        $this->id = $id;
+        $this->name = $name;
 
         return $this;
     }
@@ -44,19 +44,19 @@ class ProjectsProjectIdAddItemsPostBodyItemsItem
     /**
      * @return string|null
      */
-    public function getTitle(): ?string
+    public function getS3Url(): ?string
     {
-        return $this->title;
+        return $this->s3Url;
     }
 
     /**
-     * @param string|null $title
+     * @param string|null $s3Url
      *
      * @return self
      */
-    public function setTitle(?string $title): self
+    public function setS3Url(?string $s3Url): self
     {
-        $this->title = $title;
+        $this->s3Url = $s3Url;
 
         return $this;
     }
