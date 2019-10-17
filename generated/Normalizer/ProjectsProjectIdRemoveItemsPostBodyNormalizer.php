@@ -21,7 +21,7 @@ class ProjectsProjectIdRemoveItemsPostBodyNormalizer implements DenormalizerInte
 
     public function supportsNormalization($data, $format = null)
     {
-        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdRemoveItemsPostBody' === get_class($data);
+        return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdRemoveItemsPostBody' === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = array())

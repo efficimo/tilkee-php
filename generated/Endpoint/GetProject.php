@@ -9,15 +9,21 @@ class GetProject extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Ja
     /**
      * Used to get all details of a specific project.
      *
-     * @param int   $projectId        ID of project
+     * @param int   $projectId       ID of project
+     * @param array $queryParameters {
+     *
+     *     @var bool $iframe_url Tell if iframe links are wanted
+     * }
+     *
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
      */
-    public function __construct(int $projectId, array $headerParameters = array())
+    public function __construct(int $projectId, array $queryParameters = array(), array $headerParameters = array())
     {
         $this->projectId = $projectId;
+        $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
     }
 
@@ -41,6 +47,17 @@ class GetProject extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Ja
     public function getExtraHeaders(): array
     {
         return array('Accept' => array('application/json'));
+    }
+
+    protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
+    {
+        $optionsResolver = parent::getQueryOptionsResolver();
+        $optionsResolver->setDefined(array('iframe_url'));
+        $optionsResolver->setRequired(array());
+        $optionsResolver->setDefaults(array());
+        $optionsResolver->setAllowedTypes('iframe_url', array('bool'));
+
+        return $optionsResolver;
     }
 
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver

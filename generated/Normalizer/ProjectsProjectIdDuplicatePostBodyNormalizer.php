@@ -21,7 +21,7 @@ class ProjectsProjectIdDuplicatePostBodyNormalizer implements DenormalizerInterf
 
     public function supportsNormalization($data, $format = null)
     {
-        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdDuplicatePostBody' === get_class($data);
+        return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdDuplicatePostBody' === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = array())
@@ -33,8 +33,8 @@ class ProjectsProjectIdDuplicatePostBodyNormalizer implements DenormalizerInterf
         if (property_exists($data, 'name') && null !== $data->{'name'}) {
             $object->setName($data->{'name'});
         }
-        if (property_exists($data, 'can_be_downladed') && null !== $data->{'can_be_downladed'}) {
-            $object->setCanBeDownladed($data->{'can_be_downladed'});
+        if (property_exists($data, 'can_be_downloaded') && null !== $data->{'can_be_downloaded'}) {
+            $object->setCanBeDownloaded($data->{'can_be_downloaded'});
         }
         if (property_exists($data, 'archived_at') && null !== $data->{'archived_at'}) {
             $object->setArchivedAt($data->{'archived_at'});
@@ -52,8 +52,8 @@ class ProjectsProjectIdDuplicatePostBodyNormalizer implements DenormalizerInterf
         if (null !== $object->getName()) {
             $data->{'name'} = $object->getName();
         }
-        if (null !== $object->getCanBeDownladed()) {
-            $data->{'can_be_downladed'} = $object->getCanBeDownladed();
+        if (null !== $object->getCanBeDownloaded()) {
+            $data->{'can_be_downloaded'} = $object->getCanBeDownloaded();
         }
         if (null !== $object->getArchivedAt()) {
             $data->{'archived_at'} = $object->getArchivedAt();

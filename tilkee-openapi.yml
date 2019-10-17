@@ -145,6 +145,59 @@ paths:
           description: Bad Request
         "401":
           description: Unauthorized
+  /wrapper/token_from_files:
+    parameters:
+      - $ref: "#/components/parameters/tilkeeAuthParam"
+    post:
+      tags:
+        - Project
+      summary: Project creation - create project
+      description: After uploading one (or more) files, you can then create a project and one or several unique access links
+      operationId: createProject
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  $ref: "#/components/schemas/InputProject"
+                documents:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - name
+                      - s3_url
+                      - signable
+                      - downloadable
+                    properties:
+                      name:
+                        type: string
+                      s3_url:
+                        type: string
+                      signable:
+                        type: boolean
+                        default: false
+                      downloadable:
+                        type: boolean
+                        default: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  project:
+                    $ref: "#/components/schemas/Project"
+                  token:
+                    $ref: "#/components/schemas/Token"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
   "/projects/{projectId}":
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
@@ -162,6 +215,11 @@ paths:
           schema:
             type: integer
             format: int64
+        - name: iframe_url
+          in: query
+          description: Tell if iframe links are wanted
+          schema:
+            type: boolean
       responses:
         "200":
           description: OK
@@ -255,7 +313,7 @@ paths:
                 name:
                   type: string
                   example: Name of the project (any alphanumeric info)
-                can_be_downladed:
+                can_be_downloaded:
                   type: boolean
                   description: To choose if visitor can download all of the project (only
                     if company have right « download_option »)
@@ -358,6 +416,7 @@ paths:
                       - id
                       - title
                       - signable
+                      - downloadable
                     properties:
                       id:
                         type: integer
@@ -365,6 +424,8 @@ paths:
                       title:
                         type: string
                       signable:
+                        type: boolean
+                      downloadable:
                         type: boolean
         required: true
       responses:

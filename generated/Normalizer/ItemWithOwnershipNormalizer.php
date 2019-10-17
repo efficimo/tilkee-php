@@ -21,7 +21,7 @@ class ItemWithOwnershipNormalizer implements DenormalizerInterface, NormalizerIn
 
     public function supportsNormalization($data, $format = null)
     {
-        return 'HbsResearch\\Tilkee\\API\\Model\\ItemWithOwnership' === get_class($data);
+        return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ItemWithOwnership' === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = array())

@@ -9,19 +9,19 @@ use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class ProjectsProjectIdTokensIdPutBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class WrapperTokenFromFilesPostBodyDocumentsItemNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
 
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdTokensIdPutBody' === $type;
+        return 'HbsResearch\\Tilkee\\API\\Model\\WrapperTokenFromFilesPostBodyDocumentsItem' === $type;
     }
 
     public function supportsNormalization($data, $format = null)
     {
-        return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdTokensIdPutBody' === get_class($data);
+        return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\WrapperTokenFromFilesPostBodyDocumentsItem' === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = array())
@@ -29,15 +29,18 @@ class ProjectsProjectIdTokensIdPutBodyNormalizer implements DenormalizerInterfac
         if (!is_object($data)) {
             return null;
         }
-        $object = new \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody();
+        $object = new \HbsResearch\Tilkee\API\Model\WrapperTokenFromFilesPostBodyDocumentsItem();
         if (property_exists($data, 'name') && null !== $data->{'name'}) {
             $object->setName($data->{'name'});
         }
-        if (property_exists($data, 'won') && null !== $data->{'won'}) {
-            $object->setWon($data->{'won'});
+        if (property_exists($data, 's3_url') && null !== $data->{'s3_url'}) {
+            $object->setS3Url($data->{'s3_url'});
         }
-        if (property_exists($data, 'extenal_id') && null !== $data->{'extenal_id'}) {
-            $object->setExtenalId($data->{'extenal_id'});
+        if (property_exists($data, 'signable') && null !== $data->{'signable'}) {
+            $object->setSignable($data->{'signable'});
+        }
+        if (property_exists($data, 'downloadable') && null !== $data->{'downloadable'}) {
+            $object->setDownloadable($data->{'downloadable'});
         }
 
         return $object;
@@ -49,11 +52,14 @@ class ProjectsProjectIdTokensIdPutBodyNormalizer implements DenormalizerInterfac
         if (null !== $object->getName()) {
             $data->{'name'} = $object->getName();
         }
-        if (null !== $object->getWon()) {
-            $data->{'won'} = $object->getWon();
+        if (null !== $object->getS3Url()) {
+            $data->{'s3_url'} = $object->getS3Url();
         }
-        if (null !== $object->getExtenalId()) {
-            $data->{'extenal_id'} = $object->getExtenalId();
+        if (null !== $object->getSignable()) {
+            $data->{'signable'} = $object->getSignable();
+        }
+        if (null !== $object->getDownloadable()) {
+            $data->{'downloadable'} = $object->getDownloadable();
         }
 
         return $data;

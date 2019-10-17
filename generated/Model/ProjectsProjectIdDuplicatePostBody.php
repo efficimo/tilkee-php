@@ -13,7 +13,7 @@ class ProjectsProjectIdDuplicatePostBody
      *
      * @var bool|null
      */
-    protected $canBeDownladed;
+    protected $canBeDownloaded;
     /**
      * Date to choose when a project is archived (only if company has right « end_date_option »).
      *
@@ -52,21 +52,21 @@ class ProjectsProjectIdDuplicatePostBody
      *
      * @return bool|null
      */
-    public function getCanBeDownladed(): ?bool
+    public function getCanBeDownloaded(): ?bool
     {
-        return $this->canBeDownladed;
+        return $this->canBeDownloaded;
     }
 
     /**
      * To choose if visitor can download all of the project (only if company have right « download_option »).
      *
-     * @param bool|null $canBeDownladed
+     * @param bool|null $canBeDownloaded
      *
      * @return self
      */
-    public function setCanBeDownladed(?bool $canBeDownladed): self
+    public function setCanBeDownloaded(?bool $canBeDownloaded): self
     {
-        $this->canBeDownladed = $canBeDownladed;
+        $this->canBeDownloaded = $canBeDownloaded;
 
         return $this;
     }

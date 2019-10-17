@@ -28,7 +28,6 @@ class TilkeeClient implements HttpClient
 
     public function __construct(Bearer $authentication, string $tilkRef, $clientOptions = [])
     {
-
         $this->authentication = $authentication;
         $this->tilkRef = $tilkRef;
         $this->clientOptions = $clientOptions;
@@ -36,7 +35,7 @@ class TilkeeClient implements HttpClient
 
     private function getHttpClient()
     {
-        if(null !== $this->httpClient) {
+        if (null !== $this->httpClient) {
             return $this->httpClient;
         }
 
