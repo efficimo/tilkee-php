@@ -542,6 +542,33 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     }
 
     /**
+     * Replace item with new item.
+     *
+     * @param int   $itemId          ID of item
+     * @param array $queryParameters {
+     *
+     *     @var bool $all_chosen true if you want to replace item in all existing projects, false if you want to update only templates
+     *     @var int $new_item_id ID of new item
+     * }
+     *
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\ReplaceItemBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\ReplaceItemUnauthorizedException
+     *
+     * @return \Psr\Http\Message\ResponseInterface|null
+     */
+    public function replaceItem(int $itemId, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ReplaceItem($itemId, $queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
      * Use this to get the s3 informations to be used to upload on S3.
      *
      * @param array $queryParameters {
