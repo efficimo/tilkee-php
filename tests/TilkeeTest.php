@@ -18,7 +18,6 @@ use PHPUnit\Framework\TestCase;
 class TilkeeTest extends TestCase
 {
     protected $client;
-
     protected $tilkee;
 
     public function __construct(...$args)

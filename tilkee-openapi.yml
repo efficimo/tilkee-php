@@ -974,6 +974,43 @@ paths:
           description: Bad Request
         "401":
           description: Unauthorized
+  "/items/{itemId}/replace":
+    parameters:
+      - $ref: "#/components/parameters/tilkeeAuthParam"
+    delete:
+      tags:
+        - Item
+      summary: Replace item
+      description: Replace item with new item
+      operationId: replaceItem
+      parameters:
+        - name: itemId
+          in: path
+          description: ID of item
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: all_chosen
+          in: query
+          description: true if you want to replace item in all existing projects, false if you want to update only templates
+          required: true
+          schema:
+            type: boolean
+        - name: new_item_id
+          in: query
+          description: ID of new item
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
   /direct_upload_data/:
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
