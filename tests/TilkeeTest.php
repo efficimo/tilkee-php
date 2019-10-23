@@ -158,4 +158,9 @@ class TilkeeTest extends TestCase
         $this->expectExceptionCode(410);
         $this->assertEmpty($this->client->getProject($project->getId()));
     }
+
+    public function testConnexions()
+    {
+        $connexions = $this->client->getConnexions();
+    }
 }
