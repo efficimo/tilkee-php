@@ -5,6 +5,37 @@ namespace HbsResearch\Tilkee\API;
 class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
 {
     /**
+     * List connexions by search filters.
+     *
+     * @param array $queryParameters {
+     *
+     *     @var string $tokens Comma-separated list of token ids to filter
+     *     @var int $start_date timestamp of start limit
+     *     @var int $end_date timestamp of end limit
+     *     @var int $limit number of objects to returns
+     *     @var string $search search string to filter the results
+     *     @var string $sort name of the field to order by, separated by commas and preceded by - if descending
+     *     @var int $offset number of objects to skip from start
+     * }
+     *
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\GetConnexionsBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\GetConnexionsUnauthorizedException
+     *
+     * @return \HbsResearch\Tilkee\API\Model\ResponseConnexionList|\Psr\Http\Message\ResponseInterface|null
+     */
+    public function getConnexions(array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\GetConnexions($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
      * Used to get a list of all your projects.
      *
      * @param array $queryParameters {

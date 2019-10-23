@@ -29,6 +29,69 @@ tags:
       description: Documentation
       url: https://tilkee.readme.io/docs/what-is-it-3
 paths:
+  /connexions:
+    parameters:
+      - $ref: "#/components/parameters/tilkeeAuthParam"
+    get:
+      tags:
+        - Connexion
+      summary: List
+      description: List connexions by search filters
+      operationId: getConnexions
+      parameters:
+        - name: tokens
+          in: query
+          description: Comma-separated list of token ids to filter
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          description: timestamp of start limit
+          schema:
+            type: integer
+            format: int32
+        - name: end_date
+          in: query
+          description: timestamp of end limit
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: number of objects to returns
+          default: 50
+          schema:
+            type: integer
+            format: int32
+        - name: search
+          in: query
+          description: search string to filter the results
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: name of the field to order by, separated by commas and preceded by - if descending
+          default: "-connexions.created_at"
+          schema:
+            type: string
+        - name: offset
+          description: number of objects to skip from start
+          default: 0
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseConnexionList"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
   /projects:
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
@@ -1599,6 +1662,31 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Token"
+    ResponseConnexionList:
+      type: object
+      properties:
+        search:
+          type: string
+          description: Name
+        limit:
+          type: integer
+          format: int32
+          example: 50
+        offset:
+          type: integer
+          format: int32
+          example: 0
+        total:
+          type: integer
+          format: int32
+          example: 2
+        order:
+          type: string
+          example: -projects.created_at
+        contents:
+          type: array
+          items:
+            $ref: "#/components/schemas/Connexion"
     ResponseTokenList:
       type: object
       properties:
@@ -1883,3 +1971,8 @@ components:
           type: string
         name:
           type: string
+    Connexion:
+      type: object
+      properties:
+        project:
+          $ref: "#/components/schemas/Project"

@@ -30,6 +30,7 @@ class NormalizerFactory
         $normalizers[] = new InputTokenNormalizer();
         $normalizers[] = new InputTokenPersonsItemNormalizer();
         $normalizers[] = new ResponseCreateTokenNormalizer();
+        $normalizers[] = new ResponseConnexionListNormalizer();
         $normalizers[] = new ResponseTokenListNormalizer();
         $normalizers[] = new DeviceNormalizer();
         $normalizers[] = new CollaboratorNormalizer();
@@ -41,6 +42,7 @@ class NormalizerFactory
         $normalizers[] = new CompanyCustomBrandingNormalizer();
         $normalizers[] = new CompanyCustomBrandingOnboardingVideosUrlNormalizer();
         $normalizers[] = new UploadInformationNormalizer();
+        $normalizers[] = new ConnexionNormalizer();
         $normalizers[] = new WrapperTokenFromFilesPostBodyNormalizer();
         $normalizers[] = new WrapperTokenFromFilesPostBodyDocumentsItemNormalizer();
         $normalizers[] = new WrapperTokenFromFilesPostResponse200Normalizer();
