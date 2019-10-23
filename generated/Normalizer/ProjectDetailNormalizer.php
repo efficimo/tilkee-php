@@ -39,6 +39,9 @@ class ProjectDetailNormalizer implements DenormalizerInterface, NormalizerInterf
         if (property_exists($data, 'leader') && null !== $data->{'leader'}) {
             $object->setLeader($this->denormalizer->denormalize($data->{'leader'}, 'HbsResearch\\Tilkee\\API\\Model\\Leader', 'json', $context));
         }
+        if (property_exists($data, 'data') && null !== $data->{'data'}) {
+            $object->setData($this->denormalizer->denormalize($data->{'data'}, 'HbsResearch\\Tilkee\\API\\Model\\ProjectData', 'json', $context));
+        }
         if (property_exists($data, 'collaborators') && null !== $data->{'collaborators'}) {
             $values = array();
             foreach ($data->{'collaborators'} as $value) {
@@ -64,6 +67,9 @@ class ProjectDetailNormalizer implements DenormalizerInterface, NormalizerInterf
         }
         if (null !== $object->getLeader()) {
             $data->{'leader'} = $this->normalizer->normalize($object->getLeader(), 'json', $context);
+        }
+        if (null !== $object->getData()) {
+            $data->{'data'} = $this->normalizer->normalize($object->getData(), 'json', $context);
         }
         if (null !== $object->getCollaborators()) {
             $values = array();

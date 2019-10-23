@@ -1228,6 +1228,8 @@ components:
           format: int64
         leader:
           $ref: "#/components/schemas/Leader"
+        data:
+          $ref: "#/components/schemas/ProjectData"
         collaborators:
           type: array
           items:
@@ -1976,3 +1978,34 @@ components:
       properties:
         project:
           $ref: "#/components/schemas/Project"
+    ProjectData:
+      type: object
+      properties:
+        interest:
+          type: float
+        nb_connections:
+          type: integer
+          format: int32
+        total_time:
+          type: integer
+          format: int32
+        median_nb_pages_readed:
+          type: integer
+          format: int32
+        median_percentage_read:
+          type: integer
+          format: int32
+        median_time_before_opening:
+          type: integer
+          format: int32
+        median_time_read:
+          type: integer
+          format: int32
+        median_time_to_download:
+          type: integer
+          format: int32
+        nb_connexions_failed:
+          type: integer
+          format: int32
+        pt_note:
+          type: float
