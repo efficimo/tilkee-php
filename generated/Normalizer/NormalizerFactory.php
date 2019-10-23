@@ -43,6 +43,7 @@ class NormalizerFactory
         $normalizers[] = new CompanyCustomBrandingOnboardingVideosUrlNormalizer();
         $normalizers[] = new UploadInformationNormalizer();
         $normalizers[] = new ConnexionNormalizer();
+        $normalizers[] = new ProjectDataNormalizer();
         $normalizers[] = new WrapperTokenFromFilesPostBodyNormalizer();
         $normalizers[] = new WrapperTokenFromFilesPostBodyDocumentsItemNormalizer();
         $normalizers[] = new WrapperTokenFromFilesPostResponse200Normalizer();

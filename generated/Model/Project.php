@@ -113,6 +113,10 @@ class Project
      */
     protected $leader;
     /**
+     * @var ProjectData|null
+     */
+    protected $data;
+    /**
      * @var Collaborator[]|null
      */
     protected $collaborators;
@@ -633,6 +637,26 @@ class Project
     public function setLeader(?Leader $leader): self
     {
         $this->leader = $leader;
+
+        return $this;
+    }
+
+    /**
+     * @return ProjectData|null
+     */
+    public function getData(): ?ProjectData
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param ProjectData|null $data
+     *
+     * @return self
+     */
+    public function setData(?ProjectData $data): self
+    {
+        $this->data = $data;
 
         return $this;
     }
