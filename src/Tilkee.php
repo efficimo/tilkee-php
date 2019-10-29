@@ -8,6 +8,7 @@ use Http\Client\HttpAsyncClient;
 use Http\Client\HttpClient;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Message\MultipartStream\MultipartStreamBuilder;
+use Http\Promise\Promise;
 
 class Tilkee
 {
@@ -21,7 +22,7 @@ class Tilkee
         $this->amazonHttpClient = $amazonHttpClient;
     }
 
-    public function uploadFile(UploadInformation $uploadInformation, $file, string $filename): UploadedFileResponse
+    public function uploadFile(UploadInformation $uploadInformation, $file, string $filename, callable $fulfilled): Promise
     {
         $url = $uploadInformation->getS3Endpoint();
 
@@ -45,9 +46,11 @@ class Tilkee
         ;
 
         $promise = $this->amazonHttpClient->sendAsyncRequest($request);
-        $response = $promise->wait();
+        $promise->then(function ($response) use ($fulfilled) {
+            $fulfilled(UploadedFileResponse::fromResponse($response));
+        });
 
-        return UploadedFileResponse::fromResponse($response);
+        return $promise;
     }
 
     public function getClient(): ApiClient
