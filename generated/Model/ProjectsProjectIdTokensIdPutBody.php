@@ -23,8 +23,6 @@ class ProjectsProjectIdTokensIdPutBody
 
     /**
      * Update your project name.
-     *
-     * @return string|null
      */
     public function getName(): ?string
     {
@@ -33,10 +31,6 @@ class ProjectsProjectIdTokensIdPutBody
 
     /**
      * Update your project name.
-     *
-     * @param string|null $name
-     *
-     * @return self
      */
     public function setName(?string $name): self
     {
@@ -47,8 +41,6 @@ class ProjectsProjectIdTokensIdPutBody
 
     /**
      * Specify if the tilk succeeded.
-     *
-     * @return bool|null
      */
     public function getWon(): ?bool
     {
@@ -57,10 +49,6 @@ class ProjectsProjectIdTokensIdPutBody
 
     /**
      * Specify if the tilk succeeded.
-     *
-     * @param bool|null $won
-     *
-     * @return self
      */
     public function setWon(?bool $won): self
     {
@@ -69,19 +57,11 @@ class ProjectsProjectIdTokensIdPutBody
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExtenalId(): ?string
     {
         return $this->extenalId;
     }
 
-    /**
-     * @param string|null $extenalId
-     *
-     * @return self
-     */
     public function setExtenalId(?string $extenalId): self
     {
         $this->extenalId = $extenalId;

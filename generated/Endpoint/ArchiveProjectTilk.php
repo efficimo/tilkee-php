@@ -17,7 +17,7 @@ class ArchiveProjectTilk extends \Jane\OpenApiRuntime\Client\BaseEndpoint implem
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
      */
-    public function __construct(int $projectId, int $id, array $headerParameters = array())
+    public function __construct(int $projectId, int $id, array $headerParameters = [])
     {
         $this->projectId = $projectId;
         $this->id = $id;
@@ -33,26 +33,26 @@ class ArchiveProjectTilk extends \Jane\OpenApiRuntime\Client\BaseEndpoint implem
 
     public function getUri(): string
     {
-        return str_replace(array('{projectId}', '{id}'), array($this->projectId, $this->id), '/projects/{projectId}/tokens/{id}/archive/');
+        return str_replace(['{projectId}', '{id}'], [$this->projectId, $this->id], '/projects/{projectId}/tokens/{id}/archive/');
     }
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
-        return array(array(), null);
+        return [[], null];
     }
 
     public function getExtraHeaders(): array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
 
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
 
         return $optionsResolver;
     }

@@ -125,19 +125,11 @@ class Project
      */
     protected $theme;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int|null $id
-     *
-     * @return self
-     */
     public function setId(?int $id): self
     {
         $this->id = $id;
@@ -145,19 +137,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -165,19 +149,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTime|null $createdAt
-     *
-     * @return self
-     */
     public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -185,19 +161,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param \DateTime|null $updatedAt
-     *
-     * @return self
-     */
     public function setUpdatedAt(?\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -207,8 +175,6 @@ class Project
 
     /**
      * Date to choose when a project is archived (only if company has right « end_date_option »).
-     *
-     * @return string|null
      */
     public function getArchivedAt(): ?string
     {
@@ -217,10 +183,6 @@ class Project
 
     /**
      * Date to choose when a project is archived (only if company has right « end_date_option »).
-     *
-     * @param string|null $archivedAt
-     *
-     * @return self
      */
     public function setArchivedAt(?string $archivedAt): self
     {
@@ -229,19 +191,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * @param string|null $status
-     *
-     * @return self
-     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -249,19 +203,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getWon(): ?string
     {
         return $this->won;
     }
 
-    /**
-     * @param string|null $won
-     *
-     * @return self
-     */
     public function setWon(?string $won): self
     {
         $this->won = $won;
@@ -269,19 +215,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsTemplate(): ?bool
     {
         return $this->isTemplate;
     }
 
-    /**
-     * @param bool|null $isTemplate
-     *
-     * @return self
-     */
     public function setIsTemplate(?bool $isTemplate): self
     {
         $this->isTemplate = $isTemplate;
@@ -291,8 +229,6 @@ class Project
 
     /**
      * To choose if visitor can download all of the project (only if company have right « download_option »).
-     *
-     * @return bool|null
      */
     public function getCanBeDownladed(): ?bool
     {
@@ -301,10 +237,6 @@ class Project
 
     /**
      * To choose if visitor can download all of the project (only if company have right « download_option »).
-     *
-     * @param bool|null $canBeDownladed
-     *
-     * @return self
      */
     public function setCanBeDownladed(?bool $canBeDownladed): self
     {
@@ -313,19 +245,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPreview(): ?string
     {
         return $this->preview;
     }
 
-    /**
-     * @param string|null $preview
-     *
-     * @return self
-     */
     public function setPreview(?string $preview): self
     {
         $this->preview = $preview;
@@ -333,19 +257,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPreviewNew(): ?string
     {
         return $this->previewNew;
     }
 
-    /**
-     * @param string|null $previewNew
-     *
-     * @return self
-     */
     public function setPreviewNew(?string $previewNew): self
     {
         $this->previewNew = $previewNew;
@@ -355,8 +271,6 @@ class Project
 
     /**
      * Used only for templates, you can create projects from this template that will expire  days later.
-     *
-     * @return int|null
      */
     public function getDuration(): ?int
     {
@@ -365,10 +279,6 @@ class Project
 
     /**
      * Used only for templates, you can create projects from this template that will expire  days later.
-     *
-     * @param int|null $duration
-     *
-     * @return self
      */
     public function setDuration(?int $duration): self
     {
@@ -377,19 +287,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsOrWasSignable(): ?bool
     {
         return $this->isOrWasSignable;
     }
 
-    /**
-     * @param bool|null $isOrWasSignable
-     *
-     * @return self
-     */
     public function setIsOrWasSignable(?bool $isOrWasSignable): self
     {
         $this->isOrWasSignable = $isOrWasSignable;
@@ -397,19 +299,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getSigned(): ?bool
     {
         return $this->signed;
     }
 
-    /**
-     * @param bool|null $signed
-     *
-     * @return self
-     */
     public function setSigned(?bool $signed): self
     {
         $this->signed = $signed;
@@ -417,19 +311,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getStarred(): ?bool
     {
         return $this->starred;
     }
 
-    /**
-     * @param bool|null $starred
-     *
-     * @return self
-     */
     public function setStarred(?bool $starred): self
     {
         $this->starred = $starred;
@@ -439,8 +325,6 @@ class Project
 
     /**
      * ID of the project in your system.
-     *
-     * @return string|null
      */
     public function getExternalId(): ?string
     {
@@ -449,10 +333,6 @@ class Project
 
     /**
      * ID of the project in your system.
-     *
-     * @param string|null $externalId
-     *
-     * @return self
      */
     public function setExternalId(?string $externalId): self
     {
@@ -461,19 +341,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTokenUrl(): ?string
     {
         return $this->tokenUrl;
     }
 
-    /**
-     * @param string|null $tokenUrl
-     *
-     * @return self
-     */
     public function setTokenUrl(?string $tokenUrl): self
     {
         $this->tokenUrl = $tokenUrl;
@@ -481,19 +353,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUrl(): ?string
     {
         return $this->url;
     }
 
-    /**
-     * @param string|null $url
-     *
-     * @return self
-     */
     public function setUrl(?string $url): self
     {
         $this->url = $url;
@@ -501,19 +365,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getCollaboratorsCount(): ?int
     {
         return $this->collaboratorsCount;
     }
 
-    /**
-     * @param int|null $collaboratorsCount
-     *
-     * @return self
-     */
     public function setCollaboratorsCount(?int $collaboratorsCount): self
     {
         $this->collaboratorsCount = $collaboratorsCount;
@@ -531,8 +387,6 @@ class Project
 
     /**
      * @param mixed $firstAccessAt
-     *
-     * @return self
      */
     public function setFirstAccessAt($firstAccessAt): self
     {
@@ -541,19 +395,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getConsultable(): ?bool
     {
         return $this->consultable;
     }
 
-    /**
-     * @param bool|null $consultable
-     *
-     * @return self
-     */
     public function setConsultable(?bool $consultable): self
     {
         $this->consultable = $consultable;
@@ -571,8 +417,6 @@ class Project
 
     /**
      * @param mixed $iframes
-     *
-     * @return self
      */
     public function setIframes($iframes): self
     {
@@ -581,19 +425,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getNbConnections(): ?int
     {
         return $this->nbConnections;
     }
 
-    /**
-     * @param int|null $nbConnections
-     *
-     * @return self
-     */
     public function setNbConnections(?int $nbConnections): self
     {
         $this->nbConnections = $nbConnections;
@@ -601,19 +437,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTotalTime(): ?int
     {
         return $this->totalTime;
     }
 
-    /**
-     * @param int|null $totalTime
-     *
-     * @return self
-     */
     public function setTotalTime(?int $totalTime): self
     {
         $this->totalTime = $totalTime;
@@ -621,19 +449,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return Leader|null
-     */
     public function getLeader(): ?Leader
     {
         return $this->leader;
     }
 
-    /**
-     * @param Leader|null $leader
-     *
-     * @return self
-     */
     public function setLeader(?Leader $leader): self
     {
         $this->leader = $leader;
@@ -641,19 +461,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return ProjectData|null
-     */
     public function getData(): ?ProjectData
     {
         return $this->data;
     }
 
-    /**
-     * @param ProjectData|null $data
-     *
-     * @return self
-     */
     public function setData(?ProjectData $data): self
     {
         $this->data = $data;
@@ -671,8 +483,6 @@ class Project
 
     /**
      * @param Collaborator[]|null $collaborators
-     *
-     * @return self
      */
     public function setCollaborators(?array $collaborators): self
     {
@@ -681,19 +491,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return Theme|null
-     */
     public function getTheme(): ?Theme
     {
         return $this->theme;
     }
 
-    /**
-     * @param Theme|null $theme
-     *
-     * @return self
-     */
     public function setTheme(?Theme $theme): self
     {
         $this->theme = $theme;

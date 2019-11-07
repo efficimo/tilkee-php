@@ -19,8 +19,6 @@ class InputToken
 
     /**
      * @param InputTokenPersonsItem[]|null $persons
-     *
-     * @return self
      */
     public function setPersons(?array $persons): self
     {

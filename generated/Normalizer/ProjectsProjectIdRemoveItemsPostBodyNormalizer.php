@@ -24,14 +24,14 @@ class ProjectsProjectIdRemoveItemsPostBodyNormalizer implements DenormalizerInte
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ProjectsProjectIdRemoveItemsPostBody' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
         }
         $object = new \HbsResearch\Tilkee\API\Model\ProjectsProjectIdRemoveItemsPostBody();
         if (property_exists($data, 'project_items_ids') && null !== $data->{'project_items_ids'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'project_items_ids'} as $value) {
                 $values[] = $value;
             }
@@ -41,11 +41,11 @@ class ProjectsProjectIdRemoveItemsPostBodyNormalizer implements DenormalizerInte
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getProjectItemsIds()) {
-            $values = array();
+            $values = [];
             foreach ($object->getProjectItemsIds() as $value) {
                 $values[] = $value;
             }

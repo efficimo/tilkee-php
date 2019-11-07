@@ -9,14 +9,13 @@ class ArchiveProject extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements
     /**
      * Usse this method to archive a project, you can use the won parameter to archive won, lost or undefined.
      *
-     * @param int                                                            $projectId        ID of project
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody $requestBody
-     * @param array                                                          $headerParameters {
+     * @param int   $projectId        ID of project
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
      */
-    public function __construct(int $projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody $requestBody, array $headerParameters = array())
+    public function __construct(int $projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody $requestBody, array $headerParameters = [])
     {
         $this->projectId = $projectId;
         $this->body = $requestBody;
@@ -32,30 +31,30 @@ class ArchiveProject extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements
 
     public function getUri(): string
     {
-        return str_replace(array('{projectId}'), array($this->projectId), '/projects/{projectId}/archive');
+        return str_replace(['{projectId}'], [$this->projectId], '/projects/{projectId}/archive');
     }
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
         if ($this->body instanceof \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody) {
-            return array(array('Content-Type' => array('application/json')), $serializer->serialize($this->body, 'json'));
+            return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
         }
 
-        return array(array(), null);
+        return [[], null];
     }
 
     public function getExtraHeaders(): array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
 
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
 
         return $optionsResolver;
     }

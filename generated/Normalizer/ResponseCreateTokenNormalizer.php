@@ -24,14 +24,14 @@ class ResponseCreateTokenNormalizer implements DenormalizerInterface, Normalizer
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ResponseCreateToken' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
         }
         $object = new \HbsResearch\Tilkee\API\Model\ResponseCreateToken();
         if (property_exists($data, 'contents') && null !== $data->{'contents'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'contents'} as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\Token', 'json', $context);
             }
@@ -41,11 +41,11 @@ class ResponseCreateTokenNormalizer implements DenormalizerInterface, Normalizer
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getContents()) {
-            $values = array();
+            $values = [];
             foreach ($object->getContents() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }

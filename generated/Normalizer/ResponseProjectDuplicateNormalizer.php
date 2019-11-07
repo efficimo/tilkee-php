@@ -24,7 +24,7 @@ class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, Norma
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectDuplicate' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -100,7 +100,7 @@ class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, Norma
             $object->setTheme($this->denormalizer->denormalize($data->{'theme'}, 'HbsResearch\\Tilkee\\API\\Model\\Theme', 'json', $context));
         }
         if (property_exists($data, 'tokens') && null !== $data->{'tokens'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'tokens'} as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\Token', 'json', $context);
             }
@@ -110,7 +110,7 @@ class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, Norma
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getId()) {
@@ -170,7 +170,9 @@ class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, Norma
         if (null !== $object->getCollaboratorsCount()) {
             $data->{'collaborators_count'} = $object->getCollaboratorsCount();
         }
-        $data->{'first_access_at'} = $object->getFirstAccessAt();
+        if (null !== $object->getFirstAccessAt()) {
+            $data->{'first_access_at'} = $object->getFirstAccessAt();
+        }
         if (null !== $object->getConsultable()) {
             $data->{'consultable'} = $object->getConsultable();
         }
@@ -181,7 +183,7 @@ class ResponseProjectDuplicateNormalizer implements DenormalizerInterface, Norma
             $data->{'theme'} = $this->normalizer->normalize($object->getTheme(), 'json', $context);
         }
         if (null !== $object->getTokens()) {
-            $values = array();
+            $values = [];
             foreach ($object->getTokens() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }

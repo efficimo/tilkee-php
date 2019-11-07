@@ -30,7 +30,7 @@ class ListProjectTilks extends \Jane\OpenApiRuntime\Client\BaseEndpoint implemen
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
      */
-    public function __construct(int $projectId, array $queryParameters = array(), array $headerParameters = array())
+    public function __construct(int $projectId, array $queryParameters = [], array $headerParameters = [])
     {
         $this->projectId = $projectId;
         $this->queryParameters = $queryParameters;
@@ -46,36 +46,36 @@ class ListProjectTilks extends \Jane\OpenApiRuntime\Client\BaseEndpoint implemen
 
     public function getUri(): string
     {
-        return str_replace(array('{projectId}'), array($this->projectId), '/projects/{projectId}/tokens');
+        return str_replace(['{projectId}'], [$this->projectId], '/projects/{projectId}/tokens');
     }
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
-        return array(array(), null);
+        return [[], null];
     }
 
     public function getExtraHeaders(): array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
 
     protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('search', 'limit', 'offset', 'order', 'archived_tokens', 'signed_status', 'consulted', 'signed', 'nb_connections', 'interest', 'external_id'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('search', array('string'));
-        $optionsResolver->setAllowedTypes('limit', array('int'));
-        $optionsResolver->setAllowedTypes('offset', array('int'));
-        $optionsResolver->setAllowedTypes('order', array('string'));
-        $optionsResolver->setAllowedTypes('archived_tokens', array('bool'));
-        $optionsResolver->setAllowedTypes('signed_status', array('string'));
-        $optionsResolver->setAllowedTypes('consulted', array('bool'));
-        $optionsResolver->setAllowedTypes('signed', array('bool'));
-        $optionsResolver->setAllowedTypes('nb_connections', array('int'));
-        $optionsResolver->setAllowedTypes('interest', array('int'));
-        $optionsResolver->setAllowedTypes('external_id', array('string'));
+        $optionsResolver->setDefined(['search', 'limit', 'offset', 'order', 'archived_tokens', 'signed_status', 'consulted', 'signed', 'nb_connections', 'interest', 'external_id']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('search', ['string']);
+        $optionsResolver->setAllowedTypes('limit', ['int']);
+        $optionsResolver->setAllowedTypes('offset', ['int']);
+        $optionsResolver->setAllowedTypes('order', ['string']);
+        $optionsResolver->setAllowedTypes('archived_tokens', ['bool']);
+        $optionsResolver->setAllowedTypes('signed_status', ['string']);
+        $optionsResolver->setAllowedTypes('consulted', ['bool']);
+        $optionsResolver->setAllowedTypes('signed', ['bool']);
+        $optionsResolver->setAllowedTypes('nb_connections', ['int']);
+        $optionsResolver->setAllowedTypes('interest', ['int']);
+        $optionsResolver->setAllowedTypes('external_id', ['string']);
 
         return $optionsResolver;
     }
@@ -83,10 +83,10 @@ class ListProjectTilks extends \Jane\OpenApiRuntime\Client\BaseEndpoint implemen
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
 
         return $optionsResolver;
     }

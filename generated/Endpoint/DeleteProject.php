@@ -13,9 +13,11 @@ class DeleteProject extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements 
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      */
-    public function __construct(int $projectId, array $headerParameters = array())
+    public function __construct(int $projectId, array $headerParameters = [])
     {
         $this->projectId = $projectId;
         $this->headerParameters = $headerParameters;
@@ -30,21 +32,23 @@ class DeleteProject extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements 
 
     public function getUri(): string
     {
-        return str_replace(array('{projectId}'), array($this->projectId), '/projects/{projectId}');
+        return str_replace(['{projectId}'], [$this->projectId], '/projects/{projectId}');
     }
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
-        return array(array(), null);
+        return [[], null];
     }
 
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref', 'USER_ID', 'USER_EMAIL']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
+        $optionsResolver->setAllowedTypes('USER_ID', ['int']);
+        $optionsResolver->setAllowedTypes('USER_EMAIL', ['string']);
 
         return $optionsResolver;
     }
@@ -54,6 +58,8 @@ class DeleteProject extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements 
      *
      * @throws \HbsResearch\Tilkee\API\Exception\DeleteProjectBadRequestException
      * @throws \HbsResearch\Tilkee\API\Exception\DeleteProjectUnauthorizedException
+     *
+     * @return null
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {

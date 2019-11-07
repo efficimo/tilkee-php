@@ -24,7 +24,7 @@ class ProjectDetailNormalizer implements DenormalizerInterface, NormalizerInterf
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ProjectDetail' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -43,7 +43,7 @@ class ProjectDetailNormalizer implements DenormalizerInterface, NormalizerInterf
             $object->setData($this->denormalizer->denormalize($data->{'data'}, 'HbsResearch\\Tilkee\\API\\Model\\ProjectData', 'json', $context));
         }
         if (property_exists($data, 'collaborators') && null !== $data->{'collaborators'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'collaborators'} as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\Collaborator', 'json', $context);
             }
@@ -56,7 +56,7 @@ class ProjectDetailNormalizer implements DenormalizerInterface, NormalizerInterf
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getNbConnections()) {
@@ -72,7 +72,7 @@ class ProjectDetailNormalizer implements DenormalizerInterface, NormalizerInterf
             $data->{'data'} = $this->normalizer->normalize($object->getData(), 'json', $context);
         }
         if (null !== $object->getCollaborators()) {
-            $values = array();
+            $values = [];
             foreach ($object->getCollaborators() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }

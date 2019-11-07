@@ -26,7 +26,7 @@ class ListTilks extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jan
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
      */
-    public function __construct(array $queryParameters = array(), array $headerParameters = array())
+    public function __construct(array $queryParameters = [], array $headerParameters = [])
     {
         $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
@@ -46,30 +46,30 @@ class ListTilks extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jan
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
-        return array(array(), null);
+        return [[], null];
     }
 
     public function getExtraHeaders(): array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
 
     protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('limit', 'offset', 'order', 'is_owner', 'archived_tokens', 'accessible_tokens', 'consulted', 'project_id', 'nb_connections', 'interest'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('limit', array('int'));
-        $optionsResolver->setAllowedTypes('offset', array('int'));
-        $optionsResolver->setAllowedTypes('order', array('string'));
-        $optionsResolver->setAllowedTypes('is_owner', array('bool'));
-        $optionsResolver->setAllowedTypes('archived_tokens', array('bool'));
-        $optionsResolver->setAllowedTypes('accessible_tokens', array('bool'));
-        $optionsResolver->setAllowedTypes('consulted', array('bool'));
-        $optionsResolver->setAllowedTypes('project_id', array('int'));
-        $optionsResolver->setAllowedTypes('nb_connections', array('int'));
-        $optionsResolver->setAllowedTypes('interest', array('int'));
+        $optionsResolver->setDefined(['limit', 'offset', 'order', 'is_owner', 'archived_tokens', 'accessible_tokens', 'consulted', 'project_id', 'nb_connections', 'interest']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('limit', ['int']);
+        $optionsResolver->setAllowedTypes('offset', ['int']);
+        $optionsResolver->setAllowedTypes('order', ['string']);
+        $optionsResolver->setAllowedTypes('is_owner', ['bool']);
+        $optionsResolver->setAllowedTypes('archived_tokens', ['bool']);
+        $optionsResolver->setAllowedTypes('accessible_tokens', ['bool']);
+        $optionsResolver->setAllowedTypes('consulted', ['bool']);
+        $optionsResolver->setAllowedTypes('project_id', ['int']);
+        $optionsResolver->setAllowedTypes('nb_connections', ['int']);
+        $optionsResolver->setAllowedTypes('interest', ['int']);
 
         return $optionsResolver;
     }
@@ -77,10 +77,10 @@ class ListTilks extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jan
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
 
         return $optionsResolver;
     }

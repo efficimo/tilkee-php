@@ -65,19 +65,11 @@ class ItemWithOwnership
      */
     protected $projectsCount;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int|null $id
-     *
-     * @return self
-     */
     public function setId(?int $id): self
     {
         $this->id = $id;
@@ -85,19 +77,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @param string|null $title
-     *
-     * @return self
-     */
     public function setTitle(?string $title): self
     {
         $this->title = $title;
@@ -105,19 +89,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getUsable(): ?bool
     {
         return $this->usable;
     }
 
-    /**
-     * @param bool|null $usable
-     *
-     * @return self
-     */
     public function setUsable(?bool $usable): self
     {
         $this->usable = $usable;
@@ -125,19 +101,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getElementType(): ?string
     {
         return $this->elementType;
     }
 
-    /**
-     * @param string|null $elementType
-     *
-     * @return self
-     */
     public function setElementType(?string $elementType): self
     {
         $this->elementType = $elementType;
@@ -145,19 +113,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExtension(): ?string
     {
         return $this->extension;
     }
 
-    /**
-     * @param string|null $extension
-     *
-     * @return self
-     */
     public function setExtension(?string $extension): self
     {
         $this->extension = $extension;
@@ -165,19 +125,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * @param string|null $type
-     *
-     * @return self
-     */
     public function setType(?string $type): self
     {
         $this->type = $type;
@@ -185,19 +137,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExternalId(): ?string
     {
         return $this->externalId;
     }
 
-    /**
-     * @param string|null $externalId
-     *
-     * @return self
-     */
     public function setExternalId(?string $externalId): self
     {
         $this->externalId = $externalId;
@@ -205,19 +149,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getS3Url(): ?string
     {
         return $this->s3Url;
     }
 
-    /**
-     * @param string|null $s3Url
-     *
-     * @return self
-     */
     public function setS3Url(?string $s3Url): self
     {
         $this->s3Url = $s3Url;
@@ -225,19 +161,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getContentUrl(): ?string
     {
         return $this->contentUrl;
     }
 
-    /**
-     * @param string|null $contentUrl
-     *
-     * @return self
-     */
     public function setContentUrl(?string $contentUrl): self
     {
         $this->contentUrl = $contentUrl;
@@ -245,19 +173,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getThumbnailUrl(): ?string
     {
         return $this->thumbnailUrl;
     }
 
-    /**
-     * @param string|null $thumbnailUrl
-     *
-     * @return self
-     */
     public function setThumbnailUrl(?string $thumbnailUrl): self
     {
         $this->thumbnailUrl = $thumbnailUrl;
@@ -265,19 +185,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getVisible(): ?bool
     {
         return $this->visible;
     }
 
-    /**
-     * @param bool|null $visible
-     *
-     * @return self
-     */
     public function setVisible(?bool $visible): self
     {
         $this->visible = $visible;
@@ -285,19 +197,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTime|null $createdAt
-     *
-     * @return self
-     */
     public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -305,19 +209,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return User|null
-     */
     public function getOwner(): ?User
     {
         return $this->owner;
     }
 
-    /**
-     * @param User|null $owner
-     *
-     * @return self
-     */
     public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
@@ -335,8 +231,6 @@ class ItemWithOwnership
 
     /**
      * @param ItemWithOwnershipprojectsItem[]|null $projects
-     *
-     * @return self
      */
     public function setProjects(?array $projects): self
     {
@@ -345,19 +239,11 @@ class ItemWithOwnership
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getProjectsCount(): ?int
     {
         return $this->projectsCount;
     }
 
-    /**
-     * @param int|null $projectsCount
-     *
-     * @return self
-     */
     public function setProjectsCount(?int $projectsCount): self
     {
         $this->projectsCount = $projectsCount;

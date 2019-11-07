@@ -9,19 +9,11 @@ class UserUtmItemUTM
      */
     protected $id;
 
-    /**
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * @param string|null $id
-     *
-     * @return self
-     */
     public function setId(?string $id): self
     {
         $this->id = $id;

@@ -19,8 +19,6 @@ class ProjectsProjectIdAddItemsPostBody
 
     /**
      * @param ProjectsProjectIdAddItemsPostBodyItemsItem[]|null $items
-     *
-     * @return self
      */
     public function setItems(?array $items): self
     {

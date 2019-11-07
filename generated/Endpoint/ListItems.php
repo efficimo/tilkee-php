@@ -18,9 +18,11 @@ class ListItems extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jan
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      */
-    public function __construct(array $queryParameters = array(), array $headerParameters = array())
+    public function __construct(array $queryParameters = [], array $headerParameters = [])
     {
         $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
@@ -40,24 +42,24 @@ class ListItems extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jan
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
-        return array(array(), null);
+        return [[], null];
     }
 
     public function getExtraHeaders(): array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
 
     protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('search', 'limit', 'offset', 'order'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('search', array('string'));
-        $optionsResolver->setAllowedTypes('limit', array('int'));
-        $optionsResolver->setAllowedTypes('offset', array('int'));
-        $optionsResolver->setAllowedTypes('order', array('string'));
+        $optionsResolver->setDefined(['search', 'limit', 'offset', 'order']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('search', ['string']);
+        $optionsResolver->setAllowedTypes('limit', ['int']);
+        $optionsResolver->setAllowedTypes('offset', ['int']);
+        $optionsResolver->setAllowedTypes('order', ['string']);
 
         return $optionsResolver;
     }
@@ -65,10 +67,12 @@ class ListItems extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jan
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref', 'USER_ID', 'USER_EMAIL']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
+        $optionsResolver->setAllowedTypes('USER_ID', ['int']);
+        $optionsResolver->setAllowedTypes('USER_EMAIL', ['string']);
 
         return $optionsResolver;
     }

@@ -24,7 +24,7 @@ class ResponseProjectListContentsItemNormalizer implements DenormalizerInterface
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectListContentsItem' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -124,7 +124,7 @@ class ResponseProjectListContentsItemNormalizer implements DenormalizerInterface
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getId()) {
@@ -184,7 +184,9 @@ class ResponseProjectListContentsItemNormalizer implements DenormalizerInterface
         if (null !== $object->getCollaboratorsCount()) {
             $data->{'collaborators_count'} = $object->getCollaboratorsCount();
         }
-        $data->{'first_access_at'} = $object->getFirstAccessAt();
+        if (null !== $object->getFirstAccessAt()) {
+            $data->{'first_access_at'} = $object->getFirstAccessAt();
+        }
         if (null !== $object->getConsultable()) {
             $data->{'consultable'} = $object->getConsultable();
         }

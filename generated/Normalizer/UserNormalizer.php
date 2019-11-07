@@ -24,7 +24,7 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\User' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -64,7 +64,7 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setSupportEndDate($data->{'support_end_date'});
         }
         if (property_exists($data, 'devices') && null !== $data->{'devices'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'devices'} as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\Device', 'json', $context);
             }
@@ -143,14 +143,14 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setDefaultThemeId($data->{'default_theme_id'});
         }
         if (property_exists($data, 'utm') && null !== $data->{'utm'}) {
-            $values_1 = array();
+            $values_1 = [];
             foreach ($data->{'utm'} as $value_1) {
                 $values_1[] = $this->denormalizer->denormalize($value_1, 'HbsResearch\\Tilkee\\API\\Model\\UserUtmItem', 'json', $context);
             }
             $object->setUtm($values_1);
         }
         if (property_exists($data, 'rights') && null !== $data->{'rights'}) {
-            $values_2 = array();
+            $values_2 = [];
             foreach ($data->{'rights'} as $value_2) {
                 $values_2[] = $value_2;
             }
@@ -169,7 +169,7 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getId()) {
@@ -206,7 +206,7 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $data->{'support_end_date'} = $object->getSupportEndDate();
         }
         if (null !== $object->getDevices()) {
-            $values = array();
+            $values = [];
             foreach ($object->getDevices() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }
@@ -221,8 +221,12 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (null !== $object->getFrequencyProposalSumupEmail()) {
             $data->{'frequency_proposal_sumup_email'} = $object->getFrequencyProposalSumupEmail();
         }
-        $data->{'position'} = $object->getPosition();
-        $data->{'avatar'} = $object->getAvatar();
+        if (null !== $object->getPosition()) {
+            $data->{'position'} = $object->getPosition();
+        }
+        if (null !== $object->getAvatar()) {
+            $data->{'avatar'} = $object->getAvatar();
+        }
         if (null !== $object->getLinkedinAccountUrl()) {
             $data->{'linkedin_account_url'} = $object->getLinkedinAccountUrl();
         }
@@ -281,14 +285,14 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $data->{'default_theme_id'} = $object->getDefaultThemeId();
         }
         if (null !== $object->getUtm()) {
-            $values_1 = array();
+            $values_1 = [];
             foreach ($object->getUtm() as $value_1) {
                 $values_1[] = $this->normalizer->normalize($value_1, 'json', $context);
             }
             $data->{'utm'} = $values_1;
         }
         if (null !== $object->getRights()) {
-            $values_2 = array();
+            $values_2 = [];
             foreach ($object->getRights() as $value_2) {
                 $values_2[] = $value_2;
             }

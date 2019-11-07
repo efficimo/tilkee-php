@@ -10,15 +10,14 @@ class UpdateProjectTilk extends \Jane\OpenApiRuntime\Client\BaseEndpoint impleme
     /**
      * Used to update Tilk parameters like name or status.
      *
-     * @param int                                                            $projectId        ID of project
-     * @param int                                                            $id               ID of tilk
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $requestBody
-     * @param array                                                          $headerParameters {
+     * @param int   $projectId        ID of project
+     * @param int   $id               ID of tilk
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
      */
-    public function __construct(int $projectId, int $id, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $requestBody, array $headerParameters = array())
+    public function __construct(int $projectId, int $id, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $requestBody, array $headerParameters = [])
     {
         $this->projectId = $projectId;
         $this->id = $id;
@@ -35,30 +34,30 @@ class UpdateProjectTilk extends \Jane\OpenApiRuntime\Client\BaseEndpoint impleme
 
     public function getUri(): string
     {
-        return str_replace(array('{projectId}', '{id}'), array($this->projectId, $this->id), '/projects/{projectId}/tokens/{id}');
+        return str_replace(['{projectId}', '{id}'], [$this->projectId, $this->id], '/projects/{projectId}/tokens/{id}');
     }
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
         if ($this->body instanceof \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody) {
-            return array(array('Content-Type' => array('application/json')), $serializer->serialize($this->body, 'json'));
+            return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
         }
 
-        return array(array(), null);
+        return [[], null];
     }
 
     public function getExtraHeaders(): array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
 
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
 
         return $optionsResolver;
     }

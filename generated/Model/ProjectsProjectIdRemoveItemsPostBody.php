@@ -19,8 +19,6 @@ class ProjectsProjectIdRemoveItemsPostBody
 
     /**
      * @param int[]|null $projectItemsIds
-     *
-     * @return self
      */
     public function setProjectItemsIds(?array $projectItemsIds): self
     {

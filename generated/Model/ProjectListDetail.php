@@ -37,19 +37,11 @@ class ProjectListDetail
      */
     protected $projectItemsCount;
 
-    /**
-     * @return int|null
-     */
     public function getNbConnections(): ?int
     {
         return $this->nbConnections;
     }
 
-    /**
-     * @param int|null $nbConnections
-     *
-     * @return self
-     */
     public function setNbConnections(?int $nbConnections): self
     {
         $this->nbConnections = $nbConnections;
@@ -57,19 +49,11 @@ class ProjectListDetail
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTotalTime(): ?int
     {
         return $this->totalTime;
     }
 
-    /**
-     * @param int|null $totalTime
-     *
-     * @return self
-     */
     public function setTotalTime(?int $totalTime): self
     {
         $this->totalTime = $totalTime;
@@ -77,19 +61,11 @@ class ProjectListDetail
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLeaderFirstName(): ?string
     {
         return $this->leaderFirstName;
     }
 
-    /**
-     * @param string|null $leaderFirstName
-     *
-     * @return self
-     */
     public function setLeaderFirstName(?string $leaderFirstName): self
     {
         $this->leaderFirstName = $leaderFirstName;
@@ -97,19 +73,11 @@ class ProjectListDetail
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLeaderLastName(): ?string
     {
         return $this->leaderLastName;
     }
 
-    /**
-     * @param string|null $leaderLastName
-     *
-     * @return self
-     */
     public function setLeaderLastName(?string $leaderLastName): self
     {
         $this->leaderLastName = $leaderLastName;
@@ -117,19 +85,11 @@ class ProjectListDetail
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getLeaderId(): ?int
     {
         return $this->leaderId;
     }
 
-    /**
-     * @param int|null $leaderId
-     *
-     * @return self
-     */
     public function setLeaderId(?int $leaderId): self
     {
         $this->leaderId = $leaderId;
@@ -137,19 +97,11 @@ class ProjectListDetail
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLeaderAvatar(): ?string
     {
         return $this->leaderAvatar;
     }
 
-    /**
-     * @param string|null $leaderAvatar
-     *
-     * @return self
-     */
     public function setLeaderAvatar(?string $leaderAvatar): self
     {
         $this->leaderAvatar = $leaderAvatar;
@@ -157,19 +109,11 @@ class ProjectListDetail
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTokensCount(): ?int
     {
         return $this->tokensCount;
     }
 
-    /**
-     * @param int|null $tokensCount
-     *
-     * @return self
-     */
     public function setTokensCount(?int $tokensCount): self
     {
         $this->tokensCount = $tokensCount;
@@ -177,19 +121,11 @@ class ProjectListDetail
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getProjectItemsCount(): ?int
     {
         return $this->projectItemsCount;
     }
 
-    /**
-     * @param int|null $projectItemsCount
-     *
-     * @return self
-     */
     public function setProjectItemsCount(?int $projectItemsCount): self
     {
         $this->projectItemsCount = $projectItemsCount;

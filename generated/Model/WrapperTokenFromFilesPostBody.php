@@ -13,19 +13,11 @@ class WrapperTokenFromFilesPostBody
      */
     protected $documents;
 
-    /**
-     * @return InputProject|null
-     */
     public function getProject(): ?InputProject
     {
         return $this->project;
     }
 
-    /**
-     * @param InputProject|null $project
-     *
-     * @return self
-     */
     public function setProject(?InputProject $project): self
     {
         $this->project = $project;
@@ -43,8 +35,6 @@ class WrapperTokenFromFilesPostBody
 
     /**
      * @param WrapperTokenFromFilesPostBodyDocumentsItem[]|null $documents
-     *
-     * @return self
      */
     public function setDocuments(?array $documents): self
     {

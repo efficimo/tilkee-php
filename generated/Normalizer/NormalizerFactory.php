@@ -6,7 +6,7 @@ class NormalizerFactory
 {
     public static function create()
     {
-        $normalizers = array();
+        $normalizers = [];
         $normalizers[] = new \Symfony\Component\Serializer\Normalizer\ArrayDenormalizer();
         $normalizers[] = new ProjectNormalizer();
         $normalizers[] = new ProjectCommonNormalizer();
@@ -14,11 +14,14 @@ class NormalizerFactory
         $normalizers[] = new ProjectListDetailNormalizer();
         $normalizers[] = new ResponseProjectListNormalizer();
         $normalizers[] = new ResponseProjectListContentsItemNormalizer();
+        $normalizers[] = new ResponseUserListNormalizer();
         $normalizers[] = new ResponseProjectDuplicateNormalizer();
         $normalizers[] = new ResponseProjectArchiveNormalizer();
         $normalizers[] = new InputProjectNormalizer();
         $normalizers[] = new ProjectItemNormalizer();
         $normalizers[] = new ItemNormalizer();
+        $normalizers[] = new ItemUpdateNormalizer();
+        $normalizers[] = new ItemUpdateSharedAttributesNormalizer();
         $normalizers[] = new ItemWithOwnershipNormalizer();
         $normalizers[] = new ItemWithOwnershipprojectsItemNormalizer();
         $normalizers[] = new ResponseItemListNormalizer();

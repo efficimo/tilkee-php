@@ -19,8 +19,6 @@ class ResponseCreateToken
 
     /**
      * @param Token[]|null $contents
-     *
-     * @return self
      */
     public function setContents(?array $contents): self
     {

@@ -33,8 +33,6 @@ class ResponseTokenList
 
     /**
      * Name.
-     *
-     * @return string|null
      */
     public function getSearch(): ?string
     {
@@ -43,10 +41,6 @@ class ResponseTokenList
 
     /**
      * Name.
-     *
-     * @param string|null $search
-     *
-     * @return self
      */
     public function setSearch(?string $search): self
     {
@@ -55,19 +49,11 @@ class ResponseTokenList
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getLimit(): ?int
     {
         return $this->limit;
     }
 
-    /**
-     * @param int|null $limit
-     *
-     * @return self
-     */
     public function setLimit(?int $limit): self
     {
         $this->limit = $limit;
@@ -75,19 +61,11 @@ class ResponseTokenList
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOffset(): ?int
     {
         return $this->offset;
     }
 
-    /**
-     * @param int|null $offset
-     *
-     * @return self
-     */
     public function setOffset(?int $offset): self
     {
         $this->offset = $offset;
@@ -95,19 +73,11 @@ class ResponseTokenList
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTotal(): ?int
     {
         return $this->total;
     }
 
-    /**
-     * @param int|null $total
-     *
-     * @return self
-     */
     public function setTotal(?int $total): self
     {
         $this->total = $total;
@@ -115,19 +85,11 @@ class ResponseTokenList
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getOrder(): ?string
     {
         return $this->order;
     }
 
-    /**
-     * @param string|null $order
-     *
-     * @return self
-     */
     public function setOrder(?string $order): self
     {
         $this->order = $order;
@@ -145,8 +107,6 @@ class ResponseTokenList
 
     /**
      * @param Token[]|null $contents
-     *
-     * @return self
      */
     public function setContents(?array $contents): self
     {

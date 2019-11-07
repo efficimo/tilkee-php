@@ -27,19 +27,11 @@ class ProjectsProjectIdDuplicatePostBody
      */
     protected $shouldDuplicateAssignments;
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -49,8 +41,6 @@ class ProjectsProjectIdDuplicatePostBody
 
     /**
      * To choose if visitor can download all of the project (only if company have right « download_option »).
-     *
-     * @return bool|null
      */
     public function getCanBeDownloaded(): ?bool
     {
@@ -59,10 +49,6 @@ class ProjectsProjectIdDuplicatePostBody
 
     /**
      * To choose if visitor can download all of the project (only if company have right « download_option »).
-     *
-     * @param bool|null $canBeDownloaded
-     *
-     * @return self
      */
     public function setCanBeDownloaded(?bool $canBeDownloaded): self
     {
@@ -73,8 +59,6 @@ class ProjectsProjectIdDuplicatePostBody
 
     /**
      * Date to choose when a project is archived (only if company has right « end_date_option »).
-     *
-     * @return string|null
      */
     public function getArchivedAt(): ?string
     {
@@ -83,10 +67,6 @@ class ProjectsProjectIdDuplicatePostBody
 
     /**
      * Date to choose when a project is archived (only if company has right « end_date_option »).
-     *
-     * @param string|null $archivedAt
-     *
-     * @return self
      */
     public function setArchivedAt(?string $archivedAt): self
     {
@@ -97,8 +77,6 @@ class ProjectsProjectIdDuplicatePostBody
 
     /**
      * To choose if project assignments should be kept.
-     *
-     * @return bool|null
      */
     public function getShouldDuplicateAssignments(): ?bool
     {
@@ -107,10 +85,6 @@ class ProjectsProjectIdDuplicatePostBody
 
     /**
      * To choose if project assignments should be kept.
-     *
-     * @param bool|null $shouldDuplicateAssignments
-     *
-     * @return self
      */
     public function setShouldDuplicateAssignments(?bool $shouldDuplicateAssignments): self
     {

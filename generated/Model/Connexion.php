@@ -9,19 +9,11 @@ class Connexion
      */
     protected $project;
 
-    /**
-     * @return Project|null
-     */
     public function getProject(): ?Project
     {
         return $this->project;
     }
 
-    /**
-     * @param Project|null $project
-     *
-     * @return self
-     */
     public function setProject(?Project $project): self
     {
         $this->project = $project;

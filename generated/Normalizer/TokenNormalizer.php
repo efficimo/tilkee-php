@@ -24,7 +24,7 @@ class TokenNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\Token' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -61,7 +61,7 @@ class TokenNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $object->setSigned($data->{'signed'});
         }
         if (property_exists($data, 'signed_docs') && null !== $data->{'signed_docs'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'signed_docs'} as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\TokenSignedDocsItem', 'json', $context);
             }
@@ -98,7 +98,7 @@ class TokenNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getId()) {
@@ -132,7 +132,7 @@ class TokenNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $data->{'signed'} = $object->getSigned();
         }
         if (null !== $object->getSignedDocs()) {
-            $values = array();
+            $values = [];
             foreach ($object->getSignedDocs() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }
@@ -153,7 +153,9 @@ class TokenNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (null !== $object->getGeneratedByProspect()) {
             $data->{'generated_by_prospect'} = $object->getGeneratedByProspect();
         }
-        $data->{'first_access_at'} = $object->getFirstAccessAt();
+        if (null !== $object->getFirstAccessAt()) {
+            $data->{'first_access_at'} = $object->getFirstAccessAt();
+        }
         if (null !== $object->getTotalTime()) {
             $data->{'total_time'} = $object->getTotalTime();
         }

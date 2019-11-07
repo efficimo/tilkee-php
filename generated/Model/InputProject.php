@@ -33,19 +33,11 @@ class InputProject
      */
     protected $duration;
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -55,8 +47,6 @@ class InputProject
 
     /**
      * Date to choose when a project is archived (only if company has right « end_date_option »).
-     *
-     * @return string|null
      */
     public function getArchivedAt(): ?string
     {
@@ -65,10 +55,6 @@ class InputProject
 
     /**
      * Date to choose when a project is archived (only if company has right « end_date_option »).
-     *
-     * @param string|null $archivedAt
-     *
-     * @return self
      */
     public function setArchivedAt(?string $archivedAt): self
     {
@@ -79,8 +65,6 @@ class InputProject
 
     /**
      * To choose if visitor can download all of the project (only if company have right « download_option »).
-     *
-     * @return bool|null
      */
     public function getCanBeDownladed(): ?bool
     {
@@ -89,10 +73,6 @@ class InputProject
 
     /**
      * To choose if visitor can download all of the project (only if company have right « download_option »).
-     *
-     * @param bool|null $canBeDownladed
-     *
-     * @return self
      */
     public function setCanBeDownladed(?bool $canBeDownladed): self
     {
@@ -103,8 +83,6 @@ class InputProject
 
     /**
      * ID of the project in your system.
-     *
-     * @return string|null
      */
     public function getExternalId(): ?string
     {
@@ -113,10 +91,6 @@ class InputProject
 
     /**
      * ID of the project in your system.
-     *
-     * @param string|null $externalId
-     *
-     * @return self
      */
     public function setExternalId(?string $externalId): self
     {
@@ -127,8 +101,6 @@ class InputProject
 
     /**
      * Used only for templates, you can create projects from this template that will expire  days later.
-     *
-     * @return int|null
      */
     public function getDuration(): ?int
     {
@@ -137,10 +109,6 @@ class InputProject
 
     /**
      * Used only for templates, you can create projects from this template that will expire  days later.
-     *
-     * @param int|null $duration
-     *
-     * @return self
      */
     public function setDuration(?int $duration): self
     {
