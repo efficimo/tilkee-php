@@ -63,12 +63,12 @@ class PutUser extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \Jane\
      * @throws \HbsResearch\Tilkee\API\Exception\PutUserBadRequestException
      * @throws \HbsResearch\Tilkee\API\Exception\PutUserUnauthorizedException
      *
-     * @return \HbsResearch\Tilkee\API\Model\Project|null
+     * @return \HbsResearch\Tilkee\API\Model\User|null
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         if (200 === $status && false !== mb_strpos($contentType, 'application/json')) {
-            return $serializer->deserialize($body, 'HbsResearch\\Tilkee\\API\\Model\\Project', 'json');
+            return $serializer->deserialize($body, 'HbsResearch\\Tilkee\\API\\Model\\User', 'json');
         }
         if (400 === $status) {
             throw new \HbsResearch\Tilkee\API\Exception\PutUserBadRequestException();

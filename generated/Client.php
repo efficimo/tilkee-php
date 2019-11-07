@@ -111,7 +111,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @throws \HbsResearch\Tilkee\API\Exception\PutUserBadRequestException
      * @throws \HbsResearch\Tilkee\API\Exception\PutUserUnauthorizedException
      *
-     * @return \HbsResearch\Tilkee\API\Model\Project|\Psr\Http\Message\ResponseInterface|null
+     * @return \HbsResearch\Tilkee\API\Model\User|\Psr\Http\Message\ResponseInterface|null
      */
     public function putUser(int $userId, \HbsResearch\Tilkee\API\Model\User $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
