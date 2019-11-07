@@ -17,7 +17,7 @@ class GetUploadFileInformation extends \Jane\OpenApiRuntime\Client\BaseEndpoint 
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
      */
-    public function __construct(array $queryParameters = array(), array $headerParameters = array())
+    public function __construct(array $queryParameters = [], array $headerParameters = [])
     {
         $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
@@ -37,21 +37,21 @@ class GetUploadFileInformation extends \Jane\OpenApiRuntime\Client\BaseEndpoint 
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
-        return array(array(), null);
+        return [[], null];
     }
 
     public function getExtraHeaders(): array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
 
     protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('filename'));
-        $optionsResolver->setRequired(array('filename'));
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('filename', array('string'));
+        $optionsResolver->setDefined(['filename']);
+        $optionsResolver->setRequired(['filename']);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('filename', ['string']);
 
         return $optionsResolver;
     }
@@ -59,10 +59,10 @@ class GetUploadFileInformation extends \Jane\OpenApiRuntime\Client\BaseEndpoint 
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
 
         return $optionsResolver;
     }

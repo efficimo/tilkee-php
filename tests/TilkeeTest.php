@@ -4,9 +4,12 @@ namespace HbsResearch\Tilkee\Tests;
 
 use HbsResearch\Tilkee\API\Model\InputItem;
 use HbsResearch\Tilkee\API\Model\InputProject;
+use HbsResearch\Tilkee\API\Model\ItemUpdate;
+use HbsResearch\Tilkee\API\Model\ItemUpdateSharedAttributes;
 use HbsResearch\Tilkee\API\Model\Project;
 use HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody;
 use HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBodyItemsItem;
+use HbsResearch\Tilkee\API\Model\User;
 use HbsResearch\Tilkee\API\Model\WrapperTokenFromFilesPostBody;
 use HbsResearch\Tilkee\Tilkee;
 use HbsResearch\Tilkee\TilkeeClient;
@@ -70,9 +73,16 @@ class TilkeeTest extends TestCase
         ]);
 
         $handle = fopen(__DIR__.'/files/'.$file, 'r+');
-        $uploadedFile = $this->tilkee->uploadFile($uploadInformation, $handle, $file);
 
-        return $uploadedFile;
+        $response = null;
+
+        $promise = $this->tilkee->uploadFile($uploadInformation, $handle, $file, function(UploadedFileResponse $uploadedFileResponse) use (&$response) {
+            $response = $uploadedFileResponse;
+        });
+
+        $promise->wait();
+
+        return $response;
     }
 
     public function testUploadFile()
@@ -119,6 +129,147 @@ class TilkeeTest extends TestCase
         $this->client->addItemToProject($project->getId(), (new ProjectsProjectIdAddItemsPostBody())->setItems($itemsToProject));
     }
 
+    public function testDocumentIsolation()
+    {
+        /** @var User[] $users */
+        $users = [
+            'xavier' => $this->getUser([
+                'email' => 'xavier@test.com',
+                'firstName' => 'xavier',
+                'lastName' => 'test',
+            ]),
+            'thomas' => $this->getUser([
+                'email' => 'thomas@test.com',
+                'firstName' => 'thomas',
+                'lastName' => 'test',
+            ]),
+        ];
+
+
+        foreach($users as $user) {
+            $inputProject = new InputProject();
+            $inputProject
+                ->setName('Test '.$user->getFirstName())
+                ->setDuration(3600)
+                ->setCanBeDownladed(false)
+                ->setExternalId(123)
+                ->setArchivedAt('2020-10-10 00:00:00')
+            ;
+
+
+            $project = $this->client->addProject($inputProject, ['USER_ID' => $user->getId()]);
+            $uploadResponse = $this->uploadFile('test.pdf');
+
+            $test =
+                (new InputItem())
+                    ->setName($user->getFirstName().'-'.$uploadResponse->getKey())
+                    ->setS3Url($uploadResponse->getLocation())
+                    ->setUrl($uploadResponse->getLocation())
+                    ->setType('file')
+                    ->setExternalId(123)
+            ;
+
+            $items = $this->client->createItems([$test], ['USER_ID' => $user->getId()]);
+
+            $itemsToProject = [];
+
+            foreach($items as $item) {
+                $this->tilkee->getClient()->updateItem($item->getId(), (new ItemUpdate())
+                    ->setSharedAttributes(new ItemUpdateSharedAttributes())
+                    , ['USER_ID' => $user->getId()]
+                );
+
+                $itemsToProject[] = (new ProjectsProjectIdAddItemsPostBodyItemsItem())
+                    ->setTitle(basename($uploadResponse->getKey()))
+                    ->setId($item->getId())
+                    ->setSignable(false)
+                    ->setDownloadable(true)
+                ;
+            }
+
+            $this->client->addItemToProject($project->getId(), (new ProjectsProjectIdAddItemsPostBody())->setItems($itemsToProject), ['USER_ID' => $user->getId()]);
+            $projectWithIframes = $this->tilkee->getClient()->getProject($project->getId(), ['iframe_url' => true], ['USER_ID' => $user->getId()]);
+
+            echo 'Iframe '.$user->getFirstName(). ' '.$projectWithIframes->getIframes()->project.PHP_EOL;
+        }
+    }
+
+    protected function getUser($data): User
+    {
+        $users = $this->client->listUser(['search' => $data['email']]);
+
+        if($users->getTotal() === 0) {
+            $userInput = new User();
+            $userInput
+                ->setFirstName($data['firstName'])
+                ->setLastName($data['lastName'])
+                ->setEmail($data['email'])
+                ->setLevelId(3)
+                ->setShouldReceiveConnexionEmail(false)
+                ->setShouldReceiveEmails(false)
+            ;
+
+            return $this->client->addUser($userInput);
+        }
+
+        return $users->getContents()[0];
+    }
+
+    public function testUserProject()
+    {
+        $inputProject = new InputProject();
+        $inputProject
+            ->setName('Test 1')
+            ->setDuration(3600)
+            ->setCanBeDownladed(false)
+            ->setExternalId(123)
+            ->setArchivedAt('2020-10-10 00:00:00')
+        ;
+
+        $user = $this->getUser([
+            'email' => 'xavier@test.com',
+            'firstName' => 'xavier',
+            'lastName' => 'test',
+        ]);
+
+        $project = $this->client->addProject($inputProject, ['USER_ID' => $user->getId()]);
+
+        $uploadResponse = $this->uploadFile('test.pdf');
+
+        $test =
+            (new InputItem())
+                ->setName($uploadResponse->getKey())
+                ->setS3Url($uploadResponse->getLocation())
+                ->setUrl($uploadResponse->getLocation())
+                ->setType('file')
+                ->setExternalId(123)
+        ;
+
+        $items = $this->client->createItems([$test], ['USER_ID' => $user->getId()]);
+
+        $itemsToProject = [];
+
+        foreach($items as $item) {
+            printf("ItemID: %s User: id -> %s email -> %s",$item->getId(), $item->getOwner()->getId(), $item->getOwner()->getEmail());
+            $this->tilkee->getClient()->updateItem($item->getId(), (new ItemUpdate())
+                ->setSharedAttributes(new ItemUpdateSharedAttributes())
+                , ['USER_ID' => $user->getId()]
+            );
+
+            $itemsToProject[] = (new ProjectsProjectIdAddItemsPostBodyItemsItem())
+                ->setTitle(basename($uploadResponse->getKey()))
+                ->setId($item->getId())
+                ->setSignable(false)
+                ->setDownloadable(true)
+            ;
+        }
+
+        $this->client->addItemToProject($project->getId(), (new ProjectsProjectIdAddItemsPostBody())->setItems($itemsToProject), ['USER_ID' => $user->getId()]);
+
+
+//        $this->client->deleteUser($user->getId());
+    }
+
     public function testProjectUpdate()
     {
         $inputProject = new InputProject();
@@ -162,5 +313,23 @@ class TilkeeTest extends TestCase
     public function testConnexions()
     {
         $connexions = $this->client->getConnexions();
+    }
+
+    public function testCreateUser()
+    {
+        $userInput = new User();
+        $userInput
+            ->setFirstName('xavier')
+            ->setLastName('thomas')
+            ->setEmail('xavier@test.com')
+            ->setLevelId(3)
+        ;
+
+        $user = $this->client->addUser($userInput);
+        $users = $this->client->listUser(['search' => 'xavier@test.com']);
+
+        $this->assertCount(1, $users->getContents());
+
+        $this->client->deleteUser($user->getId());
     }
 }

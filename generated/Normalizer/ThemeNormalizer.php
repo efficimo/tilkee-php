@@ -24,7 +24,7 @@ class ThemeNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\Theme' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -55,7 +55,7 @@ class ThemeNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getId()) {
@@ -64,7 +64,9 @@ class ThemeNormalizer implements DenormalizerInterface, NormalizerInterface, Den
         if (null !== $object->getName()) {
             $data->{'name'} = $object->getName();
         }
-        $data->{'logo'} = $object->getLogo();
+        if (null !== $object->getLogo()) {
+            $data->{'logo'} = $object->getLogo();
+        }
         if (null !== $object->getMainColor()) {
             $data->{'main_color'} = $object->getMainColor();
         }

@@ -24,7 +24,7 @@ class CompanyNormalizer implements DenormalizerInterface, NormalizerInterface, D
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\Company' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -49,7 +49,7 @@ class CompanyNormalizer implements DenormalizerInterface, NormalizerInterface, D
             $object->setHasCustomBranding($data->{'has_custom_branding'});
         }
         if (property_exists($data, 'company_rights') && null !== $data->{'company_rights'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'company_rights'} as $value) {
                 $values[] = $value;
             }
@@ -77,9 +77,9 @@ class CompanyNormalizer implements DenormalizerInterface, NormalizerInterface, D
             $object->setDefaultThemeId($data->{'default_theme_id'});
         }
         if (property_exists($data, 'usable_domains') && null !== $data->{'usable_domains'}) {
-            $values_1 = array();
+            $values_1 = [];
             foreach ($data->{'usable_domains'} as $value_1) {
-                $values_2 = array();
+                $values_2 = [];
                 foreach ($value_1 as $value_2) {
                     $values_2[] = $value_2;
                 }
@@ -100,7 +100,7 @@ class CompanyNormalizer implements DenormalizerInterface, NormalizerInterface, D
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getId()) {
@@ -122,7 +122,7 @@ class CompanyNormalizer implements DenormalizerInterface, NormalizerInterface, D
             $data->{'has_custom_branding'} = $object->getHasCustomBranding();
         }
         if (null !== $object->getCompanyRights()) {
-            $values = array();
+            $values = [];
             foreach ($object->getCompanyRights() as $value) {
                 $values[] = $value;
             }
@@ -150,9 +150,9 @@ class CompanyNormalizer implements DenormalizerInterface, NormalizerInterface, D
             $data->{'default_theme_id'} = $object->getDefaultThemeId();
         }
         if (null !== $object->getUsableDomains()) {
-            $values_1 = array();
+            $values_1 = [];
             foreach ($object->getUsableDomains() as $value_1) {
-                $values_2 = array();
+                $values_2 = [];
                 foreach ($value_1 as $value_2) {
                     $values_2[] = $value_2;
                 }

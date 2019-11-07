@@ -55,8 +55,6 @@ class ProjectData
 
     /**
      * @param mixed $interest
-     *
-     * @return self
      */
     public function setInterest($interest): self
     {
@@ -65,19 +63,11 @@ class ProjectData
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getNbConnections(): ?int
     {
         return $this->nbConnections;
     }
 
-    /**
-     * @param int|null $nbConnections
-     *
-     * @return self
-     */
     public function setNbConnections(?int $nbConnections): self
     {
         $this->nbConnections = $nbConnections;
@@ -85,19 +75,11 @@ class ProjectData
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTotalTime(): ?int
     {
         return $this->totalTime;
     }
 
-    /**
-     * @param int|null $totalTime
-     *
-     * @return self
-     */
     public function setTotalTime(?int $totalTime): self
     {
         $this->totalTime = $totalTime;
@@ -105,19 +87,11 @@ class ProjectData
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMedianNbPagesReaded(): ?int
     {
         return $this->medianNbPagesReaded;
     }
 
-    /**
-     * @param int|null $medianNbPagesReaded
-     *
-     * @return self
-     */
     public function setMedianNbPagesReaded(?int $medianNbPagesReaded): self
     {
         $this->medianNbPagesReaded = $medianNbPagesReaded;
@@ -125,19 +99,11 @@ class ProjectData
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMedianPercentageRead(): ?int
     {
         return $this->medianPercentageRead;
     }
 
-    /**
-     * @param int|null $medianPercentageRead
-     *
-     * @return self
-     */
     public function setMedianPercentageRead(?int $medianPercentageRead): self
     {
         $this->medianPercentageRead = $medianPercentageRead;
@@ -145,19 +111,11 @@ class ProjectData
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMedianTimeBeforeOpening(): ?int
     {
         return $this->medianTimeBeforeOpening;
     }
 
-    /**
-     * @param int|null $medianTimeBeforeOpening
-     *
-     * @return self
-     */
     public function setMedianTimeBeforeOpening(?int $medianTimeBeforeOpening): self
     {
         $this->medianTimeBeforeOpening = $medianTimeBeforeOpening;
@@ -165,19 +123,11 @@ class ProjectData
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMedianTimeRead(): ?int
     {
         return $this->medianTimeRead;
     }
 
-    /**
-     * @param int|null $medianTimeRead
-     *
-     * @return self
-     */
     public function setMedianTimeRead(?int $medianTimeRead): self
     {
         $this->medianTimeRead = $medianTimeRead;
@@ -185,19 +135,11 @@ class ProjectData
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMedianTimeToDownload(): ?int
     {
         return $this->medianTimeToDownload;
     }
 
-    /**
-     * @param int|null $medianTimeToDownload
-     *
-     * @return self
-     */
     public function setMedianTimeToDownload(?int $medianTimeToDownload): self
     {
         $this->medianTimeToDownload = $medianTimeToDownload;
@@ -205,19 +147,11 @@ class ProjectData
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getNbConnexionsFailed(): ?int
     {
         return $this->nbConnexionsFailed;
     }
 
-    /**
-     * @param int|null $nbConnexionsFailed
-     *
-     * @return self
-     */
     public function setNbConnexionsFailed(?int $nbConnexionsFailed): self
     {
         $this->nbConnexionsFailed = $nbConnexionsFailed;
@@ -235,8 +169,6 @@ class ProjectData
 
     /**
      * @param mixed $ptNote
-     *
-     * @return self
      */
     public function setPtNote($ptNote): self
     {

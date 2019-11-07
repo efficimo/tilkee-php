@@ -24,7 +24,7 @@ class LeaderNormalizer implements DenormalizerInterface, NormalizerInterface, De
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\Leader' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -61,7 +61,7 @@ class LeaderNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $object->setLevelId($data->{'level_id'});
         }
         if (property_exists($data, 'devices') && null !== $data->{'devices'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'devices'} as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\Device', 'json', $context);
             }
@@ -104,22 +104,30 @@ class LeaderNormalizer implements DenormalizerInterface, NormalizerInterface, De
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getId()) {
             $data->{'id'} = $object->getId();
         }
-        $data->{'first_name'} = $object->getFirstName();
-        $data->{'last_name'} = $object->getLastName();
+        if (null !== $object->getFirstName()) {
+            $data->{'first_name'} = $object->getFirstName();
+        }
+        if (null !== $object->getLastName()) {
+            $data->{'last_name'} = $object->getLastName();
+        }
         if (null !== $object->getFullName()) {
             $data->{'full_name'} = $object->getFullName();
         }
         if (null !== $object->getEmail()) {
             $data->{'email'} = $object->getEmail();
         }
-        $data->{'cell_phone_number'} = $object->getCellPhoneNumber();
-        $data->{'phone_number'} = $object->getPhoneNumber();
+        if (null !== $object->getCellPhoneNumber()) {
+            $data->{'cell_phone_number'} = $object->getCellPhoneNumber();
+        }
+        if (null !== $object->getPhoneNumber()) {
+            $data->{'phone_number'} = $object->getPhoneNumber();
+        }
         if (null !== $object->getContactEmail()) {
             $data->{'contact_email'} = $object->getContactEmail();
         }
@@ -130,7 +138,7 @@ class LeaderNormalizer implements DenormalizerInterface, NormalizerInterface, De
             $data->{'level_id'} = $object->getLevelId();
         }
         if (null !== $object->getDevices()) {
-            $values = array();
+            $values = [];
             foreach ($object->getDevices() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }
@@ -151,8 +159,12 @@ class LeaderNormalizer implements DenormalizerInterface, NormalizerInterface, De
         if (null !== $object->getFrequencyProposalSumupEmail()) {
             $data->{'frequency_proposal_sumup_email'} = $object->getFrequencyProposalSumupEmail();
         }
-        $data->{'position'} = $object->getPosition();
-        $data->{'avatar'} = $object->getAvatar();
+        if (null !== $object->getPosition()) {
+            $data->{'position'} = $object->getPosition();
+        }
+        if (null !== $object->getAvatar()) {
+            $data->{'avatar'} = $object->getAvatar();
+        }
         if (null !== $object->getLinkedinAccountUrl()) {
             $data->{'linkedin_account_url'} = $object->getLinkedinAccountUrl();
         }

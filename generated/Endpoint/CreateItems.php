@@ -11,9 +11,11 @@ class CreateItems extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
      * @param array                                     $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      */
-    public function __construct(array $requestBody, array $headerParameters = array())
+    public function __construct(array $requestBody, array $headerParameters = [])
     {
         $this->body = $requestBody;
         $this->headerParameters = $headerParameters;
@@ -34,24 +36,26 @@ class CreateItems extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
         if (is_array($this->body) and isset($this->body[0]) and $this->body[0] instanceof \HbsResearch\Tilkee\API\Model\InputItem) {
-            return array(array('Content-Type' => array('application/json')), $serializer->serialize($this->body, 'json'));
+            return [['Content-Type' => ['application/json']], $serializer->serialize($this->body, 'json')];
         }
 
-        return array(array(), null);
+        return [[], null];
     }
 
     public function getExtraHeaders(): array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
 
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref', 'USER_ID', 'USER_EMAIL']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
+        $optionsResolver->setAllowedTypes('USER_ID', ['int']);
+        $optionsResolver->setAllowedTypes('USER_EMAIL', ['string']);
 
         return $optionsResolver;
     }

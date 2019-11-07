@@ -15,7 +15,7 @@ class RestoreTilk extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
      */
-    public function __construct(int $id, array $headerParameters = array())
+    public function __construct(int $id, array $headerParameters = [])
     {
         $this->id = $id;
         $this->headerParameters = $headerParameters;
@@ -30,26 +30,26 @@ class RestoreTilk extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
 
     public function getUri(): string
     {
-        return str_replace(array('{id}'), array($this->id), '/tokens/{id}/restore');
+        return str_replace(['{id}'], [$this->id], '/tokens/{id}/restore');
     }
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
-        return array(array(), null);
+        return [[], null];
     }
 
     public function getExtraHeaders(): array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
 
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
 
         return $optionsResolver;
     }

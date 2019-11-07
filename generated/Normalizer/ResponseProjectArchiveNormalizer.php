@@ -24,7 +24,7 @@ class ResponseProjectArchiveNormalizer implements DenormalizerInterface, Normali
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectArchive' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -103,7 +103,7 @@ class ResponseProjectArchiveNormalizer implements DenormalizerInterface, Normali
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getId()) {
@@ -163,7 +163,9 @@ class ResponseProjectArchiveNormalizer implements DenormalizerInterface, Normali
         if (null !== $object->getCollaboratorsCount()) {
             $data->{'collaborators_count'} = $object->getCollaboratorsCount();
         }
-        $data->{'first_access_at'} = $object->getFirstAccessAt();
+        if (null !== $object->getFirstAccessAt()) {
+            $data->{'first_access_at'} = $object->getFirstAccessAt();
+        }
         if (null !== $object->getConsultable()) {
             $data->{'consultable'} = $object->getConsultable();
         }

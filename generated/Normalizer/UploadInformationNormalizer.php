@@ -24,7 +24,7 @@ class UploadInformationNormalizer implements DenormalizerInterface, NormalizerIn
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\UploadInformation' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -58,7 +58,7 @@ class UploadInformationNormalizer implements DenormalizerInterface, NormalizerIn
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getKey()) {

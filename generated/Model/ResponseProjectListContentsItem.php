@@ -133,19 +133,11 @@ class ResponseProjectListContentsItem
      */
     protected $projectItemsCount;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int|null $id
-     *
-     * @return self
-     */
     public function setId(?int $id): self
     {
         $this->id = $id;
@@ -153,19 +145,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -173,19 +157,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTime|null $createdAt
-     *
-     * @return self
-     */
     public function setCreatedAt(?\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -193,19 +169,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param \DateTime|null $updatedAt
-     *
-     * @return self
-     */
     public function setUpdatedAt(?\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -215,8 +183,6 @@ class ResponseProjectListContentsItem
 
     /**
      * Date to choose when a project is archived (only if company has right « end_date_option »).
-     *
-     * @return string|null
      */
     public function getArchivedAt(): ?string
     {
@@ -225,10 +191,6 @@ class ResponseProjectListContentsItem
 
     /**
      * Date to choose when a project is archived (only if company has right « end_date_option »).
-     *
-     * @param string|null $archivedAt
-     *
-     * @return self
      */
     public function setArchivedAt(?string $archivedAt): self
     {
@@ -237,19 +199,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * @param string|null $status
-     *
-     * @return self
-     */
     public function setStatus(?string $status): self
     {
         $this->status = $status;
@@ -257,19 +211,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getWon(): ?string
     {
         return $this->won;
     }
 
-    /**
-     * @param string|null $won
-     *
-     * @return self
-     */
     public function setWon(?string $won): self
     {
         $this->won = $won;
@@ -277,19 +223,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsTemplate(): ?bool
     {
         return $this->isTemplate;
     }
 
-    /**
-     * @param bool|null $isTemplate
-     *
-     * @return self
-     */
     public function setIsTemplate(?bool $isTemplate): self
     {
         $this->isTemplate = $isTemplate;
@@ -299,8 +237,6 @@ class ResponseProjectListContentsItem
 
     /**
      * To choose if visitor can download all of the project (only if company have right « download_option »).
-     *
-     * @return bool|null
      */
     public function getCanBeDownladed(): ?bool
     {
@@ -309,10 +245,6 @@ class ResponseProjectListContentsItem
 
     /**
      * To choose if visitor can download all of the project (only if company have right « download_option »).
-     *
-     * @param bool|null $canBeDownladed
-     *
-     * @return self
      */
     public function setCanBeDownladed(?bool $canBeDownladed): self
     {
@@ -321,19 +253,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPreview(): ?string
     {
         return $this->preview;
     }
 
-    /**
-     * @param string|null $preview
-     *
-     * @return self
-     */
     public function setPreview(?string $preview): self
     {
         $this->preview = $preview;
@@ -341,19 +265,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPreviewNew(): ?string
     {
         return $this->previewNew;
     }
 
-    /**
-     * @param string|null $previewNew
-     *
-     * @return self
-     */
     public function setPreviewNew(?string $previewNew): self
     {
         $this->previewNew = $previewNew;
@@ -363,8 +279,6 @@ class ResponseProjectListContentsItem
 
     /**
      * Used only for templates, you can create projects from this template that will expire  days later.
-     *
-     * @return int|null
      */
     public function getDuration(): ?int
     {
@@ -373,10 +287,6 @@ class ResponseProjectListContentsItem
 
     /**
      * Used only for templates, you can create projects from this template that will expire  days later.
-     *
-     * @param int|null $duration
-     *
-     * @return self
      */
     public function setDuration(?int $duration): self
     {
@@ -385,19 +295,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsOrWasSignable(): ?bool
     {
         return $this->isOrWasSignable;
     }
 
-    /**
-     * @param bool|null $isOrWasSignable
-     *
-     * @return self
-     */
     public function setIsOrWasSignable(?bool $isOrWasSignable): self
     {
         $this->isOrWasSignable = $isOrWasSignable;
@@ -405,19 +307,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getSigned(): ?bool
     {
         return $this->signed;
     }
 
-    /**
-     * @param bool|null $signed
-     *
-     * @return self
-     */
     public function setSigned(?bool $signed): self
     {
         $this->signed = $signed;
@@ -425,19 +319,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getStarred(): ?bool
     {
         return $this->starred;
     }
 
-    /**
-     * @param bool|null $starred
-     *
-     * @return self
-     */
     public function setStarred(?bool $starred): self
     {
         $this->starred = $starred;
@@ -447,8 +333,6 @@ class ResponseProjectListContentsItem
 
     /**
      * ID of the project in your system.
-     *
-     * @return string|null
      */
     public function getExternalId(): ?string
     {
@@ -457,10 +341,6 @@ class ResponseProjectListContentsItem
 
     /**
      * ID of the project in your system.
-     *
-     * @param string|null $externalId
-     *
-     * @return self
      */
     public function setExternalId(?string $externalId): self
     {
@@ -469,19 +349,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTokenUrl(): ?string
     {
         return $this->tokenUrl;
     }
 
-    /**
-     * @param string|null $tokenUrl
-     *
-     * @return self
-     */
     public function setTokenUrl(?string $tokenUrl): self
     {
         $this->tokenUrl = $tokenUrl;
@@ -489,19 +361,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUrl(): ?string
     {
         return $this->url;
     }
 
-    /**
-     * @param string|null $url
-     *
-     * @return self
-     */
     public function setUrl(?string $url): self
     {
         $this->url = $url;
@@ -509,19 +373,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getCollaboratorsCount(): ?int
     {
         return $this->collaboratorsCount;
     }
 
-    /**
-     * @param int|null $collaboratorsCount
-     *
-     * @return self
-     */
     public function setCollaboratorsCount(?int $collaboratorsCount): self
     {
         $this->collaboratorsCount = $collaboratorsCount;
@@ -539,8 +395,6 @@ class ResponseProjectListContentsItem
 
     /**
      * @param mixed $firstAccessAt
-     *
-     * @return self
      */
     public function setFirstAccessAt($firstAccessAt): self
     {
@@ -549,19 +403,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getConsultable(): ?bool
     {
         return $this->consultable;
     }
 
-    /**
-     * @param bool|null $consultable
-     *
-     * @return self
-     */
     public function setConsultable(?bool $consultable): self
     {
         $this->consultable = $consultable;
@@ -579,8 +425,6 @@ class ResponseProjectListContentsItem
 
     /**
      * @param mixed $iframes
-     *
-     * @return self
      */
     public function setIframes($iframes): self
     {
@@ -589,19 +433,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getNbConnections(): ?int
     {
         return $this->nbConnections;
     }
 
-    /**
-     * @param int|null $nbConnections
-     *
-     * @return self
-     */
     public function setNbConnections(?int $nbConnections): self
     {
         $this->nbConnections = $nbConnections;
@@ -609,19 +445,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTotalTime(): ?int
     {
         return $this->totalTime;
     }
 
-    /**
-     * @param int|null $totalTime
-     *
-     * @return self
-     */
     public function setTotalTime(?int $totalTime): self
     {
         $this->totalTime = $totalTime;
@@ -629,19 +457,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLeaderFirstName(): ?string
     {
         return $this->leaderFirstName;
     }
 
-    /**
-     * @param string|null $leaderFirstName
-     *
-     * @return self
-     */
     public function setLeaderFirstName(?string $leaderFirstName): self
     {
         $this->leaderFirstName = $leaderFirstName;
@@ -649,19 +469,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLeaderLastName(): ?string
     {
         return $this->leaderLastName;
     }
 
-    /**
-     * @param string|null $leaderLastName
-     *
-     * @return self
-     */
     public function setLeaderLastName(?string $leaderLastName): self
     {
         $this->leaderLastName = $leaderLastName;
@@ -669,19 +481,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getLeaderId(): ?int
     {
         return $this->leaderId;
     }
 
-    /**
-     * @param int|null $leaderId
-     *
-     * @return self
-     */
     public function setLeaderId(?int $leaderId): self
     {
         $this->leaderId = $leaderId;
@@ -689,19 +493,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLeaderAvatar(): ?string
     {
         return $this->leaderAvatar;
     }
 
-    /**
-     * @param string|null $leaderAvatar
-     *
-     * @return self
-     */
     public function setLeaderAvatar(?string $leaderAvatar): self
     {
         $this->leaderAvatar = $leaderAvatar;
@@ -709,19 +505,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTokensCount(): ?int
     {
         return $this->tokensCount;
     }
 
-    /**
-     * @param int|null $tokensCount
-     *
-     * @return self
-     */
     public function setTokensCount(?int $tokensCount): self
     {
         $this->tokensCount = $tokensCount;
@@ -729,19 +517,11 @@ class ResponseProjectListContentsItem
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getProjectItemsCount(): ?int
     {
         return $this->projectItemsCount;
     }
 
-    /**
-     * @param int|null $projectItemsCount
-     *
-     * @return self
-     */
     public function setProjectItemsCount(?int $projectItemsCount): self
     {
         $this->projectItemsCount = $projectItemsCount;

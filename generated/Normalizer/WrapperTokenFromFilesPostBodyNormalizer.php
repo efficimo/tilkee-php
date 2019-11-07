@@ -24,7 +24,7 @@ class WrapperTokenFromFilesPostBodyNormalizer implements DenormalizerInterface, 
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\WrapperTokenFromFilesPostBody' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -34,7 +34,7 @@ class WrapperTokenFromFilesPostBodyNormalizer implements DenormalizerInterface, 
             $object->setProject($this->denormalizer->denormalize($data->{'project'}, 'HbsResearch\\Tilkee\\API\\Model\\InputProject', 'json', $context));
         }
         if (property_exists($data, 'documents') && null !== $data->{'documents'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'documents'} as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\WrapperTokenFromFilesPostBodyDocumentsItem', 'json', $context);
             }
@@ -44,14 +44,14 @@ class WrapperTokenFromFilesPostBodyNormalizer implements DenormalizerInterface, 
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getProject()) {
             $data->{'project'} = $this->normalizer->normalize($object->getProject(), 'json', $context);
         }
         if (null !== $object->getDocuments()) {
-            $values = array();
+            $values = [];
             foreach ($object->getDocuments() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }

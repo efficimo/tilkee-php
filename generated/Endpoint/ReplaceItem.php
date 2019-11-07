@@ -21,7 +21,7 @@ class ReplaceItem extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
      */
-    public function __construct(int $itemId, array $queryParameters = array(), array $headerParameters = array())
+    public function __construct(int $itemId, array $queryParameters = [], array $headerParameters = [])
     {
         $this->itemId = $itemId;
         $this->queryParameters = $queryParameters;
@@ -37,22 +37,22 @@ class ReplaceItem extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
 
     public function getUri(): string
     {
-        return str_replace(array('{itemId}'), array($this->itemId), '/items/{itemId}/replace');
+        return str_replace(['{itemId}'], [$this->itemId], '/items/{itemId}/replace');
     }
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
-        return array(array(), null);
+        return [[], null];
     }
 
     protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('all_chosen', 'new_item_id'));
-        $optionsResolver->setRequired(array('all_chosen', 'new_item_id'));
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('all_chosen', array('bool'));
-        $optionsResolver->setAllowedTypes('new_item_id', array('int'));
+        $optionsResolver->setDefined(['all_chosen', 'new_item_id']);
+        $optionsResolver->setRequired(['all_chosen', 'new_item_id']);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('all_chosen', ['bool']);
+        $optionsResolver->setAllowedTypes('new_item_id', ['int']);
 
         return $optionsResolver;
     }
@@ -60,10 +60,10 @@ class ReplaceItem extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
 
         return $optionsResolver;
     }
@@ -73,6 +73,8 @@ class ReplaceItem extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements \J
      *
      * @throws \HbsResearch\Tilkee\API\Exception\ReplaceItemBadRequestException
      * @throws \HbsResearch\Tilkee\API\Exception\ReplaceItemUnauthorizedException
+     *
+     * @return null
      */
     protected function transformResponseBody(string $body, int $status, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {

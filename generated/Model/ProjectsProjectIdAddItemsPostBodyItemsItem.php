@@ -21,19 +21,11 @@ class ProjectsProjectIdAddItemsPostBodyItemsItem
      */
     protected $downloadable;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int|null $id
-     *
-     * @return self
-     */
     public function setId(?int $id): self
     {
         $this->id = $id;
@@ -41,19 +33,11 @@ class ProjectsProjectIdAddItemsPostBodyItemsItem
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @param string|null $title
-     *
-     * @return self
-     */
     public function setTitle(?string $title): self
     {
         $this->title = $title;
@@ -61,19 +45,11 @@ class ProjectsProjectIdAddItemsPostBodyItemsItem
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getSignable(): ?bool
     {
         return $this->signable;
     }
 
-    /**
-     * @param bool|null $signable
-     *
-     * @return self
-     */
     public function setSignable(?bool $signable): self
     {
         $this->signable = $signable;
@@ -81,19 +57,11 @@ class ProjectsProjectIdAddItemsPostBodyItemsItem
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getDownloadable(): ?bool
     {
         return $this->downloadable;
     }
 
-    /**
-     * @param bool|null $downloadable
-     *
-     * @return self
-     */
     public function setDownloadable(?bool $downloadable): self
     {
         $this->downloadable = $downloadable;

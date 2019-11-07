@@ -12,11 +12,14 @@ use Http\Client\Common\Plugin\ContentLengthPlugin;
 use Http\Client\Common\Plugin\ContentTypePlugin;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\HeaderSetPlugin;
+use Http\Client\Common\Plugin\LoggerPlugin;
 use Http\Client\Common\PluginClient;
 use Http\Client\HttpClient;
 use Http\Message\Authentication\Bearer;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\NullLogger;
+use Psr\Log\Test\TestLogger;
 
 class TilkeeClient implements HttpClient
 {

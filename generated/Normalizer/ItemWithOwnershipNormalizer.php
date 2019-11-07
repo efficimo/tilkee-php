@@ -24,7 +24,7 @@ class ItemWithOwnershipNormalizer implements DenormalizerInterface, NormalizerIn
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ItemWithOwnership' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -70,7 +70,7 @@ class ItemWithOwnershipNormalizer implements DenormalizerInterface, NormalizerIn
             $object->setOwner($this->denormalizer->denormalize($data->{'owner'}, 'HbsResearch\\Tilkee\\API\\Model\\User', 'json', $context));
         }
         if (property_exists($data, 'projects') && null !== $data->{'projects'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'projects'} as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\ItemWithOwnershipprojectsItem', 'json', $context);
             }
@@ -83,7 +83,7 @@ class ItemWithOwnershipNormalizer implements DenormalizerInterface, NormalizerIn
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getId()) {
@@ -126,7 +126,7 @@ class ItemWithOwnershipNormalizer implements DenormalizerInterface, NormalizerIn
             $data->{'owner'} = $this->normalizer->normalize($object->getOwner(), 'json', $context);
         }
         if (null !== $object->getProjects()) {
-            $values = array();
+            $values = [];
             foreach ($object->getProjects() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }

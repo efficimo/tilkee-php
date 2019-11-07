@@ -13,19 +13,11 @@ class InputTokenPersonsItem
      */
     protected $externalId;
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -33,19 +25,11 @@ class InputTokenPersonsItem
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getExternalId(): ?int
     {
         return $this->externalId;
     }
 
-    /**
-     * @param int|null $externalId
-     *
-     * @return self
-     */
     public function setExternalId(?int $externalId): self
     {
         $this->externalId = $externalId;

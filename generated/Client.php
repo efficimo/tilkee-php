@@ -30,9 +30,92 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ResponseConnexionList|\Psr\Http\Message\ResponseInterface|null
      */
-    public function getConnexions(array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function getConnexions(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\GetConnexions($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * Used to get a list of all your users.
+     *
+     * @param array $queryParameters {
+     *
+     *     @var string $search Name
+     *     @var int $limit
+     *     @var int $offset
+     * }
+     *
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\ListUserBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\ListUserUnauthorizedException
+     *
+     * @return \HbsResearch\Tilkee\API\Model\ResponseUserList|\Psr\Http\Message\ResponseInterface|null
+     */
+    public function listUser(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ListUser($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\AddUserBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\AddUserUnauthorizedException
+     *
+     * @return \HbsResearch\Tilkee\API\Model\User|\Psr\Http\Message\ResponseInterface|null
+     */
+    public function addUser(\HbsResearch\Tilkee\API\Model\User $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\AddUser($requestBody, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param int   $userId           ID of user
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\DeleteUserBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\DeleteUserUnauthorizedException
+     *
+     * @return \Psr\Http\Message\ResponseInterface|null
+     */
+    public function deleteUser(int $userId, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\DeleteUser($userId, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param int   $userId           ID of user
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\PutUserBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\PutUserUnauthorizedException
+     *
+     * @return \HbsResearch\Tilkee\API\Model\Project|\Psr\Http\Message\ResponseInterface|null
+     */
+    public function putUser(int $userId, \HbsResearch\Tilkee\API\Model\User $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\PutUser($userId, $requestBody, $headerParameters), $fetch);
     }
 
     /**
@@ -60,6 +143,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -69,7 +154,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ResponseProjectList|\Psr\Http\Message\ResponseInterface|null
      */
-    public function listProject(array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function listProject(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ListProject($queryParameters, $headerParameters), $fetch);
     }
@@ -77,10 +162,11 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * Creating a project in this way you need to add everything; name, items, properties, etc. This section is used for creating projects with documents directly added in. To use this section you need to have a project already created or a template, and your documents have to be on the S3.
      *
-     * @param \HbsResearch\Tilkee\API\Model\InputProject $requestBody
-     * @param array                                      $headerParameters {
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -90,7 +176,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\Project|\Psr\Http\Message\ResponseInterface|null
      */
-    public function addProject(\HbsResearch\Tilkee\API\Model\InputProject $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function addProject(\HbsResearch\Tilkee\API\Model\InputProject $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\AddProject($requestBody, $headerParameters), $fetch);
     }
@@ -98,8 +184,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * After uploading one (or more) files, you can then create a project and one or several unique access links.
      *
-     * @param \HbsResearch\Tilkee\API\Model\WrapperTokenFromFilesPostBody $requestBody
-     * @param array                                                       $headerParameters {
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
@@ -111,7 +196,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\WrapperTokenFromFilesPostResponse200|\Psr\Http\Message\ResponseInterface|null
      */
-    public function createProject(\HbsResearch\Tilkee\API\Model\WrapperTokenFromFilesPostBody $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function createProject(\HbsResearch\Tilkee\API\Model\WrapperTokenFromFilesPostBody $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\CreateProject($requestBody, $headerParameters), $fetch);
     }
@@ -123,6 +208,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -132,7 +219,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \Psr\Http\Message\ResponseInterface|null
      */
-    public function deleteProject(int $projectId, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function deleteProject(int $projectId, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\DeleteProject($projectId, $headerParameters), $fetch);
     }
@@ -149,6 +236,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -158,7 +247,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\Project|\Psr\Http\Message\ResponseInterface|null
      */
-    public function getProject(int $projectId, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function getProject(int $projectId, array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\GetProject($projectId, $queryParameters, $headerParameters), $fetch);
     }
@@ -166,11 +255,12 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * This method can change a Tilkee project, in the following cases: - Say that a project is won - Archive a project - Change its name - Modify options like downloadable.
      *
-     * @param int                                        $projectId        ID of project
-     * @param \HbsResearch\Tilkee\API\Model\InputProject $requestBody
-     * @param array                                      $headerParameters {
+     * @param int   $projectId        ID of project
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -180,7 +270,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\Project|\Psr\Http\Message\ResponseInterface|null
      */
-    public function putProject(int $projectId, \HbsResearch\Tilkee\API\Model\InputProject $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function putProject(int $projectId, \HbsResearch\Tilkee\API\Model\InputProject $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\PutProject($projectId, $requestBody, $headerParameters), $fetch);
     }
@@ -188,11 +278,12 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * In this section you can create a project using an existing one (copying it). Every part of the new project will be the same except the tilks.
      *
-     * @param int                                                              $projectId        ID of project
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdDuplicatePostBody $requestBody
-     * @param array                                                            $headerParameters {
+     * @param int   $projectId        ID of project
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -202,7 +293,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ResponseProjectDuplicate|\Psr\Http\Message\ResponseInterface|null
      */
-    public function duplicateProject(int $projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdDuplicatePostBody $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function duplicateProject(int $projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdDuplicatePostBody $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\DuplicateProject($projectId, $requestBody, $headerParameters), $fetch);
     }
@@ -221,6 +312,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -230,7 +323,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ProjectItem[]|\Psr\Http\Message\ResponseInterface|null
      */
-    public function listProjectItem(int $projectId, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function listProjectItem(int $projectId, array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ListProjectItem($projectId, $queryParameters, $headerParameters), $fetch);
     }
@@ -238,11 +331,12 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * Use this section to add an existing item to a project.
      *
-     * @param int                                                             $projectId        ID of project
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody $requestBody
-     * @param array                                                           $headerParameters {
+     * @param int   $projectId        ID of project
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -252,7 +346,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ProjectItem[]|\Psr\Http\Message\ResponseInterface|null
      */
-    public function addItemToProject(int $projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function addItemToProject(int $projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\AddItemToProject($projectId, $requestBody, $headerParameters), $fetch);
     }
@@ -260,9 +354,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * Use this command to remove items from a project by ids.
      *
-     * @param int                                                                $projectId        ID of project
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdRemoveItemsPostBody $requestBody
-     * @param array                                                              $headerParameters {
+     * @param int   $projectId        ID of project
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
@@ -274,7 +367,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ProjectItem[]|\Psr\Http\Message\ResponseInterface|null
      */
-    public function removeProjectItems(int $projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdRemoveItemsPostBody $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function removeProjectItems(int $projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdRemoveItemsPostBody $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\RemoveProjectItems($projectId, $requestBody, $headerParameters), $fetch);
     }
@@ -282,9 +375,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * Usse this method to archive a project, you can use the won parameter to archive won, lost or undefined.
      *
-     * @param int                                                            $projectId        ID of project
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody $requestBody
-     * @param array                                                          $headerParameters {
+     * @param int   $projectId        ID of project
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
@@ -296,7 +388,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ResponseProjectArchive|\Psr\Http\Message\ResponseInterface|null
      */
-    public function archiveProject(int $projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function archiveProject(int $projectId, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdArchivePostBody $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ArchiveProject($projectId, $requestBody, $headerParameters), $fetch);
     }
@@ -317,7 +409,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ResponseProjectArchive|\Psr\Http\Message\ResponseInterface|null
      */
-    public function restoreProject(int $projectId, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function restoreProject(int $projectId, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\RestoreProject($projectId, $headerParameters), $fetch);
     }
@@ -353,7 +445,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ResponseTokenList|\Psr\Http\Message\ResponseInterface|null
      */
-    public function listProjectTilks(int $projectId, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function listProjectTilks(int $projectId, array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ListProjectTilks($projectId, $queryParameters, $headerParameters), $fetch);
     }
@@ -361,9 +453,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * This method creates a "Tilk", which is a unique link to send your project to your prospect. You can create up to 200 "Tilks" with one call to this method.
      *
-     * @param int                                      $projectId        ID of project
-     * @param \HbsResearch\Tilkee\API\Model\InputToken $requestBody
-     * @param array                                    $headerParameters {
+     * @param int   $projectId        ID of project
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
@@ -375,7 +466,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ResponseCreateToken|\Psr\Http\Message\ResponseInterface|null
      */
-    public function createTilk(int $projectId, \HbsResearch\Tilkee\API\Model\InputToken $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function createTilk(int $projectId, \HbsResearch\Tilkee\API\Model\InputToken $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\CreateTilk($projectId, $requestBody, $headerParameters), $fetch);
     }
@@ -409,7 +500,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ResponseTokenList|\Psr\Http\Message\ResponseInterface|null
      */
-    public function listTilks(array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function listTilks(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ListTilks($queryParameters, $headerParameters), $fetch);
     }
@@ -431,7 +522,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\Token|\Psr\Http\Message\ResponseInterface|null
      */
-    public function getProjectTilk(int $projectId, int $id, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function getProjectTilk(int $projectId, int $id, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\GetProjectTilk($projectId, $id, $headerParameters), $fetch);
     }
@@ -439,10 +530,9 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     /**
      * Used to update Tilk parameters like name or status.
      *
-     * @param int                                                            $projectId        ID of project
-     * @param int                                                            $id               ID of tilk
-     * @param \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $requestBody
-     * @param array                                                          $headerParameters {
+     * @param int   $projectId        ID of project
+     * @param int   $id               ID of tilk
+     * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
@@ -454,7 +544,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\Token|\Psr\Http\Message\ResponseInterface|null
      */
-    public function updateProjectTilk(int $projectId, int $id, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function updateProjectTilk(int $projectId, int $id, \HbsResearch\Tilkee\API\Model\ProjectsProjectIdTokensIdPutBody $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\UpdateProjectTilk($projectId, $id, $requestBody, $headerParameters), $fetch);
     }
@@ -476,7 +566,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\Token|\Psr\Http\Message\ResponseInterface|null
      */
-    public function archiveProjectTilk(int $projectId, int $id, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function archiveProjectTilk(int $projectId, int $id, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ArchiveProjectTilk($projectId, $id, $headerParameters), $fetch);
     }
@@ -497,7 +587,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\Token|\Psr\Http\Message\ResponseInterface|null
      */
-    public function restoreTilk(int $id, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function restoreTilk(int $id, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\RestoreTilk($id, $headerParameters), $fetch);
     }
@@ -516,6 +606,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -525,7 +617,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ResponseItemList|\Psr\Http\Message\ResponseInterface|null
      */
-    public function listItems(array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function listItems(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ListItems($queryParameters, $headerParameters), $fetch);
     }
@@ -537,6 +629,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array                                     $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -546,7 +640,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\ItemWithOwnership[]|\Psr\Http\Message\ResponseInterface|null
      */
-    public function createItems(array $requestBody, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function createItems(array $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\CreateItems($requestBody, $headerParameters), $fetch);
     }
@@ -558,6 +652,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -567,9 +663,32 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \Psr\Http\Message\ResponseInterface|null
      */
-    public function deleteItem(int $itemId, array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function deleteItem(int $itemId, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\DeleteItem($itemId, $headerParameters), $fetch);
+    }
+
+    /**
+     * Update item.
+     *
+     * @param int   $itemId           ID of item
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\UpdateItemBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\UpdateItemUnauthorizedException
+     *
+     * @return \Psr\Http\Message\ResponseInterface|null
+     */
+    public function updateItem(int $itemId, \HbsResearch\Tilkee\API\Model\ItemUpdate $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\UpdateItem($itemId, $requestBody, $headerParameters), $fetch);
     }
 
     /**
@@ -594,7 +713,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \Psr\Http\Message\ResponseInterface|null
      */
-    public function replaceItem(int $itemId, array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function replaceItem(int $itemId, array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ReplaceItem($itemId, $queryParameters, $headerParameters), $fetch);
     }
@@ -619,7 +738,7 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      *
      * @return \HbsResearch\Tilkee\API\Model\UploadInformation|\Psr\Http\Message\ResponseInterface|null
      */
-    public function getUploadFileInformation(array $queryParameters = array(), array $headerParameters = array(), string $fetch = self::FETCH_OBJECT)
+    public function getUploadFileInformation(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\GetUploadFileInformation($queryParameters, $headerParameters), $fetch);
     }
@@ -628,14 +747,14 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     {
         if (null === $httpClient) {
             $httpClient = \Http\Discovery\Psr18ClientDiscovery::find();
-            $plugins = array();
+            $plugins = [];
             $uri = \Http\Discovery\Psr17FactoryDiscovery::findUrlFactory()->createUri('https://api-staging.tilkee.com');
             $plugins[] = new \Http\Client\Common\Plugin\AddHostPlugin($uri);
             $httpClient = new \Http\Client\Common\PluginClient($httpClient, $plugins);
         }
         $requestFactory = \Http\Discovery\Psr17FactoryDiscovery::findRequestFactory();
         $streamFactory = \Http\Discovery\Psr17FactoryDiscovery::findStreamFactory();
-        $serializer = new \Symfony\Component\Serializer\Serializer(\HbsResearch\Tilkee\API\Normalizer\NormalizerFactory::create(), array(new \Symfony\Component\Serializer\Encoder\JsonEncoder(new \Symfony\Component\Serializer\Encoder\JsonEncode(), new \Symfony\Component\Serializer\Encoder\JsonDecode())));
+        $serializer = new \Symfony\Component\Serializer\Serializer(\HbsResearch\Tilkee\API\Normalizer\NormalizerFactory::create(), [new \Symfony\Component\Serializer\Encoder\JsonEncoder(new \Symfony\Component\Serializer\Encoder\JsonEncode(), new \Symfony\Component\Serializer\Encoder\JsonDecode())]);
 
         return new static($httpClient, $requestFactory, $serializer, $streamFactory);
     }

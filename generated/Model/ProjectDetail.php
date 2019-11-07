@@ -29,19 +29,11 @@ class ProjectDetail
      */
     protected $theme;
 
-    /**
-     * @return int|null
-     */
     public function getNbConnections(): ?int
     {
         return $this->nbConnections;
     }
 
-    /**
-     * @param int|null $nbConnections
-     *
-     * @return self
-     */
     public function setNbConnections(?int $nbConnections): self
     {
         $this->nbConnections = $nbConnections;
@@ -49,19 +41,11 @@ class ProjectDetail
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTotalTime(): ?int
     {
         return $this->totalTime;
     }
 
-    /**
-     * @param int|null $totalTime
-     *
-     * @return self
-     */
     public function setTotalTime(?int $totalTime): self
     {
         $this->totalTime = $totalTime;
@@ -69,19 +53,11 @@ class ProjectDetail
         return $this;
     }
 
-    /**
-     * @return Leader|null
-     */
     public function getLeader(): ?Leader
     {
         return $this->leader;
     }
 
-    /**
-     * @param Leader|null $leader
-     *
-     * @return self
-     */
     public function setLeader(?Leader $leader): self
     {
         $this->leader = $leader;
@@ -89,19 +65,11 @@ class ProjectDetail
         return $this;
     }
 
-    /**
-     * @return ProjectData|null
-     */
     public function getData(): ?ProjectData
     {
         return $this->data;
     }
 
-    /**
-     * @param ProjectData|null $data
-     *
-     * @return self
-     */
     public function setData(?ProjectData $data): self
     {
         $this->data = $data;
@@ -119,8 +87,6 @@ class ProjectDetail
 
     /**
      * @param Collaborator[]|null $collaborators
-     *
-     * @return self
      */
     public function setCollaborators(?array $collaborators): self
     {
@@ -129,19 +95,11 @@ class ProjectDetail
         return $this;
     }
 
-    /**
-     * @return Theme|null
-     */
     public function getTheme(): ?Theme
     {
         return $this->theme;
     }
 
-    /**
-     * @param Theme|null $theme
-     *
-     * @return self
-     */
     public function setTheme(?Theme $theme): self
     {
         $this->theme = $theme;

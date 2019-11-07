@@ -92,9 +92,124 @@ paths:
           description: Bad Request
         "401":
           description: Unauthorized
+  /users:
+    parameters:
+      - $ref: "#/components/parameters/tilkeeAuthParam"
+    get:
+      tags:
+        - User
+      summary: List
+      description: Used to get a list of all your users
+      operationId: listUser
+      parameters:
+        - name: search
+          in: query
+          description: Name
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseUserList"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+    post:
+      tags:
+        - User
+      summary: Create
+      operationId: addUser
+      requestBody:
+        description: The user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+  "/users/{userId}":
+    parameters:
+      - $ref: "#/components/parameters/tilkeeAuthParam"
+    delete:
+      tags:
+        - User
+      summary: Delete
+      operationId: deleteUser
+      parameters:
+        - name: userId
+          in: path
+          description: ID of user
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+    put:
+      tags:
+        - User
+      summary: Update
+      operationId: putUser
+      parameters:
+        - name: userId
+          in: path
+          description: ID of user
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        description: The user
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
   /projects:
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     post:
       tags:
         - Project
@@ -264,6 +379,8 @@ paths:
   "/projects/{projectId}":
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     get:
       tags:
         - Project
@@ -352,6 +469,8 @@ paths:
   "/projects/{projectId}/duplicate":
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     post:
       tags:
         - Project
@@ -405,6 +524,8 @@ paths:
   "/projects/{projectId}/items":
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     get:
       tags:
         - Project
@@ -451,6 +572,8 @@ paths:
   "/projects/{projectId}/add_items":
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     post:
       tags:
         - Project
@@ -946,6 +1069,8 @@ paths:
   /items/:
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     post:
       tags:
         - Item
@@ -1013,9 +1138,37 @@ paths:
           description: Bad Request
         "401":
           description: Unauthorized
-  "/items/{itemId}":
+  "/items/{itemId}/":
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
+    put:
+      tags:
+        - Item
+      summary: Update
+      description: Update item
+      operationId: updateItem
+      parameters:
+        - name: itemId
+          in: path
+          description: ID of item
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ItemUpdate"
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
     delete:
       tags:
         - Item
@@ -1115,6 +1268,21 @@ components:
       required: false
       description: Identification de l'outil, peux contenir un numéro de version par ex.
         tool-2.1
+      schema:
+        type: string
+    tilkeeUserParam:
+      in: header
+      name: USER_ID
+      required: false
+      description: Tilkee user id
+      schema:
+        type: integer
+        format: int64
+    tilkeeUserEmailParam:
+      in: header
+      name: USER_EMAIL
+      required: false
+      description: Tilkee user email
       schema:
         type: string
   securitySchemes:
@@ -1288,6 +1456,31 @@ components:
             allOf:
               - $ref: "#/components/schemas/ProjectCommon"
               - $ref: "#/components/schemas/ProjectListDetail"
+    ResponseUserList:
+      type: object
+      properties:
+        search:
+          type: string
+          description: Name
+        limit:
+          type: integer
+          format: int32
+          example: 50
+        offset:
+          type: integer
+          format: int32
+          example: 0
+        total:
+          type: integer
+          format: int32
+          example: 2
+        order:
+          type: string
+          example: -users.created_at
+        contents:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
     ResponseProjectDuplicate:
       allOf:
         - $ref: "#/components/schemas/ProjectCommon"
@@ -1393,6 +1586,40 @@ components:
         created_at:
           type: string
           format: date-time
+    ItemUpdate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 44523
+        title:
+          type: string
+          example: filename
+        usable:
+          type: boolean
+          default: true
+        favorite:
+          type: boolean
+          default: false
+        shared_attributes:
+          type: object
+          properties:
+            all:
+              type: boolean
+              default: false
+            team:
+              type: boolean
+              default: false
+            user_ids:
+              type: array
+              default: []
+        tags:
+          type: array
+          default: []
+        visible:
+          type: boolean
+          default: false
     ItemWithOwnership:
       allOf:
         - $ref: "#/components/schemas/Item"

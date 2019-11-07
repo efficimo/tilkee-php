@@ -77,19 +77,11 @@ class Company
      */
     protected $location;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int|null $id
-     *
-     * @return self
-     */
     public function setId(?int $id): self
     {
         $this->id = $id;
@@ -97,19 +89,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     *
-     * @return self
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -117,19 +101,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getUsersToChargeCounter(): ?int
     {
         return $this->usersToChargeCounter;
     }
 
-    /**
-     * @param int|null $usersToChargeCounter
-     *
-     * @return self
-     */
     public function setUsersToChargeCounter(?int $usersToChargeCounter): self
     {
         $this->usersToChargeCounter = $usersToChargeCounter;
@@ -137,19 +113,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getHaveYousign(): ?bool
     {
         return $this->haveYousign;
     }
 
-    /**
-     * @param bool|null $haveYousign
-     *
-     * @return self
-     */
     public function setHaveYousign(?bool $haveYousign): self
     {
         $this->haveYousign = $haveYousign;
@@ -157,19 +125,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getHaveManagement(): ?bool
     {
         return $this->haveManagement;
     }
 
-    /**
-     * @param bool|null $haveManagement
-     *
-     * @return self
-     */
     public function setHaveManagement(?bool $haveManagement): self
     {
         $this->haveManagement = $haveManagement;
@@ -177,19 +137,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getHasCustomBranding(): ?bool
     {
         return $this->hasCustomBranding;
     }
 
-    /**
-     * @param bool|null $hasCustomBranding
-     *
-     * @return self
-     */
     public function setHasCustomBranding(?bool $hasCustomBranding): self
     {
         $this->hasCustomBranding = $hasCustomBranding;
@@ -207,8 +159,6 @@ class Company
 
     /**
      * @param string[]|null $companyRights
-     *
-     * @return self
      */
     public function setCompanyRights(?array $companyRights): self
     {
@@ -217,19 +167,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getNbEmployees(): ?int
     {
         return $this->nbEmployees;
     }
 
-    /**
-     * @param int|null $nbEmployees
-     *
-     * @return self
-     */
     public function setNbEmployees(?int $nbEmployees): self
     {
         $this->nbEmployees = $nbEmployees;
@@ -237,19 +179,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getHasProabono(): ?bool
     {
         return $this->hasProabono;
     }
 
-    /**
-     * @param bool|null $hasProabono
-     *
-     * @return self
-     */
     public function setHasProabono(?bool $hasProabono): self
     {
         $this->hasProabono = $hasProabono;
@@ -257,19 +191,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getSubscriptionHasPayment(): ?bool
     {
         return $this->subscriptionHasPayment;
     }
 
-    /**
-     * @param bool|null $subscriptionHasPayment
-     *
-     * @return self
-     */
     public function setSubscriptionHasPayment(?bool $subscriptionHasPayment): self
     {
         $this->subscriptionHasPayment = $subscriptionHasPayment;
@@ -277,19 +203,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSubscriptionSegment(): ?string
     {
         return $this->subscriptionSegment;
     }
 
-    /**
-     * @param string|null $subscriptionSegment
-     *
-     * @return self
-     */
     public function setSubscriptionSegment(?string $subscriptionSegment): self
     {
         $this->subscriptionSegment = $subscriptionSegment;
@@ -297,19 +215,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getSlimpayValidated(): ?bool
     {
         return $this->slimpayValidated;
     }
 
-    /**
-     * @param bool|null $slimpayValidated
-     *
-     * @return self
-     */
     public function setSlimpayValidated(?bool $slimpayValidated): self
     {
         $this->slimpayValidated = $slimpayValidated;
@@ -317,19 +227,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getSubscriptionTrialDate(): ?\DateTime
     {
         return $this->subscriptionTrialDate;
     }
 
-    /**
-     * @param \DateTime|null $subscriptionTrialDate
-     *
-     * @return self
-     */
     public function setSubscriptionTrialDate(?\DateTime $subscriptionTrialDate): self
     {
         $this->subscriptionTrialDate = $subscriptionTrialDate;
@@ -337,19 +239,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDefaultThemeId(): ?int
     {
         return $this->defaultThemeId;
     }
 
-    /**
-     * @param int|null $defaultThemeId
-     *
-     * @return self
-     */
     public function setDefaultThemeId(?int $defaultThemeId): self
     {
         $this->defaultThemeId = $defaultThemeId;
@@ -367,8 +261,6 @@ class Company
 
     /**
      * @param string[][]|null $usableDomains
-     *
-     * @return self
      */
     public function setUsableDomains(?array $usableDomains): self
     {
@@ -377,19 +269,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getGeolocActivate(): ?bool
     {
         return $this->geolocActivate;
     }
 
-    /**
-     * @param bool|null $geolocActivate
-     *
-     * @return self
-     */
     public function setGeolocActivate(?bool $geolocActivate): self
     {
         $this->geolocActivate = $geolocActivate;
@@ -397,19 +281,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return CompanyCustomBranding|null
-     */
     public function getCustomBranding(): ?CompanyCustomBranding
     {
         return $this->customBranding;
     }
 
-    /**
-     * @param CompanyCustomBranding|null $customBranding
-     *
-     * @return self
-     */
     public function setCustomBranding(?CompanyCustomBranding $customBranding): self
     {
         $this->customBranding = $customBranding;
@@ -417,19 +293,11 @@ class Company
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLocation(): ?string
     {
         return $this->location;
     }
 
-    /**
-     * @param string|null $location
-     *
-     * @return self
-     */
     public function setLocation(?string $location): self
     {
         $this->location = $location;

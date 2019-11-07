@@ -24,7 +24,7 @@ class ResponseProjectListNormalizer implements DenormalizerInterface, Normalizer
         return is_object($data) && 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectList' === get_class($data);
     }
 
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         if (!is_object($data)) {
             return null;
@@ -46,7 +46,7 @@ class ResponseProjectListNormalizer implements DenormalizerInterface, Normalizer
             $object->setOrder($data->{'order'});
         }
         if (property_exists($data, 'contents') && null !== $data->{'contents'}) {
-            $values = array();
+            $values = [];
             foreach ($data->{'contents'} as $value) {
                 $values[] = $this->denormalizer->denormalize($value, 'HbsResearch\\Tilkee\\API\\Model\\ResponseProjectListContentsItem', 'json', $context);
             }
@@ -56,7 +56,7 @@ class ResponseProjectListNormalizer implements DenormalizerInterface, Normalizer
         return $object;
     }
 
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize($object, $format = null, array $context = [])
     {
         $data = new \stdClass();
         if (null !== $object->getSearch()) {
@@ -75,7 +75,7 @@ class ResponseProjectListNormalizer implements DenormalizerInterface, Normalizer
             $data->{'order'} = $object->getOrder();
         }
         if (null !== $object->getContents()) {
-            $values = array();
+            $values = [];
             foreach ($object->getContents() as $value) {
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }

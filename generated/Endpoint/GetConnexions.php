@@ -23,7 +23,7 @@ class GetConnexions extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements 
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
      * }
      */
-    public function __construct(array $queryParameters = array(), array $headerParameters = array())
+    public function __construct(array $queryParameters = [], array $headerParameters = [])
     {
         $this->queryParameters = $queryParameters;
         $this->headerParameters = $headerParameters;
@@ -43,27 +43,27 @@ class GetConnexions extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements 
 
     public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
     {
-        return array(array(), null);
+        return [[], null];
     }
 
     public function getExtraHeaders(): array
     {
-        return array('Accept' => array('application/json'));
+        return ['Accept' => ['application/json']];
     }
 
     protected function getQueryOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getQueryOptionsResolver();
-        $optionsResolver->setDefined(array('tokens', 'start_date', 'end_date', 'limit', 'search', 'sort', 'offset'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('tokens', array('string'));
-        $optionsResolver->setAllowedTypes('start_date', array('int'));
-        $optionsResolver->setAllowedTypes('end_date', array('int'));
-        $optionsResolver->setAllowedTypes('limit', array('int'));
-        $optionsResolver->setAllowedTypes('search', array('string'));
-        $optionsResolver->setAllowedTypes('sort', array('string'));
-        $optionsResolver->setAllowedTypes('offset', array('int'));
+        $optionsResolver->setDefined(['tokens', 'start_date', 'end_date', 'limit', 'search', 'sort', 'offset']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('tokens', ['string']);
+        $optionsResolver->setAllowedTypes('start_date', ['int']);
+        $optionsResolver->setAllowedTypes('end_date', ['int']);
+        $optionsResolver->setAllowedTypes('limit', ['int']);
+        $optionsResolver->setAllowedTypes('search', ['string']);
+        $optionsResolver->setAllowedTypes('sort', ['string']);
+        $optionsResolver->setAllowedTypes('offset', ['int']);
 
         return $optionsResolver;
     }
@@ -71,10 +71,10 @@ class GetConnexions extends \Jane\OpenApiRuntime\Client\BaseEndpoint implements 
     protected function getHeadersOptionsResolver(): \Symfony\Component\OptionsResolver\OptionsResolver
     {
         $optionsResolver = parent::getHeadersOptionsResolver();
-        $optionsResolver->setDefined(array('x-tilk-ref'));
-        $optionsResolver->setRequired(array());
-        $optionsResolver->setDefaults(array());
-        $optionsResolver->setAllowedTypes('x-tilk-ref', array('string'));
+        $optionsResolver->setDefined(['x-tilk-ref']);
+        $optionsResolver->setRequired([]);
+        $optionsResolver->setDefaults([]);
+        $optionsResolver->setAllowedTypes('x-tilk-ref', ['string']);
 
         return $optionsResolver;
     }
