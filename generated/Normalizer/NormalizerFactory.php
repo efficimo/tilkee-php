@@ -41,6 +41,8 @@ class NormalizerFactory
         $normalizers[] = new UserUtmItemNormalizer();
         $normalizers[] = new UserUtmItemUTMNormalizer();
         $normalizers[] = new UserProfileNormalizer();
+        $normalizers[] = new NotificationNormalizer();
+        $normalizers[] = new LocationNormalizer();
         $normalizers[] = new CompanyNormalizer();
         $normalizers[] = new CompanyCustomBrandingNormalizer();
         $normalizers[] = new CompanyCustomBrandingOnboardingVideosUrlNormalizer();
@@ -56,6 +58,7 @@ class NormalizerFactory
         $normalizers[] = new ProjectsProjectIdRemoveItemsPostBodyNormalizer();
         $normalizers[] = new ProjectsProjectIdArchivePostBodyNormalizer();
         $normalizers[] = new ProjectsProjectIdTokensIdPutBodyNormalizer();
+        $normalizers[] = new NotificationsGetResponse200Normalizer();
 
         return $normalizers;
     }

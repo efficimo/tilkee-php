@@ -6,6 +6,8 @@ use HbsResearch\Tilkee\API\Model\InputItem;
 use HbsResearch\Tilkee\API\Model\InputProject;
 use HbsResearch\Tilkee\API\Model\ItemUpdate;
 use HbsResearch\Tilkee\API\Model\ItemUpdateSharedAttributes;
+use HbsResearch\Tilkee\API\Model\Notification;
+use HbsResearch\Tilkee\API\Model\NotificationsPostBody;
 use HbsResearch\Tilkee\API\Model\Project;
 use HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBody;
 use HbsResearch\Tilkee\API\Model\ProjectsProjectIdAddItemsPostBodyItemsItem;
@@ -26,7 +28,9 @@ class TilkeeTest extends TestCase
     public function __construct(...$args)
     {
         $bearer = new Bearer($_ENV['APP_BEARER']);
-        $httpClient = new TilkeeClient($bearer, 'efficimo-tests');
+        $httpClient = new TilkeeClient($bearer, 'efficimo-tests', [
+            'host' => $_ENV['APP_HOST']
+        ]);
         $this->tilkee = (new Tilkee($httpClient, new \Http\Adapter\Guzzle6\Client(new \GuzzleHttp\Client())));
         $this->client = $this->tilkee->getClient();
 
@@ -129,6 +133,23 @@ class TilkeeTest extends TestCase
         $this->client->addItemToProject($project->getId(), (new ProjectsProjectIdAddItemsPostBody())->setItems($itemsToProject));
     }
 
+    public function testListWebhooks()
+    {
+//        var_dump($this->tilkee->getClient()->listNotifications());
+    }
+
+    public function testCreateWebhook()
+    {
+        $me = $this->tilkee->getClient()->me();
+        $me->getCompany()->getId();
+
+        $this->tilkee->getClient()->createNotification((new Notification())
+            ->setCompanyId($me->getCompany()->getId())
+            ->setRule('connexion_ended')
+            ->setUrl('https://w1dcejm1yh.execute-api.eu-west-3.amazonaws.com/production/events')
+        );
+    }
+
     public function testDocumentIsolation()
     {
         /** @var User[] $users */
@@ -144,7 +165,6 @@ class TilkeeTest extends TestCase
                 'lastName' => 'test',
             ]),
         ];
-
 
         foreach($users as $user) {
             $inputProject = new InputProject();
@@ -192,6 +212,13 @@ class TilkeeTest extends TestCase
 
             echo 'Iframe '.$user->getFirstName(). ' '.$projectWithIframes->getIframes()->project.PHP_EOL;
         }
+    }
+
+    public function testSearchUser()
+    {
+        $users = $this->client->listUser(['search' => 'watson@efficimo.lan']);
+
+        var_dump($users);
     }
 
     protected function getUser($data): User
@@ -265,7 +292,6 @@ class TilkeeTest extends TestCase
         }
 
         $this->client->addItemToProject($project->getId(), (new ProjectsProjectIdAddItemsPostBody())->setItems($itemsToProject), ['USER_ID' => $user->getId()]);
-
 
 //        $this->client->deleteUser($user->getId());
     }

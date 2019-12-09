@@ -151,6 +151,26 @@ paths:
           description: Bad Request
         "401":
           description: Unauthorized
+  /users/me/:
+     parameters:
+       - $ref: "#/components/parameters/tilkeeAuthParam"
+     get:
+       tags:
+         - User
+       summary: GetMe
+       description: Used to get a list of all your users
+       operationId: me
+       responses:
+         "200":
+           description: OK
+           content:
+             application/json:
+               schema:
+                 $ref: "#/components/schemas/User"
+         "400":
+           description: Bad Request
+         "401":
+           description: Unauthorized
   "/users/{userId}":
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
@@ -1253,6 +1273,72 @@ paths:
           description: Bad Request
         "401":
           description: Unauthorized
+  /notifications:
+    parameters:
+      - $ref: "#/components/parameters/tilkeeAuthParam"
+    get:
+      tags:
+        - Notification
+      summary: List notifications
+      descrition: List notifications
+      operationId: listNotifications
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contents:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Notification"
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+    post:
+      tags:
+        - Notification
+      summary: Create notification
+      description: Create a notification
+      operationId: createNotification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Notification"
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+  "/notifications/{notificationId}":
+    parameters:
+      - $ref: "#/components/parameters/tilkeeAuthParam"
+    put:
+      tags:
+        - Notification
+      summary: Update
+      operationId: putNotification
+      parameters:
+        - name: notificationId
+          in: path
+          description: ID of Notification
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Notification"
+        description: The notification
+        required: true
 security:
   - Bearer: []
 externalDocs:
@@ -1546,6 +1632,8 @@ components:
           type: string
           example: title
         signable:
+          type: boolean
+        downloadable:
           type: boolean
         item:
           $ref: "#/components/schemas/Item"
@@ -2042,9 +2130,6 @@ components:
           type: string
           format: date-time
           example: 2015-11-19T10:02:05.322+01:00
-        company_id:
-          type: integer
-          format: int64
         deleted_at:
           format: date-time
           example: 2015-11-19T10:02:05.322+01:00
@@ -2099,9 +2184,36 @@ components:
             retention_delay:
               type: integer
         location:
-          type: string
+          $ref: "#/components/schemas/Location"
         company:
           $ref: "#/components/schemas/Company"
+    Notification:
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+        rule:
+          type: string
+        target:
+          type: string
+          default: Webhook
+        company_id:
+          type: integer
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+        address:
+          type: string
+        postal_code:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
     Company:
       type: object
       properties:

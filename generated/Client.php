@@ -81,6 +81,26 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     }
 
     /**
+     * Used to get a list of all your users.
+     *
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\MeBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\MeUnauthorizedException
+     *
+     * @return \HbsResearch\Tilkee\API\Model\User|\Psr\Http\Message\ResponseInterface|null
+     */
+    public function me(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\Me($headerParameters), $fetch);
+    }
+
+    /**
      * @param int   $userId           ID of user
      * @param array $headerParameters {
      *
@@ -741,6 +761,60 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
     public function getUploadFileInformation(array $queryParameters = [], array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
     {
         return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\GetUploadFileInformation($queryParameters, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\ListNotificationsBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\ListNotificationsUnauthorizedException
+     *
+     * @return \HbsResearch\Tilkee\API\Model\NotificationsGetResponse200|\Psr\Http\Message\ResponseInterface|null
+     */
+    public function listNotifications(array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\ListNotifications($headerParameters), $fetch);
+    }
+
+    /**
+     * Create a notification.
+     *
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @throws \HbsResearch\Tilkee\API\Exception\CreateNotificationBadRequestException
+     * @throws \HbsResearch\Tilkee\API\Exception\CreateNotificationUnauthorizedException
+     *
+     * @return \Psr\Http\Message\ResponseInterface|null
+     */
+    public function createNotification(\HbsResearch\Tilkee\API\Model\Notification $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\CreateNotification($requestBody, $headerParameters), $fetch);
+    }
+
+    /**
+     * @param int   $notificationId   ID of Notification
+     * @param array $headerParameters {
+     *
+     *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     * }
+     *
+     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     *
+     * @return \Psr\Http\Message\ResponseInterface|null
+     */
+    public function putNotification(int $notificationId, \HbsResearch\Tilkee\API\Model\Notification $requestBody, array $headerParameters = [], string $fetch = self::FETCH_OBJECT)
+    {
+        return $this->executePsr7Endpoint(new \HbsResearch\Tilkee\API\Endpoint\PutNotification($notificationId, $requestBody, $headerParameters), $fetch);
     }
 
     public static function create($httpClient = null)

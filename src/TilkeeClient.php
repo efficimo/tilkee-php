@@ -70,6 +70,9 @@ class TilkeeClient implements HttpClient
      */
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
+        var_dump($request->getUri());
+        var_dump($request->getBody()->getContents());
+
         return $this->getHttpClient()->sendRequest($request);
     }
 }
