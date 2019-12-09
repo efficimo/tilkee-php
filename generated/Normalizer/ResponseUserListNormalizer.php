@@ -40,7 +40,12 @@ class ResponseUserListNormalizer implements DenormalizerInterface, NormalizerInt
             $object->setOffset($data->{'offset'});
         }
         if (property_exists($data, 'total') && null !== $data->{'total'}) {
-            $object->setTotal($data->{'total'});
+            if(is_object($data->{'total'})) {
+                // Hack to fix temporary api issue
+                $object->setTotal(1);
+            } else {
+                $object->setTotal($data->{'total'});
+            }
         }
         if (property_exists($data, 'order') && null !== $data->{'order'}) {
             $object->setOrder($data->{'order'});
