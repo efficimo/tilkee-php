@@ -121,9 +121,6 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (property_exists($data, 'updated_at') && null !== $data->{'updated_at'}) {
             $object->setUpdatedAt(\DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'updated_at'}));
         }
-        if (property_exists($data, 'company_id') && null !== $data->{'company_id'}) {
-            $object->setCompanyId($data->{'company_id'});
-        }
         if (property_exists($data, 'deleted_at') && null !== $data->{'deleted_at'}) {
             $object->setDeletedAt(\DateTime::createFromFormat("Y-m-d\TH:i:s.uP", $data->{'deleted_at'}));
         }
@@ -160,7 +157,7 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $object->setProfile($this->denormalizer->denormalize($data->{'profile'}, 'HbsResearch\\Tilkee\\API\\Model\\UserProfile', 'json', $context));
         }
         if (property_exists($data, 'location') && null !== $data->{'location'}) {
-            $object->setLocation($data->{'location'});
+            $object->setLocation($this->denormalizer->denormalize($data->{'location'}, 'HbsResearch\\Tilkee\\API\\Model\\Location', 'json', $context));
         }
         if (property_exists($data, 'company') && null !== $data->{'company'}) {
             $object->setCompany($this->denormalizer->denormalize($data->{'company'}, 'HbsResearch\\Tilkee\\API\\Model\\Company', 'json', $context));
@@ -263,9 +260,6 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
         if (null !== $object->getUpdatedAt()) {
             $data->{'updated_at'} = $object->getUpdatedAt()->format("Y-m-d\TH:i:s.uP");
         }
-        if (null !== $object->getCompanyId()) {
-            $data->{'company_id'} = $object->getCompanyId();
-        }
         if (null !== $object->getDeletedAt()) {
             $data->{'deleted_at'} = $object->getDeletedAt()->format("Y-m-d\TH:i:s.uP");
         }
@@ -302,7 +296,7 @@ class UserNormalizer implements DenormalizerInterface, NormalizerInterface, Deno
             $data->{'profile'} = $this->normalizer->normalize($object->getProfile(), 'json', $context);
         }
         if (null !== $object->getLocation()) {
-            $data->{'location'} = $object->getLocation();
+            $data->{'location'} = $this->normalizer->normalize($object->getLocation(), 'json', $context);
         }
         if (null !== $object->getCompany()) {
             $data->{'company'} = $this->normalizer->normalize($object->getCompany(), 'json', $context);

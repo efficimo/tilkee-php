@@ -123,10 +123,6 @@ class User
      */
     protected $updatedAt;
     /**
-     * @var int|null
-     */
-    protected $companyId;
-    /**
      * @var \DateTime|null
      */
     protected $deletedAt;
@@ -163,7 +159,7 @@ class User
      */
     protected $profile;
     /**
-     * @var string|null
+     * @var Location|null
      */
     protected $location;
     /**
@@ -531,18 +527,6 @@ class User
         return $this;
     }
 
-    public function getCompanyId(): ?int
-    {
-        return $this->companyId;
-    }
-
-    public function setCompanyId(?int $companyId): self
-    {
-        $this->companyId = $companyId;
-
-        return $this;
-    }
-
     public function getDeletedAt(): ?\DateTime
     {
         return $this->deletedAt;
@@ -663,12 +647,12 @@ class User
         return $this;
     }
 
-    public function getLocation(): ?string
+    public function getLocation(): ?Location
     {
         return $this->location;
     }
 
-    public function setLocation(?string $location): self
+    public function setLocation(?Location $location): self
     {
         $this->location = $location;
 

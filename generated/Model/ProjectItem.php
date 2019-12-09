@@ -25,6 +25,10 @@ class ProjectItem
      */
     protected $signable;
     /**
+     * @var bool|null
+     */
+    protected $downloadable;
+    /**
      * @var Item|null
      */
     protected $item;
@@ -85,6 +89,18 @@ class ProjectItem
     public function setSignable(?bool $signable): self
     {
         $this->signable = $signable;
+
+        return $this;
+    }
+
+    public function getDownloadable(): ?bool
+    {
+        return $this->downloadable;
+    }
+
+    public function setDownloadable(?bool $downloadable): self
+    {
+        $this->downloadable = $downloadable;
 
         return $this;
     }

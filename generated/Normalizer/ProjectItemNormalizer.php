@@ -45,6 +45,9 @@ class ProjectItemNormalizer implements DenormalizerInterface, NormalizerInterfac
         if (property_exists($data, 'signable') && null !== $data->{'signable'}) {
             $object->setSignable($data->{'signable'});
         }
+        if (property_exists($data, 'downloadable') && null !== $data->{'downloadable'}) {
+            $object->setDownloadable($data->{'downloadable'});
+        }
         if (property_exists($data, 'item') && null !== $data->{'item'}) {
             $object->setItem($this->denormalizer->denormalize($data->{'item'}, 'HbsResearch\\Tilkee\\API\\Model\\Item', 'json', $context));
         }
@@ -69,6 +72,9 @@ class ProjectItemNormalizer implements DenormalizerInterface, NormalizerInterfac
         }
         if (null !== $object->getSignable()) {
             $data->{'signable'} = $object->getSignable();
+        }
+        if (null !== $object->getDownloadable()) {
+            $data->{'downloadable'} = $object->getDownloadable();
         }
         if (null !== $object->getItem()) {
             $data->{'item'} = $this->normalizer->normalize($object->getItem(), 'json', $context);
