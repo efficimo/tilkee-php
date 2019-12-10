@@ -216,8 +216,7 @@ class TilkeeTest extends TestCase
 
     public function testSearchUser()
     {
-        $users = $this->client->listUser(['search' => 'watson@efficimo.lan']);
-
+        $users = $this->client->listUser(['search' => 'test@efficimo.lan']);
         var_dump($users);
     }
 
