@@ -42,7 +42,7 @@ class ResponseUserListNormalizer implements DenormalizerInterface, NormalizerInt
         if (property_exists($data, 'total') && null !== $data->{'total'}) {
             if(is_object($data->{'total'})) {
                 // Hack to fix temporary api issue
-                $object->setTotal(1);
+                $object->setTotal(count($data->{'contents'}));
             } else {
                 $object->setTotal($data->{'total'});
             }
