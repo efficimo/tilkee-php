@@ -1969,9 +1969,8 @@ components:
                 type: string
                 example: Jean
               external_id:
-                type: integer
-                format: int64
-                example: 1234
+                type: string
+                example: 12345
     ResponseCreateToken:
       type: object
       properties:

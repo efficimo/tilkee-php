@@ -9,7 +9,7 @@ class InputTokenPersonsItem
      */
     protected $name;
     /**
-     * @var int|null
+     * @var string|null
      */
     protected $externalId;
 
@@ -25,12 +25,12 @@ class InputTokenPersonsItem
         return $this;
     }
 
-    public function getExternalId(): ?int
+    public function getExternalId(): ?string
     {
         return $this->externalId;
     }
 
-    public function setExternalId(?int $externalId): self
+    public function setExternalId(?string $externalId): self
     {
         $this->externalId = $externalId;
 
