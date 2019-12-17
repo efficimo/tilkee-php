@@ -86,6 +86,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -105,6 +107,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -124,6 +128,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -207,6 +213,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -456,6 +464,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -477,6 +487,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -511,6 +523,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -533,6 +547,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -555,6 +571,8 @@ class Client extends \Jane\OpenApiRuntime\Client\Psr18Client
      * @param array $headerParameters {
      *
      *     @var string $x-tilk-ref Identification de l'outil, peux contenir un numéro de version par ex. tool-2.1
+     *     @var int $USER_ID Tilkee user id
+     *     @var string $USER_EMAIL Tilkee user email
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)

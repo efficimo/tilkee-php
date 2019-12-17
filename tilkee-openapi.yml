@@ -154,6 +154,8 @@ paths:
   /users/me/:
      parameters:
        - $ref: "#/components/parameters/tilkeeAuthParam"
+       - $ref: "#/components/parameters/tilkeeUserParam"
+       - $ref: "#/components/parameters/tilkeeUserEmailParam"
      get:
        tags:
          - User
@@ -174,6 +176,8 @@ paths:
   "/users/{userId}":
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     delete:
       tags:
         - User
@@ -346,6 +350,8 @@ paths:
   /wrapper/token_from_files:
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     post:
       tags:
         - Project
@@ -761,6 +767,8 @@ paths:
   "/projects/{projectId}/tokens":
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     post:
       tags:
         - Tilk
@@ -876,6 +884,8 @@ paths:
   /tokens:
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     get:
       tags:
         - Tilk
@@ -944,6 +954,8 @@ paths:
   "/projects/{projectId}/tokens/{id}":
     parameters:
       - $ref: "#/components/parameters/tilkeeAuthParam"
+      - $ref: "#/components/parameters/tilkeeUserParam"
+      - $ref: "#/components/parameters/tilkeeUserEmailParam"
     get:
       tags:
         - Tilk
